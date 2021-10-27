@@ -1,0 +1,24 @@
+{# news labels include is on all 3 new templates #}
+
+{% set newsLabels = content.field_labels[0] %}
+
+{#
+  Since we do not know how many labels there will be, and they are stored in the root of the
+  content.field_labels with an integer index, we build up an array of all of the labels in
+  the labels array.
+#}
+
+{% if newsLabels %}
+  <div class="labels">
+    <span>Related topics: </span>
+    {% for label in content.field_labels if key | first != '#' %}
+      {% set labelName = label["#title"] %}
+      {% set labelUrl = label["#url"] %}
+      {# Check that the render array element has a title and url,
+        so that we don't try to render something that isn't renderable #}
+      {% if labelName and labelUrl %}
+          <a href="{{ label['#url'] }}" hreflang="en">{{ labelName }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

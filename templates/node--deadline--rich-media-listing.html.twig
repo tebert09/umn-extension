@@ -1,0 +1,12 @@
+{# This template is for the Deadlines displaying under local office event calendars #}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<article class="row list-display" {{ attributes }}>
+  <div class="col-12">
+    {% include '@coffey/includes/deadline/deadline-date.html.twig' %}
+    {% include '@coffey/includes/events/event-title.html.twig' %}
+    {% include '@coffey/includes/deadline/deadline-time.html.twig' %}
+  </div>
+</article>

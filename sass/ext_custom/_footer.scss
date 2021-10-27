@@ -1,0 +1,194 @@
+// Above Footer
+// --------------------------------------------------
+
+.reviewed-year {
+  margin: 15px 0;
+
+  p {
+    color: $darkgrey;
+    font-style: italic;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
+// Footer
+// --------------------------------------------------
+
+footer {
+  border-top: $lightgrey 2pt solid;
+  margin: 0;
+  padding: 20px 0 0;
+  font-size: 90%;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  p {
+    text-align: left;
+  }
+
+  p {
+    font-size: $font-size-base;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  ol:last-child,
+  p:last-child,
+  ul:last-child {
+    margin-bottom: 0;
+  }
+
+  .col-12:last-child {
+    margin-top: 10px;
+  }
+  @media (min-width:$medium-screen) {
+    .col-12:last-child {
+      margin-top: 0;
+    }
+  }
+  @media (min-width:$large-screen) {
+    .col-12 {
+      margin-bottom: 0;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
+  }
+
+  .contact-info {
+    font-size: $font-size-base;
+    margin: 9px 0 20px;
+  }
+
+  .social-icons {
+    margin: 15px 0;
+
+    a {
+      display: inline-block;
+      border: 0;
+      margin-right: 5px;
+
+      &:focus,
+      &:hover {
+        background: none;
+      }
+    }
+
+    a,
+    a svg {
+      width: 3em;
+      height: 3em;
+    }
+  }
+}
+
+#umnhf-f {
+  padding: 15px 0 0;
+  margin-bottom: 15px;
+
+  p,
+  p:last-child {
+    display: block;
+    text-align: left;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: inline-block;
+
+    li {
+      font-size: 1.1rem;
+      margin: 10px 0;
+
+      a {
+        text-decoration: underline;
+
+        &:focus,
+        &:hover {
+          text-decoration: none;
+          color: $white;
+          background: $maroon;
+        }
+      }
+
+      &.small {
+        a {
+          color: #b8b6b6;
+
+          &:focus,
+          &:hover {
+            background: transparent;
+            color: #b8b6b6;
+          }
+        }
+      }
+    }
+
+    span {
+      display: none;
+    }
+  }
+  @media (min-width:$medium-screen) {
+    ul {
+      li,
+      li a {
+        float: left;
+        margin: 0;
+      }
+
+      span {
+        display: inline-block;
+        float: left;
+        margin: 0 5px;
+      }
+    }
+  }
+}
+
+.youtube .a {
+  fill: red;
+}
+
+.twitter .a {
+  fill: #1da1f2;
+}
+
+.podcast .a {
+  fill: #9f26cb;
+}
+
+.pinterest .a {
+  fill: #bd081c;
+}
+
+.linkedin .a {
+  fill: #0077b5;
+}
+
+.instagram {
+  .a {}
+}
+
+.facebook .a {
+  fill: #4861af;
+}
+
+.blogger .a {
+  fill: #ff5722;
+}
+
+.social-icons svg .b {
+  fill: $white;
+}

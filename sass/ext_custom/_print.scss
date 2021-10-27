@@ -1,0 +1,124 @@
+//--------------------------------------------------
+// Print styles
+//--------------------------------------------------
+
+
+
+//------------- Table styles
+.table-block {
+  table.table {
+    margin: 0;
+
+    tr,
+    tr td,
+    tr td br {
+      -webkit-column-break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      -webkit-region-break-inside: avoid !important;
+    }
+
+    thead {
+      display: table-header-group;
+
+      th {
+        padding: 0.65rem;
+        border-right: 1pt solid grey;
+      }
+    }
+
+    td {
+      padding: 0.25rem;
+      border-top: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+
+    tr {
+      border: 1px solid grey;
+    }
+  }
+}
+
+
+//------------- Category landing pages
+.category-container {
+  background: transparent !important;
+  border-top: 2pt solid #f0efee;
+  max-width: inherit;
+  padding: 30px 0;
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .col-12.col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-column-break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+article.category-container:nth-of-type(odd):before, article.category-container:nth-of-type(odd):after {
+  display: none; 
+}
+
+
+//------------- Header
+.umnhf .row .col-md:last-child {
+  display: none;
+}
+
+#mandatory-header-wrapper {
+  /*replacing header logo text from white to maroon*/
+  padding: 0;
+  background: transparent;
+}
+
+.printer {
+  display: inline-block !important;
+  width: 100%;
+  background-color: #fff;
+
+  .left {
+    width: 50%;
+    float: left;
+    padding: 10px 0;
+    img {
+      max-width: 500px;
+    }
+  }
+
+  .right {
+    float: right;
+    width: auto;
+    text-align: right;
+    margin: 20px 0 0;
+  }
+}
+
+#umnhf-f {
+  // hide all of the footer, except the copyright
+  padding: 5px 0 0;
+}
+
+#umnhf-h a.umnhf {
+  display: none;
+}
+
+
+//------------- Random styles
+
+.full-width-bg .single-column {
+  max-width: none;
+}
+.reviewed-year {
+  margin: 10px 0;
+}
+
+.intro {
+  max-width: 100% !important;
+}

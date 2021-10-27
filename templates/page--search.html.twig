@@ -1,0 +1,76 @@
+{% extends "page.html.twig" %}
+
+{# Main #}
+{% block main %}
+  <main class="js-quickedit-main-content container">
+
+    {# Sidebar First #}
+    {% if page.sidebar_first %}
+      {% block sidebar_first %}
+        {# First sidebar is used to pass blocks through to nodes without printing them #}
+      {% endblock %}
+    {% endif %}
+
+    {# Content #}
+    {%
+        set content_classes = [
+          page.sidebar_first and page.sidebar_second ? 'col-sm-6',
+          page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
+          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
+          page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
+        ]
+      %}
+
+    {# Main Content #}
+    {% block main_content %}
+
+      {# Highlighted #}
+      {% if page.highlighted %}
+        {% block highlighted %}
+          <div class="highlighted">{{ page.highlighted }}</div>
+        {% endblock %}
+      {% endif %}
+
+      {# Help #}
+      {% if page.help %}
+        {% block help %}
+          {{ page.help }}
+        {% endblock %}
+      {% endif %}
+
+      {# Content #}
+      {% block content %}
+        <a id="main-content"></a>
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+            {{ page.content }}
+
+            {# Include search results from CSE #}
+            {% set root_url = url("<front>") %}
+
+            <div class="gcse-coffey-search">
+              <!-- Search box in the main area of the page -->
+              <gcse:searchbox-only resultsurl="{{ root_url }}/search"></gcse:searchbox-only>
+            </div>
+
+            <!-- main container for search results -->
+            <div class="search-results-area ">
+              <!-- search results -->
+              <gcse:searchresults-only></gcse:searchresults-only>
+            </div>
+
+          </div>
+        </div>
+      {% endblock %}
+
+      {# Sidebar Second #}
+      {% if sidebar_second %}
+        {% block sidebar_second %}
+          <aside class="col-xs-12" role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        {% endblock %}
+      {% endif %}
+    {% endblock %}
+  </main>
+{% endblock %}

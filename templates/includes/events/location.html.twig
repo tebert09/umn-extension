@@ -1,0 +1,17 @@
+{# Include used on event--upcoming-course-events and event--rich-media-listing #}
+
+{% set hideAddress = (content.field_online_no_address["0"]["#markup"] == "True") %}
+{% set onlineType = content.field_type_online_event[0]["#markup"] %}
+
+<p>
+  {% if (hideAddress and onlineType) %}
+    {{ onlineType }}
+
+  {% elseif hideAddress %}
+    Online
+
+  {% else %}
+    {% include '@coffey/includes/events/location-name.html.twig' %}
+    
+  {% endif %}
+</p>

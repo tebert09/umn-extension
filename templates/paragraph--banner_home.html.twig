@@ -1,0 +1,56 @@
+{{ attach_library('coffey/video-controller') }}
+{{ attach_library('coffey/carousel') }}
+
+{% set hasBannerBody = content.field_body[0] %}
+{% set overlay_class = content.field_overlay_location[0]["#markup"] %}
+{% set posterUrl = content.field_hero_image["#items"].entity.uri.value %}
+{% set hasVideoUrls = (content.field_video_source_url[0]) %}
+{% set videoBannerClass = "" %}
+{% set background_class = content.field_background_color[0]["#markup"] %}
+
+{% if hasVideoUrls %}
+{% set videoBannerClass = "video-banner" %}
+{% endif %}
+
+
+{% if hasVideoUrls %}
+<div class="banner {{ videoBannerClass }}" {{ attributes }}>
+  <div class="mobile-backup">
+    {{ content.field_image }}
+  </div>
+  <video id="hero-video" style="width: 100%;" preload="preload" autoplay="autoplay" muted="muted" loop="loop"
+    poster="{{ posterUrl }}">
+    {% for key, videoSource in content.field_video_source_url if key | first != '#' %}
+      {# determine video type #}
+      {% if "mp4" in videoSource %}
+        {% set sourceType = "video/mp4" %}
+      {% elseif "ogg" in videoSource %}
+        {% set sourceType = "video/ogg" %}
+      {% endif %}
+
+      <source src="{{ videoSource }}" type="video/mp4">
+    {% endfor %}
+    {# Fallback to the banner image for browsers that don't support video #}
+    {{ content.field_image }}
+  </video>
+  <div class="pause-wrapper">
+    <button id="pause-video" aria-label="Pause and play video">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29 33">
+        <title>Pause button</title>
+        <rect x="1" y="1" width="9.28" height="31" />
+        <rect x="18.72" y="1" width="9.28" height="31" />
+      </svg>
+    </button>
+  </div>
+</div>
+{% else %}
+<div class="banner" {{ attributes }}>
+  {{ content.field_image }}
+{% endif %}
+  {% if hasBannerBody %}
+    <div class="banner-content {{ overlay_class }} {{ background_class }}">
+      {{ hasBannerBody }}
+    </div>
+</div>
+{% endif %}
+

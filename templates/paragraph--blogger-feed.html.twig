@@ -1,0 +1,36 @@
+{# Blogger feed templates are used once a Blog has been added as a view. #}
+
+{# This templates is very similar to the events-teaser-section template, but uses different field names #}
+
+{% set titleText = content.field_title[0]["#context"]["value"] %}
+{% set headerLevel = content.field_header[0]["#markup"] %}
+{% set fullHeader = "<" ~ headerLevel ~ ">" ~ titleText ~ "</" ~ headerLevel ~ ">" %}
+{% set buttonLink = content.field_title_link[0]["#url"].toString() %}
+{% set buttonTitle = content.field_title_link[0]["#title"] %}
+{% set blogContent = content.field_content[0] %}
+{% set background_color_class = content.field_background_color[0]["#markup"] %}
+{% set border_color_class = content.field_border_color[0]["#markup"] %}
+
+{{ attach_library('coffey/news') }}
+
+<section class="blogger-feed {{ background_color_class }} {{ border_color_class }}" {{ attributes }}>
+  <div class="row">
+    <div class="col-12 col-lg">
+      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+      {% autoescape %}
+        {{ fullHeader|raw }}
+      {% endautoescape %}
+      {% if blogContent %}
+        {{ blogContent }}
+      {% endif %}
+    </div>
+    {% if buttonLink %}
+      <div class="col-12 col-lg-auto action-button">
+        <a role="button" class="button" href="{{ buttonLink }}">{{ buttonTitle }}
+          <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>  
+  {{ content.field_view_reference }}
+</section>

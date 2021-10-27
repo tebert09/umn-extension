@@ -1,0 +1,11 @@
+{% set pageTitle = content.alternate_title ? content.alternate_title : content.field_page_to_reference[0]["#node"].getTitle() %}
+{% set sectionHeaderId = content.section_header[0]["value"]|url_encode %}
+
+<div class="col-12 col-sm-6">
+  <h3>
+    <a href="{{ content.page_link }}">{{ pageTitle }}</a>
+  </h3>
+  <p>
+    {{ content.page_summary }}
+  </p>
+</div>

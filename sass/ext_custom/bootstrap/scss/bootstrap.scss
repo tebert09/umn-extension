@@ -1,0 +1,31 @@
+/*!
+ * Bootstrap v4.0.0 (https://getbootstrap.com)
+ * Copyright 2011-2018 The Bootstrap Authors
+ * Copyright 2011-2018 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "reboot";
+//@import "code"; // removed 7/7
+@import "grid";
+@import "tables"; // this is needed! /farmland-rent-and-economics/farmland-sale-prices#southwest-minnesota-bare-farmland-sale-prices-723260
+@import "forms"; // used in courses and events
+@import "transitions";
+//@import "dropdown"; // removed 9/22
+//@import "button-group"; // removed 7/7
+@import "input-group"; // used in courses and events
+//@import "custom-forms"; // removed 7/7
+//@import "breadcrumb"; // removed 7/28
+//@import "pagination";
+// @import "media"; //removed 9/27
+// @import "list-group"; // removed 9/29
+//@import "close";//removed 9.30
+//@import "modal"; //removed 9/27
+//@import "tooltip"; // removed 9/29
+// @import "popover";  //removed 9/27
+//@import "carousel"; // removed 9/29
+@import "utilities";
+// @import "print"; //removed 8/23

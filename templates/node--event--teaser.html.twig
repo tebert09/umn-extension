@@ -1,0 +1,32 @@
+{# This template displays the event month and date in a grey box and title and time next to it. #}
+
+{% set startDateString = content.field_start_date[0]["#markup"] %}
+{% set startMonth = startDateString | date("M", false) %}
+{% set startDay = startDateString | date("d", false) %}
+{% set isOnline = (content.field_online_no_address["0"]["#markup"] == "True") %}
+{% set hideStartDate = (content.field_hide_start_date["0"]["#markup"] == "True") %}
+{% set headerLevel = content.field_aria_heading_level[0]["#markup"] %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<article {{ attributes.addClass("event-teaser") }}>
+  <div class="row">
+    <div class="date-box">
+      {% if (hideStartDate and isOnline) %}
+        {# If online and start date is hidden, use online course icon #}
+        <img src="/{{ active_theme_path() }}/images/online-course-icon.svg"/>
+      {% else %}
+        {# example - Sept 21 #}
+        <div class="month">{{ startDateString|date("M") }}</div>
+        <div class="date">{{ startDateString|date("j") }}</div>
+      {% endif %}
+    </div>
+
+    <div class="col">
+      {% include '@coffey/includes/events/event-title.html.twig' %}
+      {% include '@coffey/includes/events/time.html.twig' %}
+      {% include '@coffey/includes/events/location.html.twig' %}
+    </div>
+  </div>
+</article>

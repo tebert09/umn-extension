@@ -1,0 +1,12 @@
+{# Paragraph type that allows for multiple images to display as clickable thumbnails that open in a lightbox. 
+This p-type NEEDS the magnific-popup.css file. 
+See /fruit/kiwiberry#kiwiberry-species-and-varieties---1833010 for page example. #}
+
+<section class="image-grid">
+  {% if content.field_content %}
+    {{ content.field_content }}
+  {% endif %}
+  <div class="popup-gallery">
+    {{ content.field_images }}
+  </div>
+</section>

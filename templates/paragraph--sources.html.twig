@@ -1,0 +1,64 @@
+{% set drawerGroupTitleText = content.field_title[0]["#context"].value %}
+{% set drawerHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set drawerGroupHeader = "<" ~ drawerHeaderMarkup ~ ">" ~ drawerGroupTitleText ~ "</" ~ drawerHeaderMarkup ~ ">" %}
+
+{# The template default set classes. #}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ attach_library('coffey/extension-accordions') }}
+
+{# Sets Unique ID for Accordion from Paragraph ID. #}
+{% set drawerTitleFormattedAsId = drawerGroupTitleText|replace({" ": "-"})|lower|escape("url") %}
+{% set paragraph_id = drawerTitleFormattedAsId
+  ? drawerTitleFormattedAsId
+  : paragraph.id.value %}
+
+{# Changes Navigation Link Anchor field into plain string. #}
+{% set anchor_name = content.field_navigation_link_anchor['#items'][0].getString() %}
+
+{# Set a anchor, if their is one #}
+{% if content.field_navigation_link_anchor %}
+  <a name="{{ anchor_name }}"></a>
+{% endif %}
+
+<section class="accordion-group sources" id="{{ paragraph_id }}">
+
+  {% for key, item in content.field_source_drawer if key | first != '#' %}
+    {% set drawer_title = item["#paragraph"].field_title.value|striptags %}
+    {# ADDED "|striptags" TO FIX FIELD TYPE ERROR #}
+    {% if drawerGroupTitleText %}
+      {% autoescape %}
+        {{ drawerGroupHeader|raw }}
+      {% endautoescape %}
+    {% endif %}
+    {% set drawer_title_index_name = drawer_title|replace({" ": "-"})|lower|escape("url") %}
+    {% set drawer_index = key %}
+    {% set drawer_id = drawer_title_index_name ~ "-" ~ paragraph.id.value ~ drawer_index %}
+    <div class="accordion">
+
+      <button href="#{{ drawer_id }}" class="accordion-title" aria-controls="{{ drawer_id }}" aria-expanded="false">
+        {% include '@coffey/includes/drawer-icon.html.twig' %}
+        {{ drawer_title }}
+      </button>
+
+      <div id="{{ drawer_id }}" class="accordion-body is-collapsed">
+        {% for body_key, body_item in item['#paragraph'].field_source_drawer_content %}
+          {# Use the same render array as item and set the '#paragraph'. #}
+          {% set drawer_item = item %}
+          {% set drawer_body = drawer_item | merge({'#paragraph': drawer_item['#paragraph'].field_source_drawer_content[body_key].entity}) %}
+          {# Remove the cache keys so it doesn't repeat the first value. #}
+          {% set drawer_body_no_cache = drawer_body | merge({'#cache': {}}) %}
+          {# Print the compiled section body. #}
+          {{ drawer_body_no_cache }}
+        {% endfor %}
+      </div>
+    </div>
+
+  {% endfor %}
+</section>

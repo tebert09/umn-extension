@@ -1,0 +1,201 @@
+// ============================================
+/* Styles for images - embedded, with captions, and in image grid gallery */
+// ==================================================
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=========== Captions ======= */
+/* When captions are used, a <figure> tag is added around the <div> */
+
+figure.embedded-entity {
+  border: 2pt solid $lightgrey;
+  padding: 10px;
+  max-width: 100%;
+  display: inline-block;
+  clear: both;
+  float: none;
+  margin: 10px 0;
+
+  &.figure-wrapper {
+    &>[data-entity-embed-display-settings="caption_small"],
+    &>[data-entity-embed-display-settings="caption_small file"] {
+      max-width: 275px;
+
+      &~ {
+        figcaption {
+          max-width: 275px;
+        }
+      }
+    }
+
+    &>[data-entity-embed-display-settings="caption_medium"],
+    &>[data-entity-embed-display-settings="caption_medium file"] {
+      max-width: 500px;
+
+      &~ {
+        figcaption {
+          max-width: 500px;
+        }
+      }
+    }
+
+    a,
+    a:hover,
+    a:focus {
+      background: none;
+    }
+
+    &>[data-entity-embed-display-settings="caption_large"],
+    &>[data-entity-embed-display-settings="caption_large file"] {
+      max-width: 670px;
+
+      &~ {
+        figcaption {
+          max-width: 670px;
+        }
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+    max-width: none;
+  }
+
+  figcaption {
+    font-size: $font-size-small;
+    margin-top: 5px;
+    color: $stormy;
+  }
+}
+
+.border-box,
+.gold-bg,
+.maroon-bg,
+.accordion-body,
+.grey-bg {
+  figure.embedded-entity {
+    border-color: $white;
+    background: $white;
+  }
+}
+
+.embedded-entity {
+  &.align-center,
+  &.align-left,
+  &.align-right {
+    margin: 20px auto;
+    text-align: center;
+    float: none;
+  }
+
+  @media (min-width:$large-screen) {
+    &.align-left {
+      margin: 10px 30px 10px 0;
+      float: left;
+    }
+
+    &.align-right {
+      margin: 10px 0 10px 20px;
+      float: right;
+    }
+  }
+
+  a {
+    &:focus,
+    &:hover {
+      cursor: zoom-in;
+    }
+  }
+}
+
+.col-12>.field-item>.embedded-entity {
+  /* if image is the first thing in a content block no top margin needed. */
+  margin-top: 0;
+}
+
+/*==== SVG icons (mostly the arrows) ======= */
+svg.icon {
+  fill: $maroon; 
+  &:hover, &:focus {
+    fill: $darkmaroon;
+  }
+  &.down-arrow {
+    width: 24px;
+  }
+  &.right-arrow, &.left-arrow {
+    width: 15px;
+  }
+}
+
+/*==== Popup images for image grid gallery ======= */
+.popup-gallery {
+  margin: 20px -5px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .popup-image {
+    height: 125px;
+    width: 125px;
+    overflow: hidden;
+    margin: 5px;
+    position: relative;
+    float: left;
+
+    a {
+      opacity: 0.6;
+
+      &:focus,
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    img {
+      min-height: 150px;
+      min-width: 150px;
+      height: auto;
+      max-width: none;
+      position: absolute;
+      left: -30%;
+      top: -10%;
+    }
+  }
+  @media (min-width:$medium-screen) {
+    margin: 30px -5px;
+
+    .popup-image {
+      height: 150px;
+      width: 150px;
+    }
+  }
+}
+
+.two-column-variable {
+  .popup-gallery {
+    margin-top: 0;
+    
+    .popup-image {
+      width: 46%;
+      height: 115px;
+      @media (min-width:$large-screen) {
+        height: 125px;
+      }
+    }
+  }
+}
+
+/*==== Single pop up image ======= */
+.mfp-bottom-bar {
+  .mfp-counter,
+  .mfp-title {
+    font-size: $font-size-base;
+  }
+
+  .mfp-title {
+    padding-right: 55px;
+  }
+}

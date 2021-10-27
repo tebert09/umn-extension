@@ -1,0 +1,12 @@
+{% if content["#links"] %}
+  <div class="language-switcher">
+    <p>See this page in:
+      {% for link in content["#links"] %}
+        <a href="{{ link["#url"] }}"">{{ link["#title"] }}</a>
+        {% if not loop.last %}
+          |
+        {% endif %}
+      {% endfor %}
+    </p>
+  </div>
+{% endif %}

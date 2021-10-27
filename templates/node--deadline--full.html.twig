@@ -1,0 +1,46 @@
+{# Deadelines are created for local office deadlines. There was a need for a way to display deadline-type information and the event template was too complex. These will not display on the main /courses-and-events page, but will display on local office event pages. #}
+
+{% set pageTitle = label[0]["#context"].value %}
+{% set dateString = content.field_start_date[0]["#markup"] %}
+{% set addCal = content.field_add_to_calendar %}
+{% set relatedEvents = content.field_related_events %}
+{% set hideStartTime = (content.field_hide_start_time[0]["#markup"] == "True") %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<section class="row" aria-labelledby="page-title">
+  <article class="col-12 col-sm-5 col-md-4">        
+    <div class="event-info maroon-bg">
+      <h2>Deadline</h2>
+      {% include '@coffey/includes/deadline/deadline-date.html.twig' %}
+      {% include '@coffey/includes/deadline/deadline-time.html.twig' %}
+      {# Add to calendar button #}
+      {% if addCal[0]['#markup'] != 'Add to Calendar Disabled' %}
+        {{ addCal }}
+      {% endif %}
+    </div>
+    {{ drupal_view('events_from_local_office', 'block_1') }}
+  </article>
+  <article class="col-12 col-sm-7 col-md-8 event-body"> 
+    {{ content.body }}
+    {% if relatedEvents %}
+      <h2>Related event</h2>
+      <div class="related-event-deadline">
+        {{ relatedEvents }}
+      </div>
+    {% endif %}
+  </article>
+</section>
+
+<section class="row">
+  <article class="col-12">
+    <div class="addThis">
+      {{ attach_library('coffey/addthis') }}
+      {# AddThis code has to appear here instead of in the include b/c the include has unneeded code. #}
+        <span>Share this page:</span>
+        <script async="async" type="text/javascript"> var addthis_config = { ui_tabindex: 0 } </script>
+        <div class="addthis_inline_share_toolbox_kn95" tabindex="0"></div>
+    </div>
+  </article>
+</section>

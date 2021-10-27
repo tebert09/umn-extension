@@ -1,0 +1,72 @@
+.region-content nav.tabs {
+  width: 100%;
+  display: inline-block;
+  ul {
+    border-bottom: 1px solid #dee2e6;
+  }
+}
+
+body.cke_editable {
+  //font-size: inherit;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  li,
+  p,
+  ul {
+    font-size: inherit;
+  }
+
+  p {
+    font-size: 1.3rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 2.0rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.6rem;
+  }
+
+  h5 {
+    font-size: 1.5rem;
+  }
+}
+
+.toolbar {
+  letter-spacing: 0;
+}
+
+
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+nav.tabs li a {
+  padding: 7px 10px;
+  border: 1px solid #dee2e6;
+  display: inline-block;
+  border-bottom: 0;
+
+  &:hover {
+    background: $accent-dark-blue-med;
+    color: $white;
+  }
+}
+.cke_inner *, .cke_inner select, .cke_combo__format.cke_combo_on select {
+font-size: inherit!important;
+font-family: inherit!important;
+}

@@ -1,0 +1,39 @@
+ol.breadcrumb {
+  //---------Breadcrumbs-----------
+  display: none;
+
+  @media (min-width:$small-screen) {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0.75rem 0;
+
+    li {
+      //float: left;
+
+      a {
+        text-decoration: underline;
+
+        &:focus,
+        &:hover {
+          background: $maroon;
+          color: $white;
+          text-decoration: none;
+        }
+      }
+    }
+
+    &:last-child {
+      margin: 0;
+    }
+
+    >li+li {
+      margin-left: 5px;
+
+      &:before {
+        content: "\003E";
+        margin: 0 5px;
+      }
+    }
+  }
+}

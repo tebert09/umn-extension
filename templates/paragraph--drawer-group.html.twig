@@ -1,0 +1,158 @@
+{#
+/**
+ * @file
+ * Bootstrap Paragraphs template for displaying an Accordion (Collapse).
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   - id: The paragraph ID.
+ *   - bundle: The type of the paragraph, for example, "image" or "text".
+ *   - authorid: The user ID of the paragraph author.
+ *   - createdtime: Formatted creation date. Preprocess functions can
+ *     reformat it by calling format_date() with the desired parameters on
+ *     $variables['paragraph']->getCreatedTime().
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('coffey/drawers') }}
+
+{% set drawerGroupTitleText = content.field_title[0]["#context"].value %}
+{% set drawerHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set drawerGroupHeader = "<" ~ drawerHeaderMarkup ~ ">" ~ drawerGroupTitleText ~ "</" ~ drawerHeaderMarkup ~ ">" %}
+
+{# The template default set classes. #}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--type--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+  ]
+%}
+
+{# Sets Unique ID for Accordion from Paragraph ID. #}
+{% set drawerTitleFormattedAsId = drawerGroupTitleText|replace({" ": "-"})|lower|escape("url") %}
+{% set paragraph_id = drawerTitleFormattedAsId
+  ? drawerTitleFormattedAsId
+  : paragraph.id.value %}
+
+{# Changes Navigation Link Anchor field into plain string. #}
+{% set anchor_name = content.field_navigation_link_anchor['#items'][0].getString() %}
+
+{# Set a anchor, if their is one #}
+{% if content.field_navigation_link_anchor %}
+  <a name="{{ anchor_name }}"></a>
+{% endif %}
+
+{# In cases where no drawer group title text exists, fall back to generic label #}
+{% set drawerGroupAriaLabel = (drawerGroupTitleText)
+  ? drawerGroupTitleText
+  : "A group of accordions" %}
+
+<section class="accordion-group" id="{{ paragraph_id }}" aria-label="{{ drawerGroupAriaLabel }}" {{ attributes }}>
+  <div class="row">
+    <div class="col-12 col-lg">
+      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+      {% if drawerGroupTitleText %}
+        {% autoescape %}
+          {{ drawerGroupHeader|raw }}
+        {% endautoescape %}
+      {% endif %}
+      {{ content.field_drawer_group_description }}
+    </div>
+    <div class="col-12 col-lg-auto align-self-end">
+      <button class="accordion-open-all">Open all</button>
+      <span>&nbsp;|&nbsp;</span>
+      <button class="accordion-close-all">Close all</button>
+    </div>
+  </div>
+
+  {% for key, item in content.field_drawers if key | first != '#' %}
+    {# Handle case where array was passed to strip tags #}
+    {% set drawer_title = "" %}
+    {% set drawer_title_filter = "" %}
+    {% if item["#paragraph"].field_title.value is not iterable %}
+      {% set drawer_title = item["#paragraph"].field_title.value | striptags %}
+      {# when drawer title starts with numbers then strip the first word with numbers #}
+      {% set drawer_title_filter = drawer_title %}      
+      {% if drawer_title matches '/^\\d+/' %}
+        {% set drawer_title_split = drawer_title|split(' ')%}
+        {% set drawer_first_word = drawer_title_split[0]|trim %}
+        {% set drawer_title_filter = drawer_title | replace({ (drawer_first_word ~ ' ') : ""}) %}
+      {% endif %}
+    {% endif %}
+    {# ADDED "|striptags" TO FIX FIELD TYPE ERROR #}
+
+    {# There is a bug that locks up the  #}
+    {% set drawer_title_index_name = drawer_title_filter|replace({" ": "-"})|replace({".": ""})|lower|escape("url") %}
+    {% set drawer_index = key %}
+    {% set drawer_id = drawer_title_index_name ~ "-" ~ paragraph.id.value ~ drawer_index %}
+    {% set drawer_wrapper_id = drawer_title_index_name ~ "-" ~ drawer_index ~ paragraph.id.value %}
+    {% set hasPrintOption = item["#paragraph"].field_add_print_option.value %}
+
+    {#
+      Set up drawer header level dynamically
+      based on the header level of the drawer group, if one exists.
+      Otherwise, use a default of 3.
+    #}
+    {% set headerLevel = 2 %}
+    {% if drawerHeaderMarkup is not null %}
+      {# Strip out the 'h' #}
+      {% set headerLevel = drawerHeaderMarkup | replace({'H': ''}) %}
+      {# Check that we have a value, then cast to integer and add one  #}
+      {% if headerLevel != "" %}
+        {% set headerLevel = headerLevel + 1 %}
+      {% else %}
+        {% set headerLevel = 2 %}
+      {% endif %}
+    {% endif %}
+
+    <div class="accordion" id="{{ drawer_wrapper_id }}" aria-label="{{ drawer_title }}">
+      <button style="cursor: pointer;" href="#{{ drawer_id }}" class="accordion-title" aria-controls="{{ drawer_id }}" aria-expanded="false" aria-label="Toggle {{ drawer_title }} accordion" role="heading" aria-level="{{ headerLevel }}">
+        {% include '@coffey/includes/drawer-icon.html.twig' %}
+        {{ drawer_title }}
+      </button>
+
+      <div class="accordion-body is-collapsed" id="{{ drawer_id }}">
+        {% for body_key, body_item in item['#paragraph'].field_drawer_content %}
+          {# Use the same render array as item and set the '#paragraph'. #}
+          {% set drawer_item = item %}
+          {% set drawer_body = drawer_item | merge({'#paragraph': drawer_item['#paragraph'].field_drawer_content[body_key].entity}) %}
+          {# Remove the cache keys so it doesn't repeat the first value. #}
+          {% set drawer_body_no_cache = drawer_body | merge({'#cache': {}}) %}
+          {# Print the compiled section body. #}
+          {{ drawer_body_no_cache }}
+        {% endfor %}
+        {% if hasPrintOption %}
+            {{ attach_library('coffey/print-elements') }}  
+            <p class="print-option">
+                <a class="printable">Print expanded content</a>.
+            </p>
+        {% endif %}
+      </div>
+    </div>
+
+  {% endfor %}
+</section>

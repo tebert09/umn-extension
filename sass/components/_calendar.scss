@@ -1,0 +1,122 @@
+//=======================================================================
+// Event Calendar found on local office event pages
+//=======================================================================
+
+.event-calendar {
+  // hide the calendar on mobile b/c it is not very responsive.
+  display: none;
+
+  .fc-content .fc-time {
+    // hiding the time from appearing on the calendar events b/c there's no easy way to follow our hide/show options
+    display: none !important;
+  }
+
+  @media (min-width:$large-screen) {
+    // hiding the calendar until large viewport b/c the date boxes and popup are not mobile friendly
+    display: block;
+  }
+}
+
+.event-calendar,
+.event-list {
+  margin: 15px 0;
+}
+
+/* == Events when listed on the calendar == */
+.fc-day-grid-event,
+.fc-event,
+.fc-event-dot {
+  background: $maroon !important;
+  border: none;
+  border-radius: 0;
+  font-size: $font-size-base;
+  padding: 5px 3px;
+  margin: 0 0 5px;
+}
+
+.fc-event:hover,
+.fc-event:focus {
+  background: $gold!important;
+  color: $maroon;
+}
+
+.fc-day-grid-event .fc-content {
+  border: none;
+  white-space: normal;
+}
+
+.fc-title a {
+  color: $white;
+}
+
+/* == Individual day spaces and numbers == */
+.fc td, .fc th {
+  border-width: 2px;
+}
+
+.fc-unthemed td.fc-today {
+  /* current day */
+  border-style: solid;
+  background: rgba(255, 204, 51, 0.4);
+}
+
+.fc-dayGrid-view .fc-day-number, .fc-dayGrid-view .fc-week-number {
+  padding: 4px;
+}
+
+td.fc-past a.fc-day-number {
+  /* Past days */
+  text-decoration: none;
+  cursor: auto;
+  color: $grey;
+}
+
+.fc-ltr .fc-dayGrid-view .fc-day-top a.fc-day-number {
+  &:hover, &:focus {
+    /* adding hover effect on the date number */
+    text-decoration: none;
+  }
+}
+
+/* == calendar buttons and month header == */
+.fc-button-primary,
+.fc-button-primary:disabled {
+  background: $maroon;
+  border-color: $maroon;
+  color: $white;
+}
+
+.fc-button-primary:not(:disabled):hover,
+.fc-button-primary:not(:disabled):focus {
+  background: $gold;
+  border-color: $gold;
+  color: $maroon;
+}
+
+.fc-button-primary:active,
+.fc-button-active,
+.fc-button-primary:not(:disabled).fc-button-active,
+.fc-button-primary:not(:disabled):active {
+  background: $darkmaroon;
+  border-color: $darkmaroon;
+  color: $white;
+}
+
+/* == popup when many events on one date == */
+.fc-popover.fc-more-popover {
+  width: 350px;
+  border: 2pt solid $darkgrey;
+
+  .fc-header {
+    padding: 3px 4px 5px;
+  }
+
+  .fc-header .fc-title {
+    font-size: 1.1em;
+  }
+
+  .fc-header .fc-close {
+    opacity: 1;
+    font-size: 1.4em;
+  }
+}

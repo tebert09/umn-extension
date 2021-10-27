@@ -1,0 +1,139 @@
+{#
+    This is the upgraded Courses & Events page view from summer 2020.
+    It has been adapted from the earlier views-view-event-search.html.twig
+    to align with the new SOLR powered Courses & Events search page.
+#}
+
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+
+{% import "@coffey/macros/events-search-description.html.twig" as search %}
+
+{% set titleValue = exposed.search["#value"] %}
+{% set startDateValue = exposed.start_date["#value"] %}
+{% set endDateValue = exposed.end_date["#value"] %}
+{% set subjectIds = exposed.subject["#value"] %}
+{% set subjectNames = [] %}
+{% set eventTypeIds = exposed.event_type["#value"] %}
+{% set eventTypeNames = [] %}
+{% set local_office = exposed.local_office["#value"] %}
+{% set grade_level = exposed.grade_level["#value"] %}
+
+{% if local_office|length and local_office == 'All' %}
+    {% set local_office = '' %}
+{% endif %}
+
+{% set isFilterOrSearch = titleValue|length or
+    subjectIds|length or
+    eventTypeIds|length or
+    startDateValue|length or
+    endDateValue|length or
+    local_office|length
+%}
+
+{# Courses and events attaches the datepickers and handles logic #}
+{{ attach_library('coffey/courses-events-view') }}
+
+<div{{ attributes.addClass(classes) }}>
+    {{ title_prefix }}
+    {{ title }}
+    {{ title_suffix }}
+
+    {# Include breadcrumbs on this page, because they do not happen by default #}
+    {{ drupal_block('system_breadcrumb_block') }}
+
+    {{ attachment_before }}
+
+    {# This is a hacky, but simple way to allow manipulation of exposed filter placement #}
+    <form class="views-exposed-form events-list" data-drupal-selector="views-exposed-form-courses-and-events-search-page-1" action="{{ url('<current>') }}" method="get" id="views-exposed-form-courses-and-events-search-page-1" accept-charset="UTF-8" data-drupal-form-fields="edit-search,edit-subject,edit-start-date,edit-end-date,edit-region,edit-event-type,edit-submit-courses-and-events-search">
+        {# The search and filter section #}
+        <section class="row">            
+            <div class="col-12 col-md-4 left-col-events">
+                <div class="list-search grey-bg">                
+                    {# Labels for Filters form #}
+                    {% set searchFieldLabel = exposed["#info"]["filter-search_api_fulltext"]["label"] %}
+                    {% set startDateLabel = exposed["#info"]["filter-field_start_date"]["label"] %}
+                    {% set endDateLabel = exposed["#info"]["filter-field_end_date"]["label"] %}
+                    {% set eventTypeLabel = exposed["#info"]["filter-field_event_type"]["label"] %}
+                    {% set subjectLabel = exposed["#info"]["filter-field_category"]["label"] %}
+                    {% set localOfficeLabel = exposed["#info"]["filter-field_local_office"]["label"] %}
+                    {% set gradeLevelLabel = exposed["#info"]["filter-field_camp_grade_level"]["label"] %}
+
+                    <h2>Search courses and events</h2>
+                    <div class="row">
+                        <div class="col-12 custom-input">
+                            {{ exposed.search }}
+                        </div>
+
+                        {# To achieve the correct date filtering for events, end date and start date filtering is inverse of what you might expect #}
+                        <div class="col-12 custom-input">
+                            {{ exposed.start_date }}
+                        </div>
+
+                        <div class="col-12 event-drawer">
+                            <a href="#" data-toggle="collapse" data-target="#local-office-filters" aria-controls="#local-office-filters" aria-expanded="false" class="filter-toggle">
+                                {% include '@coffey/includes/drawer-icon.html.twig' %}
+                                <label>{{ localOfficeLabel }}</label>
+                            </a>
+                            <div id="local-office-filters" class="collapse event-filters">{{ exposed.local_office }}</div>                                
+                        </div>
+
+                        <div class="col-12 event-drawer">
+                            <a href="#" data-toggle="collapse" data-target="#event-type" aria-controls="#event-type" aria-expanded="false" class="filter-toggle">
+                                {% include '@coffey/includes/drawer-icon.html.twig' %}
+                                <label>{{ eventTypeLabel }}</label>
+                            </a>
+                            <div id="event-type" class="collapse event-filters">{{ exposed.event_type }}</div>                             
+                        </div>
+
+                        <div id="camp_grade_level" class="col-12 event-drawer">
+                            <a href="#" data-toggle="collapse" data-target="#grade-level" aria-controls="#grade-level" aria-expanded="false" class="filter-toggle">
+                                {% include '@coffey/includes/drawer-icon.html.twig' %}
+                                <label>{{ gradeLevelLabel }}</label>
+                            </a>
+                            <div id="grade-level" class="collapse event-filters">{{ exposed.grade_level }}</div>                             
+                        </div>
+                            
+                        <div class="col-12 event-drawer">                                
+                            <a href="#" data-toggle="collapse" data-target="#event-subject" aria-controls="#event-subject" aria-expanded="false" class="filter-toggle">
+                                {% include '@coffey/includes/drawer-icon.html.twig' %}
+                                <label>{{ subjectLabel }}</label>
+                            </a>                                    
+                            <div id="event-subject" class="collapse event-filters">{{ exposed.subject }}</div>                                
+                        </div>
+
+                        <div class="col-12">
+                            {{ exposed.actions }}
+                        </div>
+                    </div>  
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8 right-events-col" aria-label="List of upcoming and featured events">
+                {% if isFilterOrSearch %}
+                    <a name="all-events"></a>
+                    {# Build up textual description of the filters  #}
+                    {{ search.description(exposed) }}
+                    {{ rows }}
+                    {{ pager }}
+                    {{ more }}
+                    {# If the page has search paramaters, but we have no results, show the empty (no results behavior) portion #}
+                    {% if not rows|length %}
+                        {{ empty }}
+                    {% endif %}
+                {% else %}
+                    {# Featured Events View #}
+                    <h2>Featured events</h2>
+                    {{ drupal_view('featured_events', 'block_2') }}
+                    <a class="button" href="/courses-and-events?title=&start_date={{ "now"|date("Y-m-d 00:00:00")|url_encode }}#all-events">View all upcoming events<span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+                    </a>
+                {% endif %}
+            </div>
+        </section>
+    </form>
+</div>
+
+{{ attachment_after }}

@@ -1,0 +1,131 @@
+//=======================================================================
+/* Flex box styling is used on Blogger Feeds, News Cards, Events Teasers and cards. In an effort to reduce the number of repeated styles, all the SCSS is combined here. The rest of the styles for the content blocks are in other SCSS files. */
+//=======================================================================
+
+/* IE 11 Styling: Don't do display:flex on mobile. This is why $small-screen breakpoint is necessary. */
+
+// ====== Views section and blogger feed wrappers ======
+.view-section-display, 
+.blogger-feed {
+  @include margin-between;
+
+  >.row {
+    margin-bottom: 15px;
+  }
+}
+
+.view-section-display > div,
+.card-group {
+  width: 100%;
+}
+
+.view-section-display .view-content, 
+.blogger-feed .view-content {
+  margin: 0 -15px;
+}
+
+.card-group .card,
+.view-section-display .views-row, 
+.blogger-feed .views-row {
+  padding: 0px 15px 15px;    
+  margin: 0;
+}
+
+// ====== Styling the columns and rows ======
+@media (min-width:$smed-screen) {
+  .card-group,
+  .view-section-display .view-content,
+  .blogger-feed .view-content {
+    @include browser-flex;
+    @include browser-flex-wrap;
+  }
+  
+  .card-group .card,
+  .view-section-display .views-row {
+    /* this makes all cards in a row the same height. Don't add on blogger-feed. */
+    @include browser-flex; 
+  }
+
+  .card-group .card,
+  .view-section-display .views-row,
+  .blogger-feed .views-row {
+    //full width pages adds 2 columns
+    @include flex-50;
+  }
+}
+
+@media (min-width:$medium-screen) {
+
+  .card-group .card,
+  .view-section-display .views-row, 
+  .blogger-feed .views-row {
+    padding: 15px;
+  }
+  
+  .card-group .card,
+  .view-section-display .views-row,
+  .blogger-feed .views-row  {
+    @include flex-100;
+  }
+
+  .page-node-type-landing-page {
+     /* For Landing page layout... */
+    .card-group.four .card,
+    .view-section-display.four .views-row, 
+    .event-teaser-list .views-row {
+      @include flex-50;
+    }
+  }
+}
+
+@media (min-width:$large-screen) {
+  .card-group .card,
+  .view-section-display .views-row,
+  .blogger-feed .views-row {
+    @include flex-50;
+  }
+
+  aside .view-section-display .views-row, 
+  aside .blogger-feed .views-row {
+    /* The right column changes to always full width, no matter the number selected. */
+    @include flex-100;
+  }
+
+  .page-node-type-landing-page {
+    /* For Landing page layout... */
+    .card-group.four .card,
+    .view-section-display.four .views-row {
+      @include flex-25;
+    }
+    .card-group.three .card,
+    .view-section-display.three .views-row {
+      @include flex-33;
+    }
+  }
+}
+
+@media (min-width:$xlarge-screen) {
+  .card-group.four .card,
+  .view-section-display.four .views-row {
+    /* 4 across */
+    @include flex-25;
+  }
+
+  .event-teaser-list.five .views-row,
+  .event-teaser-list.four .views-row,
+  .event-teaser-list.three .views-row,
+  .card-group.three .card,
+  .view-section-display.three .views-row {
+    /* event teasers only ever have 3 across. */
+    /* 3 across */
+    @include flex-33;
+  }
+}
+
+@media (min-width: 1400px) {
+  .card-group.five .card,
+  .view-section-display.five .views-row {
+    /* 5 across */
+    @include flex-20;
+  }
+}

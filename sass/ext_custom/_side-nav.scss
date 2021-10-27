@@ -1,0 +1,152 @@
+//=======================================================================
+/* Side navigation styles
+  Paragraph type and for views. */
+//=======================================================================
+
+
+// =========== Side navigation ===========
+.side-nav {
+  background: $maroon;
+  padding: 20px;
+  color: $white;
+  margin: 0 0 1rem;
+
+  p.back-to {
+    margin-bottom: 0 !important;
+    border-bottom: 3pt solid #5b0013;
+    padding-bottom: 15px;
+
+    a {
+      border: 0;
+      box-shadow: none;
+
+      &::before {
+        content: "<";
+        margin-right: 5px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      &:focus,
+      &:hover {
+        text-decoration: underline;
+        background: transparent;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  p+h2 {
+    margin-top: 20px;
+  }  
+
+  ul {
+    list-style-type: none;
+    padding-left: 15px;
+
+    .views-element-container.form-group {
+      margin-bottom: 0;
+    }
+
+    .views-row,
+    li {
+      margin: 3px 0;
+    }
+
+    .view-content ul {
+      padding-left: 0;
+    }
+  }
+
+  .view-filters {
+    margin: 0;
+  }
+
+  @media (min-width:$medium-screen) {
+    ul {
+      .views-row,
+      li {
+        margin: 6px 0;
+      }
+    }
+  }
+}
+
+.side-nav-grey {
+  // for event pages when local office(s) are selected
+  ul {
+    list-style-type: none;
+    padding-left: 15px;
+  }
+  a {
+    text-decoration: none;
+    &:after {
+      content: ">";
+      margin: 0 -20px 0 5px;
+      vertical-align: inherit;
+      display: inline-block;
+      width: 20px;
+    }
+    &:hover, &:focus {
+      text-decoration: underline;
+      background: none; 
+      color: $maroon;
+    }
+  }
+}
+
+// Editor needs to add the .maroon-bg in the view.
+aside .field--type-viewsreference .maroon-bg {
+  @media (min-width:$large-screen) {
+    font-size: $font-size-base * 1.1;
+    line-height: 1.75;
+
+    .view-content {
+      padding-left: 15px;
+    }
+  }
+}
+
+aside .field--type-viewsreference .maroon-bg,
+.side-nav {
+  a {
+    color: $white;
+    text-decoration: none;
+    padding: 8px 25px 8px 0;
+    @include display-hund;
+
+    &:focus,
+    &:hover {
+      color: $white;
+      text-decoration: underline;
+      background: transparent;
+    }
+
+    &:after {
+      content: ">";
+      margin: 0 -20px 0 5px;
+      vertical-align: inherit;
+      display: inline-block;
+      width: 20px;
+    }
+
+    @media (min-width:$medium-screen) {
+      padding: 0 20px 0 0;
+      line-height: 1.9;
+    }
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    color: $white;
+
+    a {
+      text-decoration: none;
+      font-weight: normal;
+      line-height: normal;
+    }
+  }
+}

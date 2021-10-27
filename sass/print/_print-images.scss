@@ -1,0 +1,91 @@
+figure {
+  @include break-inside-avoid;
+}
+figure.embedded-entity {
+  max-width: 300px;
+  &.image-caption_small {
+    width: 275px;
+  }
+  img {
+    max-width: 100%; 
+    @include break-inside-avoid;
+  }
+
+  a:after {
+    display: none;
+  }
+}
+
+.embedded-entity,
+img {
+  max-width: 300px;
+  width:100%;
+  &.align-center,
+  &.align-left,
+  &.align-right {
+    margin: 20px auto;
+    text-align: center;
+    float: none;
+  }
+
+  &.align-left {
+    margin: 10px 30px 10px 0;
+    float: left;
+  }
+
+  &.align-right {
+    margin: 10px 0 10px 20px;
+    float: right;
+  }
+}
+
+// image gallery
+.popup-gallery {
+  display: inline-block;
+  width: 100%;
+
+  .popup-image a {
+    opacity: 1;
+  }
+}
+
+//collage
+.collage {
+  padding: 0 14px;
+  img {
+    max-width: 100%!important;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .col-md-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+  }
+
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-md-4, .col-md-6 {
+    display: inherit !important;
+    float: left;
+    padding: 2px !important;
+  }
+}
+
+/* Display-nones */
+.collage .carousel-control-next,
+.collage .carousel-control-prev,
+.collage .carousel-indicators,
+.collage button,
+.QSISlider,
+.banner-content {
+  display: none !important;
+}

@@ -1,0 +1,140 @@
+//=======================================================================
+/* Print styles for events and news */
+//=======================================================================
+.list-display {
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+}
+
+.event-results {
+  background: #f0efee;
+  padding: 5px;
+}
+
+.event-info.grey-bg {
+  margin: 0;
+  border: 2pt solid grey;
+  background: none;
+  padding: 10px;
+}
+
+.event-teaser-list {
+  &.two {
+    .view-events-list .view-content .views-row {
+      width: 50%;
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+  &.three {
+    .view-events-list .view-content .views-row {
+      -webkit-flex: 0 33.33333%;
+      -ms-flex: 0 33.33333%;
+      flex: 0 33.33333%;
+      max-width: 33.33333%;
+    }
+  }
+
+
+  .event-teaser {
+    margin: 0;
+  }
+
+  .event-teaser .event-time:after,
+  .event-teaser .event-time:after:before {
+    display: none;
+  }
+
+  .date-box {
+    margin: 0;
+    background: transparent;
+    padding: 0 0 0 15px;
+    height: auto;
+
+    img {
+      display: none !important;
+    }
+  }
+
+  .date-box .date,
+  .date-box .month {
+    float: left;
+    margin-right: 5px;
+    width: auto;
+    font-weight: bold;
+    color: $black;
+  }
+}
+
+.event-teaser .date-box,
+.event-teaser .event-time {
+  width: 100%;
+  display: block;
+  float: left;
+  font-size: $font-size-base;
+}
+
+.event-teaser .event-time {
+  margin-bottom: 0;
+}
+
+.register-button a.button,
+a.button,
+a.button.plain {
+  background: transparent;
+  color: #424d5b; //stormy
+  padding: 0;
+  margin: 0;
+  text-decoration: underline !important;
+}
+
+.event-info time {
+  width: 100%;
+}
+
+.article .date {
+  display: block;
+}
+
+time, .blogger-feed .views-field-timestamp {
+  color: $black;
+}
+
+//------------- Local office calendar styles
+.event-calendar {
+  display: block;
+}
+
+.fc table {
+  border: 1pt solid #ccc !important;
+}
+
+.fc tbody .fc-row,
+.fc-time-grid {
+  min-height: 80px !important;
+}
+
+.fc tbody .fc-row .fc-content-skeleton,
+.fc tbody .fc-row .fc-content-skeleton table {
+  min-height: 80px;
+}
+
+.fc-day-grid-event,
+.fc-event,
+.fc-event-dot {
+  background: transparent !important;
+  font-size: 1.1rem;
+  text-decoration: none !important;
+}
+
+/* Display-nones */
+.article section .content-body .grey-bg,
+.labels,
+.side-nav-grey, .local-office-filter > .view-filters, .list-display .col-sm-3, 
+.page-node-type-event .event-teaser-list, 
+.field--type-add-to-calendar-field,
+.event-info .event-time:after, 
+.view-events-calendar .view-filters {
+  display: none!important;
+}

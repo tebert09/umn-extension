@@ -1,0 +1,22 @@
+{# News articles are for timely content that may have gone in a blog or newsletter. #}
+
+{% set pageTitle = label[0]["#context"].value %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/news') }}
+
+{{ content.field_banner }}
+
+<section class="row article">
+  <article class="col-12 col-md-7 col-lg-8 big-column" aria-labelledby="page-title">
+    {% include '@coffey/includes/news/date.html.twig' %}
+    {{ content.body }}
+    {{ content.field_paragraphs }}
+    {% include '@coffey/includes/news/labels.html.twig' %}
+  </article>
+  <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
+    {{ content.field_right_sidebar }}
+    {{ drupal_view('news_from_local_office', 'block_1') }}
+  </aside>
+  {% include '@coffey/includes/add-this.html.twig' %}
+</section>

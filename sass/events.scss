@@ -1,0 +1,10 @@
+/* Styles for events Library */
+
+// Default variables and extends
+@import "default-variables";
+@import "mixins/mixin";
+
+// Component specific
+@import "components/event-displays";
+@import "components/news-events";
+@import "components/calendar";

@@ -1,0 +1,167 @@
+/* ======== Mixins ======== */
+@mixin display-hund {
+  display: inline-block;
+  width: 100%;
+}
+
+@mixin margin-between {
+  // margins between content blocks
+  margin: 20px 0;
+  @media (min-width:$large-screen) {
+    margin: 25px 0;
+  }
+}
+
+@mixin padding-between {
+  // padding between content blocks
+  padding: 15px;
+  @media (min-width:$medium-screen) {
+    padding: 20px;
+  }
+  @media (min-width:$large-screen) {
+    padding: 25px 20px;
+  }
+}
+
+@mixin border-five {
+  border: 5px solid $gold;
+  padding: 20px;
+}
+/* ===== Flex box width styling - used on cards, views, etc. ===== */
+@mixin browser-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin browser-direction {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@mixin browser-flex-wrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-flow: row wrap;
+}
+
+@mixin flex-100 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 100%;
+  -ms-flex: 0 100%;
+  flex: 0 100%;
+  max-width: 100%;
+}
+
+@mixin flex-66 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 66.6%;
+  -ms-flex: 0 66.6%;
+  flex: 0 66.6%;
+  max-width: 66.6%;
+}
+
+@mixin flex-50 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 50%;
+  -ms-flex: 0 50%;
+  flex: 0 50%;
+  max-width: 50%;
+}
+
+@mixin flex-33 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 33.33333%;
+  -ms-flex: 0 33.33333%;
+  flex: 0 33.33333%;
+  max-width: 33.33333%;
+}
+
+@mixin flex-25 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 25%;
+  -ms-flex: 0 25%;
+  flex: 0 25%;
+  max-width: 25%;
+}
+
+@mixin flex-20 {
+  -webkit-box-flex: 1;
+  -webkit-flex: 0 20%;
+  -ms-flex: 0 20%;
+  flex: 0 20%;
+  max-width: 20%;
+}
+
+/* ===== full width background color styling ===== */
+@mixin full-bg-color {
+  position: relative;
+
+  &:after,
+  &:before {
+    background: inherit;
+    position: absolute;
+    content: '';
+    top: 0;
+    width: 100%;
+    height: 100%;
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+/* ===== typography extends and mixins ====== */
+
+@mixin font-size-base {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin-bottom: 1.3em;
+  font-display: swap;
+  color: $stormy;
+  
+  @media (min-width:$large-screen) {
+    font-size: $font-size-base * 1.1;
+  }
+}
+
+@mixin general-link {
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 0;
+  box-shadow: none;
+  color: $maroon;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background: $maroon;
+    color: $white;
+    transition: all 0.5s ease;
+  }
+}
+
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+@mixin heading-style {
+  line-height: $headings-line-height;
+  font-family: $font-family-serif!important;
+  font-weight: $headings-font-weight;
+}
+
+
+@mixin headings($from: 1, $to: 6) {
+  @for $i from $from through $to {
+    h#{$i} {
+      @content
+    }
+  }
+}

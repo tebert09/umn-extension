@@ -1,0 +1,20 @@
+{# Card display for Course content type. #}
+
+{% set teaserPhoto = content.field_photo[0] %}
+{% set pageTitle = content.body["#object"].getTitle() %}
+{% set headerEncode = pageTitle | replace({' ': '-'}) %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/news') }}
+
+<div class="border" aria-labelledby="{{ headerEncode }}" {{ attributes }}>
+  {% if teaserPhoto %}
+    <a href="{{ url }}">
+      {{ teaserPhoto }}
+    </a>
+  {% endif %}
+  <div class="card-header">
+    {% include '@coffey/includes/displays/title.html.twig' %}
+  </div>
+  {% include '@coffey/includes/displays/summary.html.twig' %}   
+</div>

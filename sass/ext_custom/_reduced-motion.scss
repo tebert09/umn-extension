@@ -1,0 +1,8 @@
+@media (prefers-reduced-motion: no-preference) {
+  .video-banner video {
+    display: none;
+  }
+  .banner img {
+    display: block!important;
+  }
+}

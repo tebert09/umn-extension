@@ -1,0 +1,37 @@
+/********************\
+  CSE search box
+  This file styles the CSE search form in the header
+  It overwrites and adds to the basic styles from 2015-tc.css
+\********************/
+/* make the header a little taller */
+#umnhf-h-mast{
+  min-height: 68px;
+}
+/* move the search form down a bit */
+#umnhf-h-search{
+  top: 32px;
+}
+/* standardize the search box */
+#umnhf-h-search form.gsc-search-box{
+  border: none;
+  background: white;
+  transition: all .3s ease-in-out;
+  font-size: 18px!important;
+  font-family: inherit, sans-serif!important;
+  padding: 0px!important;
+}
+/* add some padding */
+#umnhf-h-search .cse .gsc-search-button-v2, .gsc-search-button-v2{
+  padding: 8px 10px!important;
+  border-radius: 0!important;
+ }
+/* remove gap between search box and the button */
+#umnhf-h-search .gsc-search-box-tools .gsc-search-box .gsc-input{
+  padding-right: 0!important;
+}
+/* standardize the table elements */
+#umnhf-h-search table,
+#umnhf-h-search table *{
+  border: none!important;
+  box-shadow: none!important;
+}

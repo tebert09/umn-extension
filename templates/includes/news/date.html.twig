@@ -1,0 +1,12 @@
+{# Some news articles don't want a date (ex: Source), so here's an option to hide the date #}
+
+{% set createdDate = node.getCreatedTime | date('F j, Y') %}
+{% set hideDate = (content.field_hide_date[0]["#markup"] == "True") %}
+
+{% if hideDate %}
+  {# Show nothing #}
+{% else %}
+  <time class="date">
+    {{ createdDate }}
+  </time>
+{% endif %}

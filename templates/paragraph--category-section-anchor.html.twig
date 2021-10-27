@@ -1,0 +1,10 @@
+{% set anchor_url = elements.field_category_anchor[0]["#context"]["value"] %}
+{% set anchor_text = elements.field_anchor_text[0]["#context"]["value"] %}
+
+<div class="col-12 col-sm-6 col-lg-4">
+  <a role="button" class="button anchor-link" href="{{ anchor_url }}">{{ anchor_text }}
+    <span>
+      {% include '@coffey/includes/angle-svg/angle-down.html.twig' %}
+    </span>
+  </a>
+</div>

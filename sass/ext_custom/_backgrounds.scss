@@ -1,0 +1,185 @@
+// ============================================
+/* Styles based on the background color and/or paragraph type*/
+// ==================================================
+
+// =========== call to action ===========
+/* Styles need to be b4 background colors */
+.cta {
+  padding: 30px;
+  background: $gold;
+
+  .button {
+    margin: 0;
+  }
+  h2, h3, h4 {
+    + a.button {
+      margin-top: 15px;
+    } 
+  }
+
+  @media (min-width:$medium-screen) {
+    text-align: center;
+    padding: 40px 50px;
+  }
+}
+
+// =========== Background colors ===========
+.grey-bg {
+  background: $lightgrey;
+}
+
+.gold-bg {
+  background: $gold;
+}
+
+.maroon-bg {
+  background: $maroon;
+
+  a,
+  h2, h3, h4, h5, h6,
+  li,
+  p,
+  span,
+  ul {
+    color: $white;
+  }
+}
+
+.maroon-bg {
+  .border {
+    .card-header a {
+      @include general-link;
+      color: $maroon;
+
+      &:hover {
+        background: $maroon;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.author-block,
+.border-box,
+.gold-bg,
+.grey-bg,
+.maroon-bg {
+  @include padding-between;
+}
+
+.author-block {
+  background: $lightgrey;
+  @include display-hund;
+  margin-top: 15px;
+
+  p:last-child,
+  ul:last-child {
+    margin: 0;
+  }
+}
+
+.single-column {
+  >.row {
+    display: block;
+    flex-wrap: nowrap;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.accordion-group,
+.border-box,
+.cards,
+.cta,
+.single-column, 
+.field--name-field-intended-audience,
+.field--name-field-reg-cost {
+  @include margin-between;
+  @include display-hund;
+}
+
+aside {
+  .border-box,
+  .single-column {
+    margin: 0 0 1rem;
+  }
+}
+
+.accordion-body .single-column {
+  margin: 0;
+}
+
+// =========== borders ===========
+.border-box {
+  border: 2pt solid;
+
+  &.grey {
+    border-color: $lightgrey;
+  }
+
+  &.maroon {
+    border-color: $maroon;
+  }
+
+  &.gold {
+    border-color: $gold;
+  }
+
+  &.warning {
+    border: 4pt solid $accent-maroon-med;
+    color: $accent-maroon-med;
+  }
+}
+
+// =========== quick facts ===========
+.quick-facts {
+  @include border-five;
+  width: 100%;
+  margin: 0 auto 30px;
+
+  @media (min-width:$medium-screen) {
+    width: 90%;
+  }
+
+  @media (min-width:$large-screen) {
+    width: 80%;
+  }
+
+  p:last-child,
+  ul:last-child {
+    margin-bottom: 1rem;
+  }
+
+  ul li p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// =========== Full width background ===========
+.full-width-bg {
+  @include full-bg-color;
+
+  .single-column {
+    max-width: 83.33333%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  @media (min-width:$small-screen) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// =========== Special styles ===========
+.emergency {
+  background: red;
+  padding: 20px;
+  font-size: 1.4rem;
+  color: $white;
+  text-align: center;
+}

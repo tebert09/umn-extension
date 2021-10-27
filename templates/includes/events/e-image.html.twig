@@ -1,0 +1,11 @@
+{# The teaser photo that appears on events and courses #}
+
+{% set hasPhoto = content.field_photo[0] %}
+
+{% if hasPhoto %}
+  {{ content.field_photo }}
+{% else %}
+  <a href="{{ url }}">
+    <img alt="Image of a calendar" src="/{{ active_theme_path() }}/images/default-event.png"/>
+  </a>
+{% endif %}

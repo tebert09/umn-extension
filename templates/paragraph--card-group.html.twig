@@ -1,0 +1,25 @@
+{% set cardTitleText = content.field_title[0]["#context"].value %}
+{% set cardHeaderMarkup = content.field_header[0]["#markup"] %}
+{# Provide a fallback/generic aria label when no title is available #}
+{% set cardSectionAriaLabel = (cardTitleText) ? cardTitleText : "A group of content" %}
+{% set cardNumber = content.field_cards_per_row[0]["#markup"] %}
+{% set cardGroupHeader = "<" ~ cardHeaderMarkup ~ ">" ~ cardTitleText ~ "</" ~ cardHeaderMarkup ~ ">" %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/news') }}
+
+<section class="cards" aria-label="{{ cardSectionAriaLabel }}">
+  <div class="row">
+    <div class="col-12">
+      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+      {% if cardTitleText %}
+        {% autoescape %}
+          {{ cardGroupHeader|raw }}
+        {% endautoescape %}
+      {% endif %}
+    </div>
+    <div class="card-group {{ cardNumber }}">
+      {{ content.field_cards }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+{# Template for Basic Page content type. 
+Removed If / Else statement 6/2021 that would have centered the layout without a sidebar. #}
+
+{% set has_sidebar_content = content.field_right_sidebar[0] %}
+{% set pageTitle = label[0]["#context"].value %}
+
+{{ content.field_collage }}
+
+<section class="row">
+  <article class="col-12 col-md-7 col-lg-8 big-column" aria-labelledby="page-title">
+    {{ content|without("field_right_sidebar", "field_collage") }}
+  </article>
+  <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
+    {{ content.field_right_sidebar }}
+  </aside>
+  {% include '@coffey/includes/add-this.html.twig' %}
+</section>

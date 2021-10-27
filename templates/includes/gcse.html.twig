@@ -1,0 +1,17 @@
+
+{# Create a result list filtered only to Extension #}
+<!-- Twin Cities Campus CSE Code -->
+<div class="umnhf gcse-coffey-search umnhf-h-search" role="search" enableAutoComplete="true">
+  <script>
+    (function() {
+      var cx = '000948643183358341856:dvbfm8u6jpg';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+  </script>
+  <gcse:searchbox-only resultsurl="{{ root_url }}/search"></gcse:searchbox-only>
+</div>

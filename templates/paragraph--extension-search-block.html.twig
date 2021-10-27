@@ -1,0 +1,13 @@
+{% set titleText = content.field_title[0]["#context"].value %}
+{% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set searchHeader = "<" ~ titleHeaderMarkup ~ ">" ~ titleText ~ "</" ~ titleHeaderMarkup ~ ">" %}
+{% set searchAlign = content.field_alignment[0]["#markup"] %}
+
+<div class="ext-search {{ searchAlign }}">
+  {% if titleText %}
+    {% autoescape %}
+      {{ searchHeader|raw }}
+    {% endautoescape %}
+  {% endif %}
+  {% include '@coffey/includes/gcse.html.twig' %}
+</div>

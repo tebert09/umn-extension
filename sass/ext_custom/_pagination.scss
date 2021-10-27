@@ -1,0 +1,48 @@
+// ============================================
+// Pagination styles
+// ============================================
+
+.pagination {
+  display: flex;
+  @include list-unstyled();
+}
+
+.pager-nav ul {
+  font-size: $font-size-base;
+
+  li {
+    padding: 5px;
+    margin: 0 3px;
+
+    a {
+      color: $maroon;
+      padding: 5px;
+      border: 1pt solid $maroon;
+
+      &:focus,
+      &:hover {
+        background: $maroon;
+        color: $white;
+      }
+    }
+
+    &.is-active {
+      a {
+        background: $maroon;
+        color: $white;
+      }
+    }
+  }
+}
+
+// =========== Views paging buttons ===========
+ul.pager.js-pager__items {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+
+  .button {
+    text-align: center;
+    padding: 10px 15px;
+  }
+}

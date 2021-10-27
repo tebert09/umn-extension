@@ -1,0 +1,20 @@
+{{ attach_library('coffey/courses-events-view') }}
+
+{% if header %}
+  <header>
+    {{ header }}
+  </header>
+{% endif %}
+
+{% if rows | length %}
+<div class="no-results-events">
+  {{ rows }}
+</div>
+
+{% endif %}
+
+{% if footer %}
+  <footer>
+    {{ footer }}
+  </footer>
+{% endif %}

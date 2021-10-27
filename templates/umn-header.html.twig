@@ -1,0 +1,43 @@
+<!-- Begin UMN Header -->
+{% block mandatory_header %}
+  <header id="mandatory-header-wrapper">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K43WCJ8" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div id="skip">
+      <a href="#top-menu" class="visually-hidden focusable skip-link">
+        {{ 'Skip to navigation'|t }}
+      </a>
+      <a href="#main-content" class="visually-hidden focusable skip-link">
+        {{ 'Skip to main content'|t }}
+      </a>
+      <a href="#page-footer" class="visually-hidden focusable skip-link">
+        {{ 'Skip to footer'|t }}
+      </a>
+    </div>
+
+    <div class="umnhf container" id="umnhf-h">
+      <div class="row" id="umnhf-h-mast">
+        <div class="col-12 col-md-6">
+          <a class="umnhf" id="umnhf-h-wm" href="/">
+            <img src="/{{ active_theme_path() }}/images/ext-logo.svg" onerror="this.onerror=null; this.src='/{{ active_theme_path() }}/images/ext-logo'" alt="Extension Logo"></a>
+          <div class="printer">
+            <div class="left">
+              <img src="/{{ active_theme_path() }}/images/EXT-maroon-logo.svg" onerror="this.onerror=null; this.src='/{{ active_theme_path() }}/images/EXT-maroon-logo'" alt="Extension Logo">
+            </div>
+            <div class="right">
+              <strong>University of Minnesota Extension</strong><br/>extension.umn.edu</div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          {% set root_url = url("<front>") %}
+          {% include '@coffey/includes/gcse.html.twig' %}
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock %}
+<!-- End UMN Header -->

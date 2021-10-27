@@ -1,0 +1,4 @@
+{# feeds into paragraph--related-links-list.html.twig #}
+{% for link in items %}
+  <li>{{ link|without("attributes") }}</li>
+{% endfor %}

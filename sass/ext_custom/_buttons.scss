@@ -1,0 +1,180 @@
+// ============================================
+// Button styles
+// ============================================
+
+// =========== Generic styles ===========
+.btn,
+.btn-primary, a.button {
+  width: auto;
+  background: $maroon;
+  padding: 10px 15px;
+  color: $white;
+  border-radius: 0;
+  height: auto;
+  border: 0;
+  margin: 15px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  font-size: 1.5rem;
+  box-shadow: none;
+  text-decoration: none;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: $darkmaroon;
+    text-decoration: none;
+    color: $white;
+    -webkit-box-shadow: 0 1px 25px -3px rgba(56, 2, 14, 0.68);
+    -moz-box-shadow: 0 1px 25px -3px rgba(56, 2, 14, 0.68);
+    box-shadow: 0 1px 25px -3px rgba(56, 2, 14, 0.68);
+    transform: scale(1.005);
+    cursor: pointer;
+  }
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  background: $darkgold;
+}
+
+.btn-primary.maroon {
+  background: $maroon;
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: $darkmaroon;
+  }
+}
+
+// =========== Two types of buttons (plain and right pointing arrow) ===========
+a.button {
+  padding: 10px 75px 10px 15px;
+  
+  &.plain {
+    // plain buttons don't have the right pointing arrow.
+    padding: 10px 15px;
+    text-align: center;
+    margin: 15px 10px 15px 0;
+    text-decoration: none;
+  }
+
+  span {
+    // the span contains the right pointing SVG arrow.
+    background: #fff;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    top: 0;
+    width: 50px;
+    border: 1pt solid $maroon;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    span {
+      border: 1pt solid $darkmaroon;
+    }
+  }
+}
+
+// =========== Event page registration button  ===========
+.register-button a.button {
+  padding: 10px 15px;
+}
+
+// =========== Buttons on maroon backgrounds  ===========
+.maroon-bg a.button {
+  background: $gold;
+  color: $maroon;
+
+  span {
+    border-color: $gold;
+
+    svg {
+      fill: $gold;
+    }
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background: $darkgold;
+    color: $darkmaroon;
+
+    span {
+      border-color: $darkgold;
+
+      svg {
+        fill: $darkgold;
+      }
+    }
+  }
+}
+
+// =========== AddThis ===========
+.addThis {
+  float: right;
+  margin: 30px 0 20px;
+
+  > span {
+    float: left;
+    margin: 6px 10px 6px 0;
+  }
+
+  .addthis_inline_share_toolbox_kn95 {
+    clear: none !important;
+    float: left;
+  }
+}
+
+#at15s a {
+  background: $white;
+}
+
+// =========== AddThis ===========
+.view-filters {
+  margin: 15px 0 10px;
+
+  label,
+  .select-wrapper {
+    margin-right: 5px;
+  }
+
+  select {
+    padding: 8px;
+  }
+}
+
+// =========== Views section and blogger feed buttons ===========
+.view-section-display .action-button,
+.blogger-feed .action-button {  
+  @media (min-width:$large-screen) {
+    align-self: center;
+    .button {
+      float: right;
+      margin: 0; 
+    }
+  }
+}
+
+aside .view-section-display .action-button,
+aside .blogger-feed .action-button {
+  align-self: auto;
+  flex: 0 0 100%!important;
+  max-width: 100%!important;
+  
+  .button {
+    margin: 10px auto;
+    float: left;
+  }
+}

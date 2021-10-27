@@ -1,0 +1,10 @@
+{% set background_color_class = content.field_background_color[0]["#markup"] %}
+{% set border_color_class = content.field_border_color[0]["#markup"] %}
+
+<div class="single-column {{ background_color_class }} {{ border_color_class }}" {{ attributes }}>
+  <div class="row">
+    <div class="col-12">
+      {{ content.field_content }}
+    </div>
+  </div>
+</div>

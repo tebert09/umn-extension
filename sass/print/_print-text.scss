@@ -1,0 +1,178 @@
+//=======================================================================
+/* Print styles for text */
+//=======================================================================
+body,
+ol,
+p,
+table,
+ul {
+  color: $black;
+}
+
+html {
+  font-size: 63%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  width: auto;
+  border: 0;
+  padding: 0;
+  float: none;
+  position: static;
+  overflow: visible;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5, 
+h6 {
+  orphans: 3;
+  widows: 3;
+  @include break-inside-avoid;
+  @include break-after-avoid;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+h4 {
+  font-size: $font-size-h4;
+}
+
+h5 {
+  font-size: $font-size-h5;
+}
+
+h6 {
+  font-size: $font-size-h6;
+}
+
+ol,
+p,
+ul, blockquote p {
+  @include font-size-base;
+}
+
+.intro ol, .intro p, .intro ul {
+  font-size: 12pt;
+}
+blockquote {
+  margin: 15px;
+}
+p {
+  orphans: 3;
+  widows: 3;
+}
+
+a,
+a:after {
+  // removed ul and ol from here because it was creating large gaps on the page
+  @include break-inside-avoid;
+}
+
+li {
+  // removed ul and ol from here because it was creating large gaps on the page
+  @include break-inside-avoid;
+  @include break-after-avoid;
+}
+h2+p,
+h3+p,
+h4+p,
+h5+p,
+h6+p {
+  @include break-inside-avoid;
+}
+
+a {
+  &:not(.btn) {
+    text-decoration: underline;
+  }
+}
+
+p a {
+  border: 0;
+  box-shadow: none;
+}
+
+a:focus,
+a:hover {
+  background: transparent !important;
+  transform: none !important;
+  font-weight: bold;
+  text-decoration: underline !important;
+  color: $black;
+}
+
+a.button,
+a[href^=http]:after {
+  content: " <"attr(href) "> ";
+  width: auto;
+  font-weight: normal;
+  font-size: inherit;
+  margin: 0 5px;
+  word-wrap: break-word;
+}
+
+ol a.excel:after,
+ol a.external:after,
+ol a.file:after,
+ol a.pdf:after,
+ol a.powerpoint:after,
+ol a:after,
+ul a.excel:after,
+ul a.external:after,
+ul a.file:after,
+ul a.pdf:after,
+ul a.powerpoint:after,
+ul a:after {
+  content: none;
+  display: none!important;
+}
+
+pre {
+  white-space: pre-wrap !important;
+}
+
+.text-align-center {
+  text-align: left;
+}
+
+.justify-content-center {
+  justify-content: left !important;
+}
+
+.align-self-end {
+  align-self: flex-start !important;
+}
+
+ol.three-columns, ol.two-columns, ul.three-columns, ul.two-columns {
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
+  list-style-position: inside;
+}
+ol.three-columns, ul.three-columns {
+  -webkit-column-count: 3;
+  column-count: 3;
+}
+ol.two-columns, ul.two-columns {
+  -webkit-column-count: 2;
+  column-count: 2;
+}

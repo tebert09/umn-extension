@@ -1,0 +1,9 @@
+/* Styles for News Library */
+
+// Default variables and extends
+@import "default-variables";
+@import "mixins/mixin";
+
+// Component specific
+@import "components/news-events";
+@import "components/card";

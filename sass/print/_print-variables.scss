@@ -1,0 +1,53 @@
+
+// --------------------------------------------------
+// Default Variables for extension.umn.edu
+// --------------------------------------------------
+
+//===== UMN Branding Colors Variables
+$black: rgb(0, 0, 0);
+$dark-maroon: #5b0013;
+$darkmaroon: #5b0013;
+$maroon: #7a0019;
+$lightmaroon: #900021;
+$darkgold: #ffb71e;
+$gold: #ffcc33;
+$lightgold: #ffed7a;
+$darkergrey: #333333;
+$darker-grey: #333333;
+$stormy: #424d5b;
+$darkgrey: #606162;
+$mediumgrey: #777677;
+$grey: #d5d6d2;
+$lightgrey: #f0efee;
+$white: rgb(255, 255, 255);
+
+//===== Typography
+// General font styles
+$font-family-sans-serif: 'Merriweather Sans', 'Helvetica Neue', 'Futura', 'Geneva', sans-serif !default;
+$font-family-serif: 'Merriweather', serif !default;
+$text-color: $black !default;
+
+// base font size options
+$font-size-base: 11pt !default;
+
+// header sizes
+$font-size-h1: 20pt !default;
+$font-size-h2: 17pt !default;
+$font-size-h3: 15pt !default;
+$font-size-h4: 14pt !default;
+$font-size-h5: 13pt !default;
+$font-size-h6: 12pt !default;
+
+// line heights
+$headings-line-height: 1.4 !default;
+$line-height-base: 1.75 !default;
+
+// font weights
+$thin-weight: 300;
+$medium-weight: 400;
+$thick-weight: 700;
+$thickest-weight: 800;
+$headings-font-weight: 300 !default;
+
+// page width
+$page-width: 100% !default;

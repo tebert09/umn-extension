@@ -1,0 +1,5 @@
+{# feeds into CLP category section #}
+
+{% for link in items %}
+  {{ link|without("attributes") }}
+{% endfor %}

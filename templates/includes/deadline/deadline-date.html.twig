@@ -1,0 +1,12 @@
+{# Include used on deadline--full, deadline--rich-media-listing #}
+
+{% set dateString = content.field_start_date[0]["#markup"] %}
+
+<time class="date">
+  {# Will display like Saturday, July 21, 2020 #}
+  {{ dateString|date("l\, F j, Y") }}
+</time>
+
+{# if possible, Follow AP style for months.
+When listing a specific date, abbreviate January, February, August, September, October, November and December.
+Spell out March, April, May, June and July.  #}

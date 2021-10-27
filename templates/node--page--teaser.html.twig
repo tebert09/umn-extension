@@ -1,0 +1,22 @@
+{# Teaser display. #}
+
+{% set articleTitle = content.body["#object"].getTitle() %}
+{% set headerEncode = articleTitle | replace({' ': '-'}) %}
+{% set promoSummary = content.field_promo_summary[0] %}
+
+<article class="row list-teaser" aria-labelledby="{{ headerEncode }}">
+  {% include '@coffey/includes/displays/teaser-photo.html.twig' %}  
+
+  <div class="col-12 col-sm">
+    <div class="list-link" id="{{ headerEncode }}">   
+      {% include '@coffey/includes/displays/title.html.twig' %} 
+    </div>  
+    {% if promoSummary %} 
+      <p>
+        {{ promoSummary }}
+      </p> 
+    {% else %}
+      {% include '@coffey/includes/displays/summary.html.twig' %} 
+    {% endif %}
+  </div>
+</article>

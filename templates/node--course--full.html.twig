@@ -1,0 +1,13 @@
+{% set pageTitle = label[0]["#context"].value %}
+
+{{ content.field_banner }}
+
+<section class="row">
+  <article class="col-12 col-md-7 col-lg-8 big-column" aria-labelledby="page-title">
+    {{ content|without("field_right_sidebar", "field_banner", "field_google_analytics") }}
+  </article>
+  <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Subnavigation.">
+    {{ content.field_right_sidebar }}
+  </aside>
+  {% include '@coffey/includes/add-this.html.twig' %}
+</section>

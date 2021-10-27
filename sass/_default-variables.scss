@@ -1,0 +1,86 @@
+// --------------------------------------------------
+// Default Variables for extension.umn.edu
+// --------------------------------------------------
+
+//===== UMN Branding Colors Variables
+$burgundy: rgb(144, 0, 33);
+$sleight-grey: #F5F5F5;
+$black: rgb(0, 0, 0);
+$dark-maroon: #5b0013;
+$darkmaroon: #5b0013;
+$maroon: #7a0019;
+$lightmaroon: #900021;
+$darkgold: #ffb71e;
+$gold: #ffcc33;
+$lightgold: #ffed7a;
+$darkergrey: #333333;
+$darker-grey: #333333;
+$stormy: #424d5b;
+$darkgrey: #606162;
+$mediumgrey: #777677;
+$grey: #d5d6d2;
+$lightgrey: #f0efee;
+$offwhite: #f9f7f6;
+$white: rgb(255, 255, 255);
+$accent-maroon-dark: #a22230;
+$accent-maroon-med: #b71f3a;
+$accent-maroon-light: #c4203b;
+$accent-gold-dark: #e47f27;
+$accent-gold-med: #f78e2c;
+$accent-gold-light: #faa32d;
+$accent-dark-blue-dark: #414d5b;
+$accent-dark-blue-med: #365574;
+$accent-dark-blue-light: #1c5d8c;
+$accent-bright-blue-dark: #0a748f;
+$accent-bright-blue-med: #0d81a1;
+$accent-bright-blue-light: #0195b6;
+$accent-green-dark: #72af44;
+$accent-green-med: #a1c83a;
+$accent-green-light: #bcd531;
+
+//===== Typography
+// General font styles
+$font-family-sans-serif: 'Merriweather Sans', 'Helvetica Neue', 'Futura', 'Geneva', sans-serif !default;
+$font-family-serif: 'Merriweather', serif !default;
+$text-color: $stormy !default;
+
+// base font size options
+$font-size-base: 1.4rem !default;
+$font-size-large: $font-size-base * 2.1 !default;
+$font-size-med: $font-size-base * 1.5 !default;
+$font-size-middle:  $font-size-base * 1.25 !default;
+$font-size-small: $font-size-base * 0.95 !default;
+
+// header sizes
+$font-size-h1: 2.8rem !default;
+$font-size-h2: 2.45rem !default;
+$font-size-h3: 2.0rem !default;
+$font-size-h4: 1.7rem !default;
+$font-size-h5: 1.5rem !default;
+$font-size-h6: 1.3rem !default;
+
+// line heights
+$headings-line-height: 1.4 !default;
+$line-height-base: 1.75 !default;
+
+// font weights
+$thin-weight: 300;
+$medium-weight: 400;
+$thick-weight: 700;
+$thickest-weight: 800;
+$headings-font-weight: 300 !default;
+
+// page width
+$page-width: 100% !default;
+
+// breakpoints
+$small-screen: 30em !default;
+$boot-small:36rem; /* size of the col-sm change for bootstrap. */
+$smed-screen: 40em !default;
+$medium-screen: 50em !default;
+$large-screen: 60em !default;
+$xlarge-screen: 75em !default;
+
+// carousel icons
+$carousel-control-prev-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$carousel-control-next-icon-bg: str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E"), "#", "%23") !default;

@@ -1,0 +1,260 @@
+.ext-search {
+  padding: 20px 20px 35px;
+  margin: 20px auto;
+  max-width: 600px;
+
+  h2 {
+    font-size: 2rem;
+  }
+  @media (min-width:$medium-screen) {
+    padding: 20px 00px;
+    margin: 0 auto 30px;
+  }
+  @media (min-width:$large-screen) {
+    padding: 20px 00px;
+
+    h2 {
+      font-size: 2.3rem;
+    }
+  }
+  @media (min-width:$xlarge-screen) {
+    padding: 30px 0px;
+  }
+  &.left {
+    margin: 0;
+    padding-left: 0;
+  }
+}
+
+.maroon-bg .ext-search {
+  // if search box is on maroon bg
+  .gsc-search-button button.gsc-search-button {
+    background: $gold;
+  }
+  .umnhf-h-search form.gsc-search-box .gsc-input-box input.gsc-input:focus {
+    border-color: $gold!important;
+  }
+}
+
+.row.justify-content-center .row.justify-content-center > .col {
+  //for when the gold search box is already inside a justify center div (on courses and events page)
+  max-width: 100%;
+  flex: 0 0 100%;
+}
+//---------------------------NEW CSE SEARCH-----------------------------
+
+#umnhf-h-mast {
+  min-height: auto;
+}
+
+.umnhf-h-search {
+  position: relative;
+  @include display-hund;
+  top: 0;
+
+  form.gsc-search-box, button.gsc-search-button.gsc-search-button-v2, table.gsc-search-box, td.gsc-search-button {
+    border-radius: 0!important;
+  }
+
+  form.gsc-search-box {
+    background: transparent;
+    margin: 0;
+    border: 0;    
+
+    .gsc-input-box {
+      input.gsc-input {
+        padding: 0 7px !important;
+        color: #495057;
+        transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+        height: 45px !important;
+        border: 2pt solid transparent !important;
+        border-radius: 0px;
+
+        &:focus {
+          border: 2pt solid $gold !important;
+        }
+      }
+    }
+  }
+  @media (min-width:$large-screen) {
+    form {
+      &.gsc-search-box {
+        width: 80%;
+        float: right;
+      }
+    }
+  }
+}
+//---styling for the 'x' that appears when something is typed into the input
+
+.gsst_b {
+  top: 3px;
+}
+
+.gsst_a {
+  .gscb_a {
+    color: $maroon !important;
+  }
+
+  &:hover {
+    background: transparent !important;
+  }
+}
+
+.ext-search {
+  //----- search paragraph type
+  .umnhf-h-search {
+    form.gsc-search-box {
+      width: 100%;
+      float: none;
+
+      .gsc-input-box input.gsc-input:focus {
+        border: 2pt solid $maroon!important;
+      }
+    }
+    @media (min-width:$large-screen) {
+      form.gsc-search-box {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.gsc-control-searchbox-only {
+  //--- search page and search block styling
+  margin: 1em 0 1em !important;
+  @media (min-width:$medium-screen) {
+    margin: 0 !important;
+  }
+}
+
+.gsc-search-button button.gsc-search-button {
+  //--------button styles
+  background: $maroon;
+  border: 0;
+
+  &:hover {
+    background: $darkmaroon;
+    cursor: pointer;
+  }
+
+  svg {
+    width: 19px;
+    height: 19px;
+    viewBox: 0 0 13 13;
+  }
+}
+
+header .gsc-search-button button.gsc-search-button {
+  background: $gold;
+
+  &:hover {
+    background: $darkgold;
+  }
+}
+//----- search results page
+
+.gsc-control-cse {
+  font-family: $font-family-sans-serif !important;
+}
+
+.gsc-search-button-v2,
+header .gsc-search-button-v2 {
+  padding: 13px 15px 13px !important;
+}
+
+.gsc-result .gs-title a {
+  text-decoration: underline !important;
+
+  &:focus,
+  &:hover {
+    background: transparent;
+  }
+}
+
+a.gs-title:focus,
+a.gs-title:focus b,
+a.gs-title:hover,
+a.gs-title:hover b {
+  border: 0 !important;
+  color: $dark-maroon !important;
+  text-decoration: none !important;
+}
+
+a.gs-title {
+  font-weight: normal;
+
+  &:link:visited,
+  &:visited {
+    border: 0 !important;
+  }
+}
+
+.gs-bidi-start-align.gs-snippet,
+.gs-fileFormat > .gs-fileFormat,
+.gs-per-result-labels1,
+.gsc-role,
+.gsc-table-cell-thumbnail.gsc-thumbnail {
+  padding-left: 0!important;
+}
+
+.gs-imageResult a.gs-title:visited,
+.gs-imageResult a.gs-title:visited b,
+.gs-result .gs-title,
+.gs-result .gs-title *,
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b {
+  color: $maroon !important;
+}
+
+.gs-result .gs-visibleUrl,
+.gs-result a.gs-visibleUrl {
+  color: $mediumgrey !important;
+}
+/*----- promotion styles -----*/
+.cse .gsc-webResult.gsc-result.gsc-promotion,
+.gsc-webResult.gsc-result.gsc-promotion {
+  margin: 15px 0 !important;
+  border: 3pt solid #ffcc33 !important;
+  padding: 15px !important;
+  background: transparent !important;
+}
+
+.gs-promotion-table {
+  padding: 0 !important;
+}
+
+.gs-promotion-text-cell {
+  margin: 0 !important;
+}
+
+.gs-promotion-text-cell .gs-snippet {
+  font-size: 16px !important;
+}
+/*----- paging-----*/
+
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+  border: 0 !important;
+  color: $maroon !important;
+  font-size: $font-size-base !important;
+  padding: 5px;
+  font-family: arial, sans-serif !important;
+
+  &.gsc-cursor-current-page,
+  &:focus,
+  &:hover {
+    color: $white !important;
+    background: $maroon !important;
+    text-decoration: none !important;
+  }
+}
+/* Google branding */
+
+.gcsc-more-maybe-branding-root {
+  // this is a "Search for [word] on Google link"
+  display: none !important;
+}
+
+.gcsc-branding {
+  display: none !important;
+}

@@ -1,0 +1,20 @@
+{# This template is for the events displaying on the Courses and events page #}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<article class="row list-display" {{ attributes }}>
+  <div class="col-12">
+    {% include '@coffey/includes/events/date.html.twig' %}
+    {% include '@coffey/includes/events/event-title.html.twig' %}
+    {% include '@coffey/includes/events/time.html.twig' %}
+    {% include '@coffey/includes/events/location.html.twig' %}
+    <div class="labels">
+      {# Render categories first #}
+      <span>Event subject(s): </span>
+      {% for key, category in content.field_category if key|first != '#' %}
+        <a href="{{ category["#url"].tostring() }}">{{ category["#title"] }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</article>

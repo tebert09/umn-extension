@@ -1,0 +1,49 @@
+{# This is for the full navigation.
+The nav tag is in page.html.twig.
+The block--system-menu-block--main is also used #}
+
+<div class="top-navigation">
+  <div class="container navbar-expand-lg" id="top-menu">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle mobile navigation open or closed">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="menu-button">
+        <span class="icons">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </span>
+        <span class="menu-text">Menu</span></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        {% for item in items %}
+          {% set hasDropdown = item.below %}
+          {% if hasDropdown %}
+            {% set itemId = item.title|replace({" ": "-"})|url_encode %}
+            <li class="nav-item dropdown" role="menuitem">
+              {% set itemUrl = item.url
+                ? item.url
+                : "#" %}
+              <a href="{{ itemUrl }}" class="nav-link dropdown-toggle" id="{{ itemId }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ item.title }}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="{{ itemId }}">
+                {% set subItems = item.below %}
+                {% for subItem in subItems %}
+                  <li role="menuitem">
+                    <a href="{{ subItem.url }}">{{ subItem.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a role="menuitem" class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

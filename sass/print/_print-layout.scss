@@ -1,0 +1,157 @@
+//------------- Generic styles
+@page {
+  margin: 1cm;
+  size: auto;
+  padding: 5px;
+}
+
+*,
+*::before,
+*::after {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+main {
+  padding: 10px 0;
+}
+
+footer {
+  @include break-inside-avoid;
+}
+//------------- grid layout
+.col-md-2 {
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+}
+
+.col-md-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-md-4, .event-teaser-list.five .views-row, .event-teaser-list.four .views-row, .event-teaser-list.three .views-row, .card-group.three .card, .view-section-display.three .views-row {
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+}
+
+.col-md-5 {
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-md-7 {
+  flex: 0 0 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+
+.col-md-8 {
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+}
+
+.col-md-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+.col-lg-2 {
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+}
+
+.col-lg-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-lg-4 {
+  flex: 0 0 33.3333333333%;
+  max-width: 33.3333333333%;
+}
+
+.col-lg-5 {
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.col-lg-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-lg-7 {
+  flex: 0 0 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+
+.col-lg-8 {
+  flex: 0 0 66.6666666667%;
+  max-width: 66.6666666667%;
+}
+
+.col-lg-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-12.big-column, #umnhf-h-mast .col-md-6 {
+  padding: 0 15px !important;
+  flex: none !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.col-12.big-column, .col-12.small-column {
+  margin-top: 20px;
+}
+
+.col-12.small-column {
+  padding: 0 15px !important;
+  flex: none !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.page-node-type-event .col-12.small-column {
+  flex: 0 0 33.3333333333% !important;
+  max-width: 33.3333333333% !important;
+}
+
+.page-node-type-event .col-12.big-column {
+  flex: 0 0 66.6666666667% !important;
+  max-width: 66.6666666667% !important;
+}
+
+.card-group, .view-section-display .view-content, .blogger-feed .view-content {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* Display-nones */
+.action-button,
+.addThis,
+.page-nav,
+.print-option,
+.side-nav,
+.social-icons,
+.umnhf-h-search,
+.view-section-display a.button,
+a.button span,
+a.printable,
+aside.col-12.col-md-4,
+aside.col-lg-4,
+footer#page-footer,
+form#search-block-form,
+iframe,
+#backtotop,
+ul.tabs--primary,
+.breadcrumb,
+.navbar,
+  {
+  display: none !important;
+}

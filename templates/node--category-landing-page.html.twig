@@ -1,0 +1,12 @@
+{# Page nav js library centers links on page when there are fewer than 3 #}
+{{ attach_library('coffey/category-landing-page') }}
+
+{{ content.field_collage }}
+
+<section class="row justify-content-center" aria-label="Introduction">
+  <div class="col col-md-10 col-lg-8 intro">
+    {{ content.body }}
+  </div>
+</section>
+
+{{ content|without("field_collage", "body") }}

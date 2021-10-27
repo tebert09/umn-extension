@@ -1,0 +1,12 @@
+{# Paragraph type for custom blocks #}
+
+{% set background_color_class = content.field_background_color[0]["#markup"] %}
+{% set border_color_class = content.field_border_color[0]["#markup"] %}
+
+<div class="{{ background_color_class }} {{ border_color_class }}">
+  <div class="row">
+    <div class="col-12">
+      {{ content|without("field_border_color", "field_border_color_class", "field_background_color") }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{% set has_sidebar_content = content.field_right_sidebar[0] %}
+{% set pageTitle = label[0]["#context"].value %}
+
+{% if content.field_photo %}
+  <section class="row" aria-labelledby="page-title">  
+    <article class="col-12 col-md-5 col-lg-4">
+      {{ content.field_photo }}
+    </article>
+    <article class="col-12 col-md-7 col-lg-8 intro">
+      {{ content.body }}
+    </article>  
+  </section>
+{% else %}
+  <section class="row justify-content-center" aria-labelledby="page-title">
+    <article class="col-12 col-md-7 col-lg-8 intro">
+      {{ content.body }}
+    </article>  
+  </section>
+{% endif %}
+
+<section class="row">
+    <article class="col-12 col-md-7 col-lg-8 big-column">
+      {{ content|without("field_photo", "body", "field_right_sidebar") }}
+    </article>
+    
+    <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
+      {#{ content.field_right_sidebar }#}
+      {% include '@coffey/includes/side-nav-events-teaser-section.html.twig' %}
+      {% include '@coffey/includes/side-nav-block.html.twig' %}
+    </aside>
+    {% include '@coffey/includes/add-this.html.twig' %}
+</section>

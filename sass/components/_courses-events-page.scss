@@ -1,0 +1,143 @@
+// ============================================
+// Styles for courses and events page
+// ============================================
+
+form.events-list {
+  width: 100%;
+
+  @media (min-width:$medium-screen) {
+    .right-events-col {
+      margin-top: 50px;
+    }
+  }
+}
+
+.course-list,
+.course.teaser {
+  margin: 20px 0;
+  border-bottom: 3pt solid $lightgrey;
+  padding-bottom: 20px;
+
+  .field--name-field-category,
+  .field--name-field-event-type,
+  .field--name-field-region {
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+.list-search .form-control:disabled,
+.list-search .form-control[readonly] {
+  background: $white;
+}
+
+h2.event-results {
+  // Wording that changes based on what the user searches
+  span {
+    color: $mediumgrey;
+  }
+}
+
+//=========== courses and events filter styles ===========
+.col-12.left-col-events {
+  @media (min-width:$large-screen) {
+    padding-right: 40px;
+  }
+}
+
+.list-search.grey-bg {
+  @include margin-between;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  .col-12+.col-12 {
+    margin-top: 10px;
+  }
+
+  .custom-input label {
+    color: $darkgrey;
+    font-size: 1.5rem;
+  }
+
+  .event-drawer {
+    a {
+      @include display-hund;
+      font-size: 1.5rem;
+      text-decoration: none;
+
+      label {
+        display: block;
+        cursor: pointer;
+      }
+
+      .drawer-icon {
+        transition: all 0.5s cubic-bezier(0.67, 0.08, 0.32, 0.82);
+        width: 16px;
+        float: left;
+        vertical-align: middle;
+        margin: 3px 10px 0 0;
+        position: relative;
+        display: inline-block;
+      }
+
+      &:hover,
+      &:focus,
+      &[aria-expanded="true"] {
+        text-decoration: underline;
+        color: $darkmaroon;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      &[aria-expanded="true"] {
+        .drawer-icon {
+          transform: rotate(45deg) !important;
+        }
+      }
+    }
+  }
+
+  #local-office-filters fieldset {
+    margin: 0;
+    overflow-y: scroll;
+    height: 200px;
+  }
+
+  .event-filters {
+    background: $white;
+    border: 1pt solid #ced4da;
+
+    fieldset {
+      .fieldset-wrapper >.form-checkboxes {
+        padding: 5px 0 5px 5px;
+      }
+
+      .form-item {
+        margin: 10px 0;
+        min-height: 32px;
+      }
+
+      label {
+        // these are the actual checkbox filters
+        display: block;
+        cursor: pointer;
+
+        .form-checkbox {
+          margin-right: 5px;
+        }
+
+        &:focus,
+        &:hover {
+          color: $maroon;
+          font-weight: bold;
+        }        
+      }
+    }
+  }
+
+  button {
+    margin-right: 5px;
+  }
+}

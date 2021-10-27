@@ -1,0 +1,24 @@
+{% set buttonLink = content.field_action_button_link[0]["#title"] %}
+{% set buttonTitle = content.field_action_button_link[0]["#url"] %}
+{% set background_class = content.field_background_color[0]["#markup"] %}
+
+{% set titleText = content.field_title[0]["#context"].value %}
+{% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set titleHeader = "<" ~ titleHeaderMarkup ~ ">" ~ titleText ~ "</" ~ titleHeaderMarkup ~ ">" %}
+
+{% set newTabAttributes = "" %}
+
+{% if content.field_open_link_in_new_tab[0]["#markup"] == "True" %}
+  {% set newTabAttributes = "target='_blank' rel='noopener noreferrer'" %}
+{% endif %}
+
+<section class="cta {{ background_class }}" aria-label="{{ titleText }}" {{ attributes }}>
+  {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+  {% autoescape %}
+    {{ titleHeader|raw }}
+  {% endautoescape %}
+  {{ content.field_body_text }}
+  <a role="button" {{ newTabAttributes|raw }} class="button" href="{{ buttonTitle }}">{{ buttonLink }}
+    <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+  </a>
+</section>

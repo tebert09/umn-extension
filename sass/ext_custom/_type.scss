@@ -1,0 +1,256 @@
+html {
+  font-size: 70%;
+}
+
+body {
+  font-size: $font-size-base;
+  letter-spacing: 0.025em;
+  color: $stormy;
+  font-display: swap; // this swaps in the fallback font on load
+}
+
+ol,
+p,
+ul {
+  @include font-size-base;
+}
+
+ol,
+ul {
+  ol:last-child,
+  ul:last-child {
+    margin-bottom: 0;
+  }
+}
+
+article.align-left + ol,
+article.align-left + ul {
+  //style adds padding to ul and ol that is next to a left-aligned image
+  display: flow-root;
+}
+
+ol {
+  list-style-position: outside;
+  list-style-type: decimal;
+}
+
+ol,
+ul {
+  @media (min-width:$large-screen) {
+    //two and three columns only happen on the large media query due to space.
+    &.three-columns,
+    &.two-columns {
+      -moz-column-gap: 20px;
+      -webkit-column-gap: 20px;
+      column-gap: 20px;
+      list-style-position: inside;
+
+      li {
+        padding: 0 1.0em;
+        text-indent: -1.4em;
+      }
+    }
+
+    &.two-columns {
+      -webkit-column-count: 2;
+      column-count: 2;
+    }
+
+    &.three-columns {
+      -webkit-column-count: 3;
+      column-count: 3;
+    }
+  }
+}
+
+li > p,
+li > p:last-child {
+  //removes margin from p inside li, which is copied over from Google docs
+  margin-bottom: 0;
+}
+
+@include headings(){
+  @include heading-style;
+  margin-bottom: 6px;
+  font-display: swap; //this swaps in the fallback font on load
+}
+
+@include headings(1,2) {
+  color: $maroon;
+}
+
+h1 {
+  font-size: $font-size-h1;
+  margin: 0;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h1 * 1.1;
+  }
+  span.grey {
+    color: $mediumgrey;
+  }
+}
+
+.home h1 {
+  //hide home h1 from view because the page starts with the image
+  visibility: hidden;
+  margin: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+h2 {
+  font-size: $font-size-h2;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h2 * 1.1;
+  }
+}
+
+.footer-ext h2 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+  @media (min-width:$large-screen) {
+    font-size: 2.4rem;
+  }
+}
+
+h3 {
+  font-size: $font-size-h3;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h3 * 1.1;
+  }
+}
+
+h4 {
+  font-size: $font-size-h4;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h4 * 1.1;
+  }
+}
+
+h5 {
+  font-size: $font-size-h5;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h5 * 1.1;
+  }
+}
+
+h6 {
+  font-size: $font-size-h6;
+  @media (min-width:$large-screen) {
+    font-size: $font-size-h6 * 1.1;
+  }
+}
+
+ol + h2,
+ol + h3,
+ol + h4,
+ol + h5,
+ol + h6,
+p + h2,
+p + h3,
+p + h4,
+p + h5,
+p + h6,
+ul + h2,
+ul + h3,
+ul + h4,
+ul + h5,
+ul + h6,
+ul + p {
+  margin-top: 2rem;
+}
+
+li > p + ol,
+li > p + ul {
+  margin-top: 0;
+}
+
+h2 + h3,
+h3 + h4,
+h4 + h5 {
+  margin-top: 1rem;
+}
+
+.page-header {
+  border: none;
+
+  svg {
+    //for 4-H logo in page titles
+    height: 40px;
+    position: relative;
+    top: 6px;
+    margin-right: 5px;
+    float: left;
+    width: 40px;
+  }
+}
+
+blockquote {
+  padding: 10px 20px;
+  font-size: $font-size-base;
+  border-left: 7px solid $gold;
+  line-height: 1.6;
+  margin: 20px 15px;
+  @include display-hund;
+
+  p {
+    font-size: $font-size-middle;
+    line-height: 1.8;
+  }
+
+  p:last-child,
+  ul:last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width:$large-screen) {
+    margin: 30px 25px;
+  }
+}
+
+hr {
+  border-top: 2px solid $lightgrey;
+  margin: 2rem 0;
+
+  &.maroon {
+    border-color: $maroon;
+  }
+
+  &.gold {
+    border-color: $gold;
+  }
+}
+
+.intro {
+  //intro paragraph on Category Landing Pages and home page
+  @include margin-between;
+
+  ol,
+  p,
+  ul {
+    font-size: $font-size-base * 1.1;
+    font-weight: 100;
+    margin-bottom: 1.3em;
+    @media (min-width:$large-screen) {
+      font-size: $font-size-base * 1.27;
+    }
+  }
+  @media (min-width:$large-screen) {
+    margin: 40px 0;
+  }
+}
+
+.home .intro {
+  @include margin-between;
+}
+
+.lede {
+  font-size: 1.7rem;
+  font-weight: 100;
+}

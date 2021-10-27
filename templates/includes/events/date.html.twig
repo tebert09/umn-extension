@@ -1,0 +1,25 @@
+{# Include used on event--full, event--upcoming-course-events, event--rich-media-listing #}
+
+{% set hideStartDate = (content.field_hide_start_date[0]["#markup"] == "True") %}
+{% set hideEndDate = (content.field_hide_end_date[0]["#markup"] == "True") %}
+{% set startDateString = content.field_start_date[0]["#markup"] %}
+{% set endDateString = content.field_end_date[0]["#markup"] %}
+{% set isStartAndEndSameDay = (endDateString | date("n/j/Y") == startDateString | date("n/j/Y")) %}
+
+{% if hideStartDate %}
+  {# Don't show dates #}
+{% elseif (hideEndDate) or (isStartAndEndSameDay) %}
+  <time class="date">
+    {# Will display like Saturday, July 21, 2020 #}
+    {{ startDateString|date("l\, F j, Y") }}
+  </time>
+{% else %}
+  <time class="date">
+    {# Will display like Wednesday, July 25 - Thursday, July 26, 2020 #}
+    {{ startDateString|date("l\, F j, Y") }} - {{ endDateString|date("l\, F j, Y") }}
+  </time>
+{% endif %}
+
+{# if possible, Follow AP style for months.
+When listing a specific date, abbreviate January, February, August, September, October, November and December.
+Spell out March, April, May, June and July.  #}

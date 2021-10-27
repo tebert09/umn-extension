@@ -1,0 +1,16 @@
+{# Titles in the teaser display of Course, News content types #}
+
+{% set pageTitle = content.body["#object"].getTitle() %}
+
+<div class="title">
+  {% if breadcrumbs_menu_title %}
+    <a href="{{ url }}">
+      {{ breadcrumbs_menu_title }}
+    </a>
+  {% else %}
+    <a href="{{ url }}">
+      {{ pageTitle }}
+    </a>
+  {% endif %}
+
+</div>

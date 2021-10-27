@@ -1,0 +1,98 @@
+{# This template is for the full event page #}
+
+{# FYI - we made big changes to events in July 2020. #}
+
+{% set contactInfo = content.field_contact[0] %}
+{% set pageTitle = label[0]["#context"].value %}
+{% set onlineType = content.field_type_online_event[0]["#markup"] %}
+{% set hideStartDate = (content.field_hide_start_date[0]["#markup"] == "True") %}
+{% set hideEndDate = (content.field_hide_end_date[0]["#markup"] == "True") %}
+{% set hideStartTime = (content.field_hide_start_time[0]["#markup"] == "True") %}
+{% set hideEndTime = (content.field_hide_end_time[0]["#markup"] == "True") %}
+{% set addCal = content.field_add_to_calendar %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<section class="row" aria-labelledby="page-title">
+  <article class="col-12 col-sm-5 col-md-4 small-column">        
+    <div class="event-info grey-bg">
+      <h2>Event information</h2>
+      {% if hideStartDate %}
+        {# Show nothing #}
+      {% else %}
+        <h3>Date</h3>
+        {% include '@coffey/includes/events/date.html.twig' %}
+      {% endif %}
+
+      {# Add to calendar button #}
+      {% if addCal[0]['#markup'] != 'Add to Calendar Disabled' %}
+        {{ addCal }}
+      {% endif %}
+
+      {# Time #}
+      {% if hideStartTime %}
+        {# Show nothing #}
+      {% else %}  
+        <h3>Time</h3>
+        <p>{% include '@coffey/includes/events/time.html.twig' %} Central time</p>
+      {% endif %}
+
+      {# Location section either building/company name, or online #}
+      <h3>Location</h3>
+      <p>{% include '@coffey/includes/events/location-address.html.twig' %}</p>
+
+      {# Contact information section #}
+      {% if contactInfo %}
+        <h3>Contact</h3>
+        {{ contactInfo }}
+      {% endif %}
+    </div>
+
+    {{ drupal_view('events_from_local_office', 'block_1') }}
+  </article>
+
+  <article class="col-12 col-sm-7 col-md-8 big-column event-body">
+    {{ content.body }}
+    {{ content.field_intended_audience }}
+    {{ content.field_reg_cost }}
+    {% include '@coffey/includes/events/registration-button.html.twig' %}
+    {{ content.field_content_blocks }}
+  </article>
+</section>
+
+<section class="row">
+  <article class="col-12">    
+    <div class="event-teaser-list view-section-display three">      
+      {% if content.field_event_view['#title'] is not empty %}
+        {# This allows editor to add related events using a pre-made view. #}
+        <h2>Related events</h2>
+        {{ content.field_event_view }}
+      {% elseif drupal_view_result('related_events', 'block_1', node.id)[0].node__field_related_events_field_related_events_target_id is not empty %}
+        {# This allows editor to manually add related events. #}
+        <h2>Related events</h2>
+        {{ drupal_view('related_events', 'block_1', node.id) }}
+      {% else %}      
+        {# If the above two options are not used, it defaults to upcoming events based on the event subject. #}  
+        {% set subject = '0' %}
+        {% for key, value in node.field_category %}
+          {% set subject = subject ~ '+' ~ value.entity.tid.value %}
+        {% endfor %}
+        <h2>Upcoming events</h2>
+        {{ drupal_view('default_upcoming_events', 'block_1', node.id, subject) }}
+      {% endif %}
+    </div>
+  </article>
+</section>
+
+<section class="row">
+  <article class="col-12">
+    <div class="addThis">
+      {{ attach_library('coffey/addthis') }}
+      {# AddThis code has to appear here instead of in the include b/c the include has unneeded code. #}
+        <span>Share this page:</span>
+        <script async="async" type="text/javascript"> var addthis_config = { ui_tabindex: 0 } </script>
+        <div class="addthis_inline_share_toolbox_kn95" tabindex="0"></div>
+    </div>
+  </article>
+</section>

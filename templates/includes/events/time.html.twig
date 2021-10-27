@@ -1,0 +1,44 @@
+{# Include used on event--full, event--upcoming-course-events, event--rich-media-listing, and event--teaser #}
+
+{% set hideStartTime = (content.field_hide_start_time[0]["#markup"] == "True") %}
+{% set hideEndTime = (content.field_hide_end_time[0]["#markup"] == "True") %}
+{% set startDateString = content.field_start_date[0]["#markup"] %}
+{% set endDateString = content.field_end_date[0]["#markup"] %}
+
+{# if minutes is 00 then show only hour #}
+{% if startDateString|date("i") == "00" %}
+  {% set final_startDate =  startDateString|date("g") %}
+{% else %}
+  {% set final_startDate =  startDateString|date("g:i") %}
+{% endif %}
+
+{% if endDateString|date("i") == "00" %}
+  {% set final_endDate =  endDateString|date("g") %}
+{% else %}
+  {% set final_endDate =  endDateString|date("g:i") %}
+{% endif %}
+
+{% if hideStartTime %}
+  {# Show no times #}
+{% elseif hideEndTime %}
+  {# only show start time #}
+  <time class="event-time">
+    {{ startDateString|date("g:i") ~ " " ~ startDateString|date("a")|split("")|join(".") ~ "."}}
+  </time>
+{% else %}
+  <time class="event-time">
+    {# We do some filtering here to follow APA style for a.m. and p.m. #}
+    {# ex: 8:00 a.m. - 4:30 p.m. #}
+    {% set start_ampm = startDateString|date("a")|split("")|join(".") ~ "." %}
+    {% set end_ampm = endDateString|date("a")|split("")|join(".") ~ "." %}
+
+    {# if start and end am/pm are same then hide start's am/pm #}
+    {% if start_ampm == end_ampm %}
+      {{ final_startDate }}
+    {% else %}
+      {{ final_startDate ~ " " ~ startDateString|date("a")|split("")|join(".") ~ "."}}
+    {% endif %}
+    -
+    {{ final_endDate ~ " " ~ endDateString|date("a")|split("")|join(".") ~ "."}}
+  </time>
+{% endif %}

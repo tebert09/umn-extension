@@ -1,0 +1,14 @@
+{% set tableTitleText = content.field_table_title[0]["#context"].value %}
+{% set headerMarkup = content.field_header[0]["#markup"] %}
+{% set tableTitleMarkup = "<" ~ headerMarkup ~ ">" ~ tableTitleText ~ "</" ~ headerMarkup ~ ">" %}
+
+{# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+<section class="table-block" {{ attributes }}>
+  {% if tableTitleText %}
+    {% autoescape %}
+      {{ tableTitleMarkup|raw }}
+    {% endautoescape %}
+  {% endif %}
+
+  {{ content|without("field_table_title", "field_header", "field_caption") }}
+</section>

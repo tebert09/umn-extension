@@ -1,0 +1,15 @@
+
+{% set image_location_class = content.field_image_location[0]["#markup"] %}
+{% set image_mobile = content.field_mobile_image[0]["#markup"] %}
+
+
+<div class="feature-block {{ image_mobile }}">
+  <div class="row">
+    <div class="col-12 col-sm-4 col-lg-3 feature-image {{ image_location_class }}">
+      {{ content.field_image }}
+    </div>
+    <div class="col-12 col-sm-8 col-lg-9 feature-content">
+      {{ content.field_content }}
+    </div>
+  </div>
+</div>

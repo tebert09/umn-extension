@@ -1,0 +1,19 @@
+{# Card display for News article content type. #}
+
+{% set teaserPhoto = content.field_photo[0] %}
+{% set pageTitle = content.body["#object"].getTitle() %}
+{% set headerEncode = pageTitle | replace({' ': '-'}) %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/news') }}
+
+<div class="border" aria-labelledby="{{ headerEncode }}" {{ attributes }}>
+  {% if teaserPhoto %}
+    <a href="{{ url }}">
+      {{ teaserPhoto }}
+    </a>
+  {% endif %}
+  {% include '@coffey/includes/news/date.html.twig' %}
+  {% include '@coffey/includes/displays/title.html.twig' %}
+  {% include '@coffey/includes/displays/summary.html.twig' %}   
+</div>

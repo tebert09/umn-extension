@@ -1,0 +1,18 @@
+{# News article teaser display. Is the same as News article Rich Media and and very similar to Course teaser #}
+
+{% set articleTitle = content.body["#object"].getTitle() %}
+{% set headerEncode = articleTitle | replace({' ': '-'}) %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/news') }}
+
+<article class="row list-display" aria-labelledby="{{ headerEncode }}">
+  {% include '@coffey/includes/displays/teaser-photo.html.twig' %}  
+
+  <div class="col-12 col-sm">
+    {% include '@coffey/includes/news/date.html.twig' %}    
+    {% include '@coffey/includes/displays/title.html.twig' %}     
+    {% include '@coffey/includes/displays/summary.html.twig' %}   
+    {% include '@coffey/includes/news/labels.html.twig' %}
+  </div>
+</article>

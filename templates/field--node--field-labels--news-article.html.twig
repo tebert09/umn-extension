@@ -1,0 +1,22 @@
+{# 
+  Since we want labels that correspond to highlights to  
+  link to the customized highlight view and activate the contextual filter,
+  we overrided that output here.
+#}
+
+{% set highlightsLabels = ["agriculture", "community", "environment", "family", "food", "garden", "youth"] %}
+
+
+{% for label in element if key|first != '#' %}
+    {% set labelName = label["#title"] %}
+    {% set labelUrl = label["#url"] %}
+    {# Check that the render array element has a title and url, 
+      so that we don't try to render something that isn't renderable #}
+    {% if labelName and labelUrl %}
+      {% if labelName|lower in highlightsLabels and 'highlights' in url('<current>')["#markup"] %}
+      {% else %}
+        <div class="field--item"><a href="{{ label['#url'] }}" hreflang="en">{{ labelName }}</a></div>
+      {% endif %}
+
+    {% endif %}
+{% endfor %}

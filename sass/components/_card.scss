@@ -1,0 +1,48 @@
+//=======================================================================
+/* Styles for card paragraph type + card displays.
+  See also flex-columns.scss and news-events.scss*/
+//=======================================================================
+.card .card-body {
+  p:last-child,
+  ul:last-child {
+    margin: 0;
+  }
+
+  ol,
+  ul {
+    padding-left: 20px;
+    text-align: left;
+  }
+}
+
+.card,
+.news-card-list .views-row {
+  img {
+    max-width: none;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
+  p {
+    display: none; /* hide summary on mobile for space reasons */
+    @media (min-width:$smed-screen) {
+      display: block;
+    }
+  }
+}
+
+.card-group .card,
+.view-section-display .views-row {
+  .border {
+    padding: 1.25rem;
+    border: 2pt solid $lightgrey;
+    background-color: $white;
+    flex: 1 1 auto;
+
+    >a:focus,
+    >a:hover {
+      background: transparent;
+    }
+  }
+}

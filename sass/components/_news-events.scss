@@ -1,0 +1,107 @@
+//=======================================================================
+// Universal styles for news, events, and blogger feed posts
+// Event specific displays found in _event-displays.scss
+// Styles to display events, news, and cards as cards found in card.scss
+//=======================================================================
+
+// ====== Event Rich Media Listing and News Teaser displays ======
+.list-display {
+  margin: 20px 0;
+  padding: 0 0 20px;
+  border-bottom: 2pt solid $lightgrey;
+  position: relative;
+
+  .field--type-image a {
+    display: inline-block;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    display: none;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  @media (min-width:$boot-small) {
+    img {
+      display: block;
+      margin-bottom: 0;
+    }
+  } 
+}
+
+// ====== Titles ======
+.title, .blogger-feed .views-field-title {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  font-family: $font-family-serif;
+
+  a {
+    font-weight: normal;
+  }
+}
+
+// ====== Times and dates ======
+// Specific event date styles found in event-displays.scss
+
+time, .blogger-feed .views-field-timestamp {
+  // universal for all events & courses lists
+  @include font-size-base;
+}
+
+.date {
+  @include font-size-base;
+  margin: 0 0 5px;
+  font-weight: bold;
+  @include display-hund;
+}
+
+.article .date {
+  // only on full article page
+  padding: 10px 10px 10px 0;
+  margin-bottom: 25px;
+  position: relative;
+  font-size: 1.7rem;
+  font-weight: 100;
+
+  &:before {
+    content: "";
+    display: inline-block;
+    height: 4px;
+    width: 75px;
+    background: maroon;
+    position: absolute;
+    bottom: -4px;
+  }
+}
+
+// ====== labels ======
+.labels {
+  margin: 15px 0 0;
+  @include display-hund;
+
+  a:after {
+    content: ',';
+  }
+
+  a:last-child::after {
+    content: none;
+  }
+}
+
+.article {
+  // full article page 
+  .labels {
+    @include margin-between;
+  }
+}
+
+.local-office-filter button {
+  // reset button when choosing event / news topics
+  margin: 0;
+  padding: 5px 15px;
+}

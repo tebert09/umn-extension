@@ -1,0 +1,14 @@
+{{ attach_library('coffey/video-controller') }}
+{{ attach_library('coffey/carousel') }}
+
+{% set bannerContent = content.field_title[0] %}
+{% set overlay_class = content.field_overlay_location[0]["#markup"] %}
+
+<div class="banner" {{ attributes }}>
+  {{ content.field_hero_image }}
+  {% if bannerContent %}
+    <div class="banner-content {{ overlay_class }}">
+      {{ bannerContent }}
+    </div>
+  {% endif %}
+</div>

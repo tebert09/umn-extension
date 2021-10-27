@@ -1,0 +1,28 @@
+{% set breadcrumbs = elements.content["#links"] %}
+{% set hasBreadcrumbs = breadcrumbs | length > 0 %}
+
+{% if hasBreadcrumbs %}
+    <div class="row">
+      <div class="col">
+        <ol class="breadcrumb">
+          {% for item in breadcrumbs %}
+            {% if item.attributes %}
+              <li {{ item.attributes }}>
+            {% else %}
+              <li>
+            {% endif %}
+              {% if item.url %}
+                {% if loop.last %}
+                  {{ item.text }}
+                {% else %}
+                  <a href="{{ item.url }}">{{ item.text }}</a>
+                {% endif %}
+              {% else %}
+                {{ item.text }}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+{% endif %}

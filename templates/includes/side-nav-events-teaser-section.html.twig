@@ -1,0 +1,34 @@
+{# 
+This include template is similar to paragraph-events-teaser-section.html.twig. Should only be used as 
+events listing in right side column for local office landing page
+#}
+
+{% set tid = node.field_local_office.target_id %}
+{% set countyName = node.field_local_office.entity.name.value %}
+{% set countyType = node.field_local_office.entity.field_type.value %}
+{% set titleText = 'Events in '~ countyName ~ ' ' ~ countyType %}
+{% set headerLevel = 'h2' %}
+{% set fullHeader = "<" ~ headerLevel ~ ">" ~ titleText ~ "</" ~ headerLevel ~ ">" %}
+{% set actionaButtonLinkUrl = '/local/' ~ county_name_url ~ '/events' %}
+{% set actionButtonTitle = 'All events' %}
+
+<div class="view-section-display event-teaser-list" {{ attributes }}>
+  <div class="row">
+    <div class="col-12">
+      {% if titleText and headerLevel %}
+        {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+        {% autoescape %}
+          {{ fullHeader|raw }}
+        {% endautoescape %}
+      {% endif %}
+    </div>
+    <div class="col-12">
+      {{ drupal_view('events_by_county', 'block_1', tid) }}
+    </div>
+    <div class="col-12">
+      <a role="button" class="button" href="{{ actionaButtonLinkUrl }}">{{ actionButtonTitle }}
+        <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+      </a>
+    </div>
+  </div>
+</div>

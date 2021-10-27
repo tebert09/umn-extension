@@ -1,0 +1,17 @@
+{# 
+  We don't want to actually print the taxonomy terms for Google Analytics.
+  Instead, we build up dynamic script tags for each taxonomy term that hooks into Google Analytics.
+
+  Google analytics scripts are generated via /macros/analytics.html.twig
+
+  The Google Analytics field should be set to display as a rendered entity.
+#}
+
+{% import "@coffey/macros/analytics.html.twig" as analytics %}
+
+{% for key, item in element if key|first != '#' %}
+    {% if item["#taxonomy_term"].field_ga_tracking_id is not null %}
+      {% set trackingId = item["#taxonomy_term"].field_ga_tracking_id.getValue()[0]["value"] %}
+      {{ analytics.scripts(trackingId) }}
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,22 @@
+{# This brings in [county] home, [county] news, and [county] events links in side nav for all local office pages except single news article or event page. 
+It removes the current page as a link option. 
+These links are coming from /block/781 in custom block library. #}
+
+{% if side_nav_block|length %}
+{% for side_block in side_nav_block %}
+<div class="field field--name-field-custom-content-block field--type-entity-reference-revisions field--label-hidden field--items">
+  <div class="field--item">
+    <div class="side-nav" role="navigation" data-quickedit-entity-instance-id="0">
+      <h2>
+        <div class="field field--name-field-title field--type-string field--label-hidden field--item">{{ side_block.title }}</div>
+      </h2>
+      <ul>
+      {% for link in side_block.links%}
+        <li><a href="{{ link.uri }}">{{ link.title }}</a></li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endif %}

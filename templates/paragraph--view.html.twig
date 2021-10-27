@@ -1,0 +1,14 @@
+{% set titleText = content.field_custom_title[0]["#context"].value %}
+{% set drawerHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set fullHeader =  "<" ~ drawerHeaderMarkup ~ ">" ~ titleText ~ "</" ~ drawerHeaderMarkup ~ ">" %}
+
+
+<div class="">
+  {% if titleText and drawerHeaderMarkup %}
+    {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+    {% autoescape %}
+      {{ fullHeader|raw }}
+    {% endautoescape  %}
+  {% endif %}
+  {{ content.field_view }}
+</div>

@@ -1,0 +1,34 @@
+// ============================================
+// Feature block styles
+// ==================================================
+.feature-block {
+  border-bottom: 3pt solid $grey;
+  padding: 0 0 20px;
+  margin: 20px 0;
+
+  &.mobile-hide {
+    .feature-image {
+      display: none;
+    }
+  }
+
+  .feature-image {
+    margin-bottom: 15px;
+  }
+
+  @media (min-width:$small-screen) {
+    &.mobile-hide {
+      .feature-image {
+        display: block;
+      }
+    }
+
+    .feature-image {
+      margin-bottom: 0;
+
+      &.right {
+        order: 13;
+      }
+    }
+  }
+}

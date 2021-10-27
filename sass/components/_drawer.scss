@@ -1,0 +1,132 @@
+//=======================================================================
+/* Styles for Drawer paragraph type, aka accordions. */
+//=======================================================================
+
+.accordion-group {
+  .col-sm-8 p {
+    &:last-child {
+      margin: 0;
+    }
+  }
+
+  /*open all & close all*/
+  .align-self-end {
+    margin: 10px 0;
+
+    button {
+      background: none;
+      border: 0;
+      color: $maroon;
+      text-decoration: underline;
+      padding: 0;
+      cursor: pointer;
+
+      &:focus,
+      &:hover {
+        background: $maroon;
+        color: $white;
+        text-decoration: none;
+      }
+
+      &.active {
+        color: $grey;
+        text-decoration: none;
+      }
+    }
+
+    span {
+      padding: 0;
+      color: $stormy;
+    }
+
+    @media (min-width:$medium-screen) {
+      text-align: right;
+    }
+  }
+
+  /*individual accordions*/
+  .accordion {
+    margin: 10px 0;
+
+    .accordion-title {
+      padding: 13px 10px;
+      background: $lightgrey;
+      @include display-hund;
+      color: $darkergrey;
+      font-size: 1.8rem;
+      text-decoration: none;
+      font-weight: $medium-weight;
+      text-align: left;
+      box-shadow: none;
+      border: 0;
+      cursor: pointer;
+
+      &:focus,
+      &:hover {
+        text-decoration: none;
+        background: $gold;
+      }
+
+      .drawer-icon {
+        transition: all 0.5s cubic-bezier(0.67, 0.08, 0.32, 0.82);
+        margin-right: 5px;
+        width: 16px;
+        vertical-align: middle;
+        margin-top: -5px;
+        position: relative;
+        display: inline-block;
+      }
+
+      &[aria-expanded="true"] {
+        background: $gold;
+
+        img {
+          transform: rotate(45deg);
+          margin-top: -3px;
+        }
+      }
+    }
+
+    .accordion-body {
+      background: $offwhite;
+      padding: 1em;
+      margin-bottom: 6px;
+      //border-top: 80px solid transparent;
+      //margin-top: -80px;
+      background-clip: padding-box;
+      line-height: 1.6;
+      opacity: 1;
+      transition: line-height 1s, padding 1s, opacity 0.5s;
+      height: auto;
+
+      &.is-collapsed * {
+        line-height: 0 !important;
+        opacity: 0;
+      }
+
+      &.is-collapsed {
+        display: none;
+        line-height: 0;
+        opacity: 0;
+        padding: 0;
+      }
+
+      @media (min-width:$large-screen) {
+        padding: 1.5em 2em;
+      }
+    }
+  }
+}
+
+/* Sources paragraph type. */
+.accordion-group.sources {
+  margin: 20px 0 10px;
+
+  .accordion {
+    margin: 0;
+  }
+
+  @media (min-width:$medium-screen) {
+    margin: 30px 0 10px;
+  }
+}

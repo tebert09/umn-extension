@@ -1,0 +1,93 @@
+{% macro description(filterParent) %} 
+ 
+{# Figure out if it's a filtered search or not #}
+{% set titleValue = filterParent.search["#value"] %}
+{% set startDateValue = filterParent.start_date["#value"] %}
+{% set endDateValue = filterParent.end_date["#value"] %}
+{% set subjectIds = filterParent.subject["#value"] %}
+{% set subjectNames = [] %}
+{% set eventTypeIds = filterParent.event_type["#value"] %}
+{% set eventTypeNames = [] %}
+{% set gradeLevelIds = filterParent.grade_level["#value"] %}
+{% set gradeLevelNames = [] %}
+{% set countyIds = filterParent.local_office["#value"] %}
+{% set countyNames = [] %}
+
+{# Get Taxonomy Term names rather than ids #}
+
+{# Get subject names rather than Taxonomy ids #}
+{% for subjectId in subjectIds %}
+  {% set subjectNames = subjectNames|merge([filterParent.subject[subjectId]["#title"]]) %}
+{% endfor %}
+
+{# Get event type names rather than Taxonomy ids #}
+{% for eventTypeId in eventTypeIds %}
+  {% set eventTypeNames = eventTypeNames|merge([filterParent.event_type[eventTypeId]["#title"]]) %}
+{% endfor %}
+
+{# Get grade level names rather than Taxonomy ids #}
+{% for gradeLevelId in gradeLevelIds %}
+  {% set gradeLevelNames = gradeLevelNames|merge([filterParent.grade_level[gradeLevelId]["#title"]]) %}
+{% endfor %}
+
+{% if countyIds|length %}
+  {# Get county names rather than Taxonomy ids #}
+  {% for countyId in countyIds %}
+    {% set countyNames = countyNames|merge([filterParent.local_office[countyId]["#title"]]) %}
+  {% endfor %}
+{% endif %}
+
+
+
+{% set isFilterOrSearch = titleValue|length or subjectNames|length or eventTypeNames|length or startDateValue|length or 
+        endDateValue|length or countyNames|length %}
+
+{% if isFilterOrSearch %}
+  <h2 class="event-results">You searched: 
+    <span>
+      {% if titleValue|length %}
+        &lsquo;{{ titleValue }}&rsquo;
+        <br>
+      {% endif %}
+
+      {% if startDateValue|length %}
+        after
+        {# Convert start date value back to a nicer output #}
+        {{ startDateValue|date('F j') }}
+        <br>
+      {% endif %}
+
+      {% if endDateValue|length %}
+        before
+        {{ endDateValue|date('F j') }}
+        <br>
+      {% endif %}
+
+      {% if countyNames|length %}
+        in 
+        {{ countyNames|join(", ") }} County
+        <br/>
+      {% endif %}
+
+      {% if eventTypeNames|length %}
+        {{ eventTypeNames|join(", ") }}
+        <br/>
+      {% endif %}
+
+      {% if gradeLevelNames|length %}
+        in
+        {{ gradeLevelNames|join(", ") }}
+        <br/>
+      {% endif %}
+
+      {% if subjectNames|length %}
+        about
+        {{ subjectNames|join(", ") }}
+      {% endif %}
+    </span>
+  </h2>
+{% else %}
+  {# Show nothing #}
+{% endif %}
+
+{% endmacro %}

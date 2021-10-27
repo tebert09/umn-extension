@@ -1,0 +1,53 @@
+// Forms ============================================
+// General form styles + Salesforce iframe
+// ==================================================
+// Salesforce Marketing Cloud iframes ===============
+.smc-embed body * {
+  font-family: $font-family-sans-serif!important;
+}
+
+.smc-embed {
+  margin: 20px 0;
+  iframe {
+    h1 {
+      font-family: $font-family-sans-serif!important;
+    }
+  }
+}
+
+// =========== select dropdowns ===========
+/* in left and right columns of local office news & events pages */
+.view-filters select.form-control, .side-nav select {
+  border-radius: 0px;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  width: 100%;
+
+  &:focus,
+  &:hover {
+    outline: #fc3 2pt solid;
+    box-shadow: none;
+    transition: none;
+    border-color: transparent;
+  }
+}
+
+.view-news-from-local-office, .view-events-from-local-office {
+  .form-inline,
+  .form-item,
+  select {
+    width: 100%; 
+    display: block;
+  }
+}
+// ====== Program filtering on Local news and event feed pages ======
+.local-office-filter .view-filters {
+  .form-inline {
+    background: $lightgrey;
+    padding: 15px;
+  }
+  label {
+    font-size: $font-size-middle;
+    font-weight: 100;
+  }
+}

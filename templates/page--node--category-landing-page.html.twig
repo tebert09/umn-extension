@@ -1,0 +1,29 @@
+{% extends "page.html.twig" %}
+
+{# Replace content_fields #}
+{% block main_content %}
+
+  {# Highlighted #}
+  {% if page.highlighted %}
+    {% block highlighted %}
+      <div class="highlighted">{{ page.highlighted }}</div>
+    {% endblock %}
+  {% endif %}
+
+  {# Help #}
+  {% if page.help %}
+    {% block help %}
+      {{ page.help }}
+    {% endblock %}
+  {% endif %}
+
+  {# Content #}
+  {% block content %}
+    <a id="main-content"></a>
+    {{ page.content }}
+  {% endblock %}
+
+{% endblock %}
+
+{# Remove the sidebar #}
+{% block sidebar_second %}{% endblock %}

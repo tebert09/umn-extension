@@ -1,0 +1,17 @@
+{% set linkTitle = content.field_link[0]["#title"] %}
+{% set linkUrl = content.field_link[0]["#url"] %}
+{% set sectionHeader = content.section_header[0]["value"] %}
+
+{% set newTabAttributes = "" %}
+
+{% if content.field_open_link_in_new_tab[0]["#markup"] == "True" %}
+  {% set newTabAttributes = "target='_blank' rel='noopener noreferrer'" %}
+{% endif %}
+<div class="col-12 col-sm-6">
+  <h3>
+    <a href="{{ linkUrl }}" {{ newTabAttributes|raw }}>{{ linkTitle }}</a>
+  </h3>
+  <p>
+    {{ content.field_summary  }}
+  </p>
+</div>

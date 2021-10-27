@@ -1,0 +1,56 @@
+{# Include is used on event--full #}
+
+{% set hideAddress = (content.field_online_no_address["0"]["#markup"] == "True") %}
+{% set onlineType = content.field_type_online_event[0]["#markup"] %}
+
+{# Pull out the raw values from the fields so that we can check for null #}
+{% set nameOrOrganization = content.field_name_or_organization[0]["#context"]["value"] %}
+{% set address1 = content.field_address_line_1[0]["#context"]["value"] %}
+{% set address2 = content.field_address_line_2[0]["#context"]["value"] %}
+{% set city = content.field_city[0]["#context"]["value"] %}
+{% set state = content.field_state[0]["#markup"] %}
+{% set zipcode = content.field_zipcode[0]["#context"]["value"] %}
+{% set country = content.field_country[0]["#markup"] %}
+{% set hasAddressData = nameOrOrganization is not null or address1 is not null %}
+
+
+{% if (hideAddress and onlineType) %}
+  {{ onlineType }}
+
+{% elseif hideAddress %}
+  Online
+
+{% else %}
+  {% set full_address = address1 %}
+  {% if address2 %}
+    {% set full_address = full_address ~ ', ' ~ address2 %}
+  {% endif %}
+  {% set full_address = full_address ~ ', ' ~ city %}
+  {% set full_address = full_address ~ ', ' ~ state %}
+  {% set full_address = full_address ~ ', ' ~ zipcode %}
+
+  {% if nameOrOrganization %}
+    {% include '@coffey/includes/events/location-name.html.twig' %}
+    <br/>
+  {% endif %}
+
+  <a href="https://maps.google.com/?q={{ full_address }}" target="_blank">
+  {% if address1 %}
+    {{ address1 }}
+    <br/>
+  {% endif %}
+
+  {% if address2 %}
+    {{ address2 }},
+    <br/>
+  {% endif %}
+
+  {% if city %}
+    {{ city }},
+  {% endif %}
+
+  {{ state }}
+  {{ zipcode }}
+  </a>
+
+{% endif %}

@@ -1,0 +1,33 @@
+{# ==== This template was originally created for only Events Teasers, hence the name. ====
+It was expanded to be a generic template for other Views Displays, such as News Article cards. The style in which the views display is determined by the viewDisplayClass.  #}
+
+{# This templates is very similar to the blogger-feed template, but uses different field names #}
+
+{% set titleText = content.field_title[0]["#context"].value %}
+{% set headerLevel = content.field_header[0]["#markup"] %}
+{% set fullHeader = "<" ~ headerLevel ~ ">" ~ titleText ~ "</" ~ headerLevel ~ ">" %}
+{% set buttonLink = content.field_action_button_link[0]["#url"].toString() %}
+{% set buttonTitle = content.field_action_button_link[0]["#title"] %}
+{% set viewDisplayClass = content.field_view_display_type[0]["#markup"] %}
+{# viewDisplayClass class options = events-teaser-list, news-card-list #}
+{% set viewColumns = content.field_columns_in_row[0]["#markup"] %}
+{# viewColumns allows the editor to choose how many links to display in a row. #}
+
+<section class="view-section-display {{ viewDisplayClass }} {{ viewColumns }}" {{ attributes }}>
+  <div class="row">
+    <div class="col-12 col-lg">
+      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+      {% autoescape %}
+        {{ fullHeader|raw }}
+      {% endautoescape %}
+    </div>
+    {% if buttonLink %}    
+      <div class="col-12 col-lg-auto action-button">
+        <a role="button" class="button" href="{{ buttonLink }}">{{ buttonTitle }}
+          <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  {{ content.field_view }}
+</section>

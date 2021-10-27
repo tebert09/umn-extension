@@ -1,0 +1,27 @@
+{% set titleText = content.field_title_link[0]["#title"] %}
+{% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set titleLink = content.field_title_link[0]["#url"].toString() %}
+{% set titleId = titleText | url_encode %}
+{% set titleHeader = "<%s id='%s'><a href='%s'>%s</a></%s>" | format(titleHeaderMarkup, titleId, titleLink, titleText, titleHeaderMarkup) %}
+{% set featuredImage = content.field_featured_image %}
+
+<div class="card" {{ attributes }}>
+  <div class="border">
+    {% if featuredImage %}
+      {% if titleLink %}
+        <a href="{{ titleLink }}">
+          {{ featuredImage }}
+        </a>
+      {% else %}
+        {{ featuredImage }}
+      {% endif %}
+    {% endif %}
+    <div class="card-body" aria-labeledby="{{ titleId }}">
+      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+      {% autoescape %}
+        {{ titleHeader|raw }}
+      {% endautoescape %}
+      {{ content.field_body }}
+    </div>
+  </div>
+</div>

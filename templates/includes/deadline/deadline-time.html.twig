@@ -1,0 +1,13 @@
+{# Include used on deadline--full, deadline--rich-media-listing, deadline--teaser #}
+
+{% set dateString = content.field_start_date[0]["#markup"] %}
+{% set hideStartTime = (content.field_hide_start_time[0]["#markup"] == "True") %}
+
+{# Time #}
+{% if hideStartTime %}
+  {# Show nothing #}
+{% else %}  
+  <time class="event-time">
+    {{ dateString|date("g:i") ~ " " ~ dateString|date("a")|split("")|join(".") ~ "."}}
+  </time>
+{% endif %}

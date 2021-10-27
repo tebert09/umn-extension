@@ -1,0 +1,10 @@
+{% for key, link in content.field_registration_link if key | first != '#' %}
+
+  <div class="register-button">
+    {% set registrationUrl = link["#url"].tostring() %}
+    <a role="button" class="button" href="{{ registrationUrl }}">
+      {{ link["#title"] }}
+    </a>
+  </div>
+
+{% endfor %}

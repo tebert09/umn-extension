@@ -1,0 +1,26 @@
+{% set anchor_name = content.field_navigation_link_anchor['#items'][0].getString() %}
+{% set sectionHeader = content.field_topic_title['0'] %}
+{% set sectionHeaderEncode = content.field_topic_title[0]["#context"].value | replace({' ': '-'}) %}
+{% set categorySectionTitle = content.field_topic_title['0']["#context"]["value"] %}
+{# Aria labels in the links templates encode the title for labeledby attribute #}
+{% set sectionId = categorySectionTitle | url_encode %}
+{% set topicDescription = content.field_topic_description['0']["#context"]["value"] %}
+
+<article id="{{ sectionId }}" class="category-container" aria-labelledby="{{ sectionHeaderEncode }}-section">
+  {% if content.field_navigation_link_anchor %}
+    <a style="visibility: none;" name="{{ anchor_name }}"></a>
+  {% endif %}
+  <div class="row">
+    <div class="col-12">
+      <h2 id="{{ sectionHeaderEncode }}-section">{{ sectionHeader }}</h2>
+      {% if topicDescription %}
+      <div class="intro">
+        <p>{{ topicDescription }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    {{ content.field_links }}
+  </div>
+</article>

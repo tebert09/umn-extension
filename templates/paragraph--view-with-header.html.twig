@@ -1,0 +1,25 @@
+{% set titleText = content.field_title[0]["#context"]["value"] %}
+{% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
+{% set titleLink = content.field_title_link[0]["#url"].toString() %}
+{% set startTag = (titleHeaderMarkup != "") ? "<" ~ titleHeaderMarkup ~ ">" : "" %}
+{% set endTag = (titleHeaderMarkup != "") ? "</" ~ titleHeaderMarkup ~ ">" : "" %}
+
+{# Generate header based on link and title text pairing options #}
+{% if titleLink and titleText %}
+  {% set titleHeader =  startTag ~ "<a href='" ~ titleLink  ~ "'>" ~ titleText ~ "</a>" ~ endTag %}
+{% elseif titleText %}
+  {% set titleHeader =  startTag ~ titleText ~ endTag %}
+{% else %}
+  {% set titleHeader =  "" %}
+{% endif %}
+
+<section class="single-column" {{ attributes }}>
+  {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+  {% if titleText %}
+    {% autoescape %}
+      {{ titleHeader|raw }}
+    {% endautoescape  %}
+  {% endif %}
+  {{ content.field_content }}
+  {{ content.field_view_reference }}
+</section>

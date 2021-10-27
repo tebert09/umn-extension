@@ -1,0 +1,9 @@
+{# Teaser photos in the teaser display of Course, News content types #}
+
+{% set teaserPhoto = content.field_photo[0] %}
+
+{% if teaserPhoto %}
+    <div class="col-12 col-sm-3">
+      {{ teaserPhoto }}
+    </div>
+{% endif %}

@@ -1,0 +1,22 @@
+{# This template displays the deadline month and date in a grey box and title and time next to it. #}
+
+{% set hideStartDate = (content.field_hide_start_date["0"]["#markup"] == "True") %}
+{% set dateString = content.field_start_date[0]["#markup"] %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<article {{ attributes.addClass("event-teaser") }}>
+  <div class="row">
+    <div class="date-box">
+        {# example - Sept 21 #}
+        <div class="month">{{ dateString|date("M") }}</div>
+        <div class="date">{{ dateString|date("j") }}</div>
+    </div>
+
+    <div class="col">
+      {% include '@coffey/includes/events/event-title.html.twig' %}
+      {% include '@coffey/includes/deadline/time.html.twig' %}
+    </div>
+  </div>
+</article>
