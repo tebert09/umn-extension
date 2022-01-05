@@ -89,10 +89,14 @@ ul {
 
   /* the icons only appear in list styles */
   a.excel,
+  a[href$='.xlsx'],
   a.external,
   a.file,
+  a[href$='.docx'],
   a.pdf,
-  a.powerpoint {
+  a[href$='.pdf'],
+  a.powerpoint, 
+  a[href$='.ppt'] {
 
     &:after {
       width: 1.2em;

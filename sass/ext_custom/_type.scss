@@ -1,32 +1,24 @@
+//=======================================================================
+/* Styles for text */
+//=======================================================================
+//------------- Generic styles
 html {
   font-size: 70%;
+  font-family: $font-family-sans-serif;
 }
 
 body {
   font-size: $font-size-base;
   letter-spacing: 0.025em;
   color: $stormy;
-  font-display: swap; // this swaps in the fallback font on load
+  font-family: $font-family-sans-serif;
 }
 
-ol,
+//------------- Paragraphs and lists
 p,
+ol,
 ul {
   @include font-size-base;
-}
-
-ol,
-ul {
-  ol:last-child,
-  ul:last-child {
-    margin-bottom: 0;
-  }
-}
-
-article.align-left + ol,
-article.align-left + ul {
-  //style adds padding to ul and ol that is next to a left-aligned image
-  display: flow-root;
 }
 
 ol {
@@ -36,8 +28,29 @@ ol {
 
 ol,
 ul {
+  ol:last-child,
+  ul:last-child {
+    margin-bottom: 0;
+  }
+  li > p,
+  li > p:last-child {
+    // removes margin from p inside li, which is copied over from Google docs
+    margin-bottom: 0;
+  }
+}
+
+article.align-left + ol,
+article.align-left + ul, 
+figure.align-left + ol,
+figure.align-left + ul {
+  // Adds left padding to ul and ol that is next to a left-aligned image
+  display: flow-root;
+}
+
+ol,
+ul {
   @media (min-width:$large-screen) {
-    //two and three columns only happen on the large media query due to space.
+    // 2 & 3 columns only happen on the large media query
     &.three-columns,
     &.two-columns {
       -moz-column-gap: 20px;
@@ -63,16 +76,10 @@ ul {
   }
 }
 
-li > p,
-li > p:last-child {
-  //removes margin from p inside li, which is copied over from Google docs
-  margin-bottom: 0;
-}
-
+//------------- Headers
 @include headings(){
   @include heading-style;
   margin-bottom: 6px;
-  font-display: swap; //this swaps in the fallback font on load
 }
 
 @include headings(1,2) {
@@ -92,17 +99,21 @@ h1 {
 
 .home h1 {
   //hide home h1 from view because the page starts with the image
-  visibility: hidden;
-  margin: 0;
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
+  @include visibly-hidden;
+}
+
+.page-header {
+  // 4-h logo next to H1
+  border: none;
+
+  svg {
+    height: 40px;
+    position: relative;
+    top: 6px;
+    margin-right: 5px;
+    float: left;
+    width: 40px;
+  }
 }
 
 h2 {
@@ -148,6 +159,7 @@ h6 {
   }
 }
 
+//------------- spacing between
 ol + h2,
 ol + h3,
 ol + h4,
@@ -178,20 +190,7 @@ h4 + h5 {
   margin-top: 1rem;
 }
 
-.page-header {
-  border: none;
-
-  svg {
-    //for 4-H logo in page titles
-    height: 40px;
-    position: relative;
-    top: 6px;
-    margin-right: 5px;
-    float: left;
-    width: 40px;
-  }
-}
-
+//------------- Blockquote
 blockquote {
   padding: 10px 20px;
   font-size: $font-size-base;
@@ -214,6 +213,7 @@ blockquote {
   }
 }
 
+//------------- Lines
 hr {
   border-top: 2px solid $lightgrey;
   margin: 2rem 0;
@@ -227,8 +227,8 @@ hr {
   }
 }
 
+//------------- intro paragraph on Category Landing Pages and Landing pages
 .intro {
-  //intro paragraph on Category Landing Pages and home page
   @include margin-between;
 
   ol,
@@ -237,19 +237,20 @@ hr {
     font-size: $font-size-base * 1.1;
     font-weight: 100;
     margin-bottom: 1.3em;
-    @media (min-width:$large-screen) {
+  }
+
+  @media (min-width:$large-screen) {
+    margin: 40px auto;
+
+    ol,
+    p,
+    ul {
       font-size: $font-size-base * 1.27;
     }
   }
-  @media (min-width:$large-screen) {
-    margin: 40px 0;
-  }
 }
 
-.home .intro {
-  @include margin-between;
-}
-
+//------------- Lede style
 .lede {
   font-size: 1.7rem;
   font-weight: 100;

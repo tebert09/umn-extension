@@ -1,4 +1,6 @@
-{% set anchor_name = content.field_navigation_link_anchor['#items'][0].getString() %}
+{# Category section is only used on Category Landing Pages. They are the distinct sections on the CLP pages. #}
+
+{% set anchorName = content.field_navigation_link_anchor['#items'][0].getString() %}
 {% set sectionHeader = content.field_topic_title['0'] %}
 {% set sectionHeaderEncode = content.field_topic_title[0]["#context"].value | replace({' ': '-'}) %}
 {% set categorySectionTitle = content.field_topic_title['0']["#context"]["value"] %}
@@ -7,20 +9,16 @@
 {% set topicDescription = content.field_topic_description['0']["#context"]["value"] %}
 
 <article id="{{ sectionId }}" class="category-container" aria-labelledby="{{ sectionHeaderEncode }}-section">
-  {% if content.field_navigation_link_anchor %}
-    <a style="visibility: none;" name="{{ anchor_name }}"></a>
-  {% endif %}
-  <div class="row">
-    <div class="col-12">
-      <h2 id="{{ sectionHeaderEncode }}-section">{{ sectionHeader }}</h2>
-      {% if topicDescription %}
-      <div class="intro">
-        <p>{{ topicDescription }}</p>
-      </div>
-      {% endif %}
+  <a style="visibility: none;" name="{{ anchorName }}"></a>
+  <h2 id="{{ sectionHeaderEncode }}-section">{{ sectionHeader }}</h2>
+  {% if topicDescription %}
+    <div class="description">
+      <p>{{ topicDescription }}</p>
     </div>
-  </div>
-  <div class="row">
+  {% endif %}
+  <div class="section-content">
+    {# See paragraph--internal-link.html.twig and paragraph--external-link.html.twig. 
+    As of 1/2022, now also allowing view sections in these sections. #}
     {{ content.field_links }}
   </div>
 </article>

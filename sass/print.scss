@@ -1,12 +1,8 @@
 // Default variables
-//@import "default-variables";
-//@import "mixins/mixin";
 @import "print/print-mixins";
 @import "print/print-variables";
 
-
 /* Styles for print media query */
-@import "ext_custom/print";
 @import "print/print-text";
 @import "print/print-layout";
 @import "print/print-events-news";

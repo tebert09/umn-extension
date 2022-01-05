@@ -1,13 +1,15 @@
+{# External Link - Paragraph type.
+Created for category landing pages. Used to link to external pages on the site. #}
+
 {% set linkTitle = content.field_link[0]["#title"] %}
 {% set linkUrl = content.field_link[0]["#url"] %}
 {% set sectionHeader = content.section_header[0]["value"] %}
-
 {% set newTabAttributes = "" %}
 
 {% if content.field_open_link_in_new_tab[0]["#markup"] == "True" %}
   {% set newTabAttributes = "target='_blank' rel='noopener noreferrer'" %}
 {% endif %}
-<div class="col-12 col-sm-6">
+<div class="two-col">
   <h3>
     <a href="{{ linkUrl }}" {{ newTabAttributes|raw }}>{{ linkTitle }}</a>
   </h3>

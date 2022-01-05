@@ -1,6 +1,6 @@
-{# Blogger feed templates are used once a Blog has been added as a view. #}
-
-{# This templates is very similar to the events-teaser-section template, but uses different field names #}
+{# Blogger feed - Paragraph type. 
+Used once a Blog has been added as a view. See documentation: https://pages.github.umn.edu/extension-technology/developer-docs/drupal/blogger-feed
+Template is very similar to the events-teaser-section template, but uses different field names #}
 
 {% set titleText = content.field_title[0]["#context"]["value"] %}
 {% set headerLevel = content.field_header[0]["#markup"] %}
@@ -12,6 +12,7 @@
 {% set border_color_class = content.field_border_color[0]["#markup"] %}
 
 {{ attach_library('coffey/news') }}
+{{ attach_library('coffey/flex') }}
 
 <section class="blogger-feed {{ background_color_class }} {{ border_color_class }}" {{ attributes }}>
   <div class="row">

@@ -1,4 +1,6 @@
-{# This template displays the deadline month and date in a grey box and title and time next to it. #}
+{# Deadline teaser. 
+This template displays the deadline month and date in a grey box and title and time next to it.
+Very similar to node--event--teaser. #}
 
 {% set hideStartDate = (content.field_hide_start_date["0"]["#markup"] == "True") %}
 {% set dateString = content.field_start_date[0]["#markup"] %}
@@ -13,10 +15,9 @@
         <div class="month">{{ dateString|date("M") }}</div>
         <div class="date">{{ dateString|date("j") }}</div>
     </div>
-
     <div class="col">
       {% include '@coffey/includes/events/event-title.html.twig' %}
-      {% include '@coffey/includes/deadline/time.html.twig' %}
+      {% include '@coffey/includes/deadline/deadline-time.html.twig' %}
     </div>
   </div>
 </article>

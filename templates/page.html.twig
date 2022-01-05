@@ -61,24 +61,12 @@
       'navbar',
       theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : "",
     ]
-%}
-
+    %}
     <nav{{ navbar_attributes.addClass(navbar_classes) }} aria-label="Global navigation">
-
       {% if page.header %}
         {% block header %}{% endblock %}
       {% endif %}
-
       {{ page.navigation }}
-      {# nav templates = block--system-menu-block--main and menu--main #}
-
-      {# Navigation (collapsible) #}
-      {#{% if page.navigation_collapsible %}
-        <div id="navbar-collapse" class="navbar-collapse collapse">
-          {{ page.navigation_collapsible }}
-        </div>
-      {% endif %}#}
-
     </nav>
   {% endblock %}
 {% endif %}
@@ -94,16 +82,6 @@
       {% endblock %}
     {% endif %}
 
-    {# Content #}
-    {#{%
-        set content_classes = [
-          page.sidebar_first and page.sidebar_second ? 'col-sm-6',
-          page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
-          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
-          page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
-        ]
-      %}
-#}
     {# Main Content #}
     {% block main_content %}
 
@@ -146,4 +124,3 @@
     {% endblock %}
   </footer>
 {% endif %}
-

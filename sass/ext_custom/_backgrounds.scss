@@ -25,7 +25,12 @@
 
 // =========== Background colors ===========
 .grey-bg {
+  // originally used just this background. Should've named it light-grey, but didn't.
   background: $lightgrey;
+}
+
+.normal-grey-bg {
+  background: $grey;
 }
 
 .gold-bg {
@@ -45,34 +50,17 @@
   }
 }
 
-.maroon-bg {
-  .border {
-    .card-header a {
-      @include general-link;
-      color: $maroon;
-
-      &:hover {
-        background: $maroon;
-        color: $white;
-        text-decoration: none;
-      }
-    }
-  }
-}
-
+// =========== Spacing around and in paragraph types ===========
 .author-block,
 .border-box,
 .gold-bg,
 .grey-bg,
-.maroon-bg {
+.maroon-bg, 
+.normal-grey-bg {
   @include padding-between;
 }
 
-.author-block {
-  background: $lightgrey;
-  @include display-hund;
-  margin-top: 15px;
-
+.author-block, .single-column {
   p:last-child,
   ul:last-child {
     margin: 0;
@@ -84,19 +72,12 @@
     display: block;
     flex-wrap: nowrap;
   }
-
-  p:last-child {
-    margin-bottom: 0;
-  }
 }
 
-.accordion-group,
 .border-box,
-.cards,
 .cta,
 .single-column, 
-.field--name-field-intended-audience,
-.field--name-field-reg-cost {
+.author-block {
   @include margin-between;
   @include display-hund;
 }
@@ -108,16 +89,15 @@ aside {
   }
 }
 
-.accordion-body .single-column {
-  margin: 0;
-}
-
 // =========== borders ===========
 .border-box {
   border: 2pt solid;
 
   &.grey {
     border-color: $lightgrey;
+  }
+  &.normal-grey {
+    border-color: $grey;
   }
 
   &.maroon {
@@ -148,12 +128,7 @@ aside {
     width: 80%;
   }
 
-  p:last-child,
-  ul:last-child {
-    margin-bottom: 1rem;
-  }
-
-  ul li p:last-child {
+  ul:last-child, p:last-child {
     margin-bottom: 0;
   }
 }
@@ -182,4 +157,22 @@ aside {
   font-size: 1.4rem;
   color: $white;
   text-align: center;
+}
+
+// =========== Landing page top featured section ===========
+.coffey-featured {
+  margin: 25px 0;
+  .field--name-field-photo {
+    text-align: center;
+  }
+  .content-area {
+    background: rgba(122, 0, 25, 0.1);
+    padding: 20px;
+  }
+  @media (min-width:$medium-screen) {
+    .content-area {
+      padding: 140px 35px 20px;
+      margin-top: -120px;
+    }
+  }
 }

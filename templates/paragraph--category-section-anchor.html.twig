@@ -1,10 +1,9 @@
-{% set anchor_url = elements.field_category_anchor[0]["#context"]["value"] %}
-{% set anchor_text = elements.field_anchor_text[0]["#context"]["value"] %}
+{# Category Section Anchor - paragraph type.
+List links in the left navigation of the Category Landing Pages. #}
 
-<div class="col-12 col-sm-6 col-lg-4">
-  <a role="button" class="button anchor-link" href="{{ anchor_url }}">{{ anchor_text }}
-    <span>
-      {% include '@coffey/includes/angle-svg/angle-down.html.twig' %}
-    </span>
-  </a>
-</div>
+{% set anchorUrl = elements.field_category_anchor[0]["#context"]["value"] %}
+{% set anchorText = elements.field_anchor_text[0]["#context"]["value"] %}
+
+<li>
+  <a href="{{ anchorUrl }}">{{ anchorText }}</a>
+</li>

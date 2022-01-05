@@ -1,3 +1,6 @@
+{# Banner image for Home page - Paragraph type. 
+Allows for a video.
+Only used on Landing pages. #}
 {{ attach_library('coffey/video-controller') }}
 {{ attach_library('coffey/carousel') }}
 
@@ -9,9 +12,8 @@
 {% set background_class = content.field_background_color[0]["#markup"] %}
 
 {% if hasVideoUrls %}
-{% set videoBannerClass = "video-banner" %}
+  {% set videoBannerClass = "video-banner" %}
 {% endif %}
-
 
 {% if hasVideoUrls %}
 <div class="banner {{ videoBannerClass }}" {{ attributes }}>
@@ -27,7 +29,6 @@
       {% elseif "ogg" in videoSource %}
         {% set sourceType = "video/ogg" %}
       {% endif %}
-
       <source src="{{ videoSource }}" type="video/mp4">
     {% endfor %}
     {# Fallback to the banner image for browsers that don't support video #}
@@ -53,4 +54,3 @@
     </div>
 </div>
 {% endif %}
-

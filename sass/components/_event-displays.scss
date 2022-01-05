@@ -52,7 +52,7 @@
 .addtocalendar.atc-style-blue {
   // span around the link
   margin: 0 0 1.3em 0;
-  display: inline-block;
+  @include display-hund;
 }
 
 .atc-style-blue .atcb-link,
@@ -105,6 +105,13 @@
   color: $maroon;
   transition: none;
 }
+
+// audience and cost fields
+.field--name-field-intended-audience,
+.field--name-field-reg-cost {
+  @include display-hund;
+}
+
 //=========== Upcoming course event display (grey border with registration button) ===========
 .row.uce {
   border: 2pt solid $grey;
@@ -145,7 +152,7 @@ aside .uce {
 
   .date-box {
     background: $stormy;
-    padding: 8px 5px;
+    padding: 13px 5px;
     text-align: center;
     color: $white;
     width: 62px;

@@ -2,6 +2,12 @@
 /* Styles for card paragraph type + card displays.
   See also flex-columns.scss and news-events.scss*/
 //=======================================================================
+
+.cards {
+  @include margin-between;
+  @include display-hund;
+}
+
 .card .card-body {
   p:last-child,
   ul:last-child {
@@ -43,6 +49,22 @@
     >a:focus,
     >a:hover {
       background: transparent;
+    }
+  }
+}
+
+/* cards on marooon background. */
+.maroon-bg {
+  .border {
+    .card-header a {
+      @include general-link;
+      color: $maroon;
+
+      &:hover {
+        background: $maroon;
+        color: $white;
+        text-decoration: none;
+      }
     }
   }
 }

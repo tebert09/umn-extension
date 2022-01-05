@@ -1,18 +1,19 @@
+{# Call to action - Paragraph type. 
+Background color, header, description, and button. #}
+
 {% set buttonLink = content.field_action_button_link[0]["#title"] %}
 {% set buttonTitle = content.field_action_button_link[0]["#url"] %}
-{% set background_class = content.field_background_color[0]["#markup"] %}
-
+{% set backgroundClass = content.field_background_color[0]["#markup"] %}
 {% set titleText = content.field_title[0]["#context"].value %}
 {% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
 {% set titleHeader = "<" ~ titleHeaderMarkup ~ ">" ~ titleText ~ "</" ~ titleHeaderMarkup ~ ">" %}
-
 {% set newTabAttributes = "" %}
 
 {% if content.field_open_link_in_new_tab[0]["#markup"] == "True" %}
   {% set newTabAttributes = "target='_blank' rel='noopener noreferrer'" %}
 {% endif %}
 
-<section class="cta {{ background_class }}" aria-label="{{ titleText }}" {{ attributes }}>
+<section class="cta {{ backgroundClass }}" aria-label="{{ titleText }}" {{ attributes }}>
   {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
   {% autoescape %}
     {{ titleHeader|raw }}

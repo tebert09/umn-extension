@@ -1,4 +1,6 @@
-{# If any change is made to this template it should also be made on the 3 other collage templates. #}
+{# Collage 2x2 - Paragraph type.
+Two rows with two columns displaying 4 images.
+All collage templates are similar, so if any change is made to this template it should also be made on the other templates. #}
 
 {{ attach_library('coffey/carousel') }}
 
@@ -12,7 +14,6 @@
         <div class="carousel-item col-md-6">
           {{ content.field_top_right }}
         </div>
-        {# Due to the Bootstrap carousel using float:left; these are in the reverse order you would expect. #}
         <div class="carousel-item col-md-6">
           {{ content.field_bottom_left }}
         </div>

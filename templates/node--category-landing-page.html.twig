@@ -1,12 +1,28 @@
-{# Page nav js library centers links on page when there are fewer than 3 #}
+{# Category landing page content type. 
+Redesigned Dec 2021. #}
+
 {{ attach_library('coffey/category-landing-page') }}
 
-{{ content.field_collage }}
-
-<section class="row justify-content-center" aria-label="Introduction">
-  <div class="col col-md-10 col-lg-8 intro">
-    {{ content.body }}
+<section class="row">
+  <div class="col-12 col-md-5">
+      <div class="coffey-featured">
+          {{ content.field_photo }}
+          <div class="content-area">
+              {{ content.body }}
+          </div>
+      </div>
+  </div>
+  <div class="col-12 col-md-7">
+      {{ content.field_featured_blocks }}
   </div>
 </section>
 
-{{ content|without("field_collage", "body") }}
+<section class="clp-main">
+  <aside class="page-nav" aria-label="anchor links">
+    {{ content.field_nav }}
+  </aside>
+  <section class="category-section-container">
+    {# See paragraph--category-sections.html.twig#}
+    {{ content|without("body", "field_nav", "field_photo", "field_featured_blocks") }}
+  </section>
+</section>

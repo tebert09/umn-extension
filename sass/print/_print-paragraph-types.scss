@@ -1,43 +1,28 @@
-.accordion-group,
-.accordion-group .accordion .accordion-title,
-.author-block,
-.card-group,
-.cta,
-.single-column,
-.table-block {
-  //display: block; // not sure why this was used but it was removed 10/21 
-}
-
-.single-column {
-  display: block;
-}
-
-.author-block,
-.card-group,
-.cta {
-  @include break-inside-avoid;
-}
-
-.author-block {
-  border-top: 2pt solid #f0efee;
-  padding-top: 10px;
-}
+//=======================================================================
+/* Print styles for all paragraph types */
+//=======================================================================
 
 //------------- accordions / drawers
 /* These styles are very necessary to display the contents of drawers. */
-.accordion-group {
-  display: block;
+.accordion-group .accordion * {
+  background: transparent !important;
 }
+
 .accordion-group .accordion {
   margin: 5px 0 20px;
 }
 
+.accordion-group .accordion,
 .accordion-group .accordion .accordion-body.is-collapsed,
 .accordion-group .accordion .accordion-body {
   display: block !important;
 }
 
 .accordion-group .accordion .accordion-body {
+  padding: 0;
+  opacity: 1;
+  margin: 0;
+  border-top: 0;
 
   &.is-collapsed,
   &.is-collapsed * {
@@ -46,31 +31,16 @@
   }
 }
 
-.accordion-group .accordion .accordion-body {
-  background: transparent;
-  padding: 0;
-  opacity: 1;
-  margin: 0;
-  border-top: 0;
-}
-
 .accordion-group .accordion .accordion-title,
 .accordion-group .accordion .accordion-title[aria-expanded="true"] {
   padding: 0;
-  background: transparent;
   font-size: $font-size-h3;
   font-family: $font-family-serif;
   font-weight: $headings-font-weight;
   color: $black;
-
-  &:focus,
-  &:hover {
-    background: transparent;
-  }
 }
 
-
-//------------- blogger
+//------------- cards, blogger, and views section
 .blogger-feed {
   .button {
     float: left;
@@ -79,49 +49,75 @@
     margin: 10px 0;
   }
 
-  .views-element-container .view-content {
-    display: block;
-
-    .views-row {
-      max-width: 100%;
-      width: 100%;
-      flex: inherit;
-    }
+  .views-element-container .view-content .views-row {
+    padding: 5px 15px;
   }
 }
 
-//------------- cards and views section
+.card-group,
+.view-section-display .view-content,
+.blogger-feed .view-content {
+  @include no-flex;
+}
+
+.card-group .card,
+.view-section-display .views-row,
+.blogger-feed .views-row {
+  float: left !important;
+  display: block !important;
+  flex: none !important;
+}
+
+.blogger-feed .views-row,
 .view-section-display .views-row {
-  flex: 0 0 50%;
+  width: 50%;
   max-width: 50%;
 }
 
-.card-group {
-  flex-flow: row wrap;
-
-  .card {
-    // setting cards at 3 per row
-    width: 33%;
-    float: left;
-  }
+.card-group .card,
+.view-section-display.three .views-row {
+  width: 33%;
+  max-width: 33%;
 }
 
 .card-group.four .card,
 .view-section-display.four .views-row {
-  flex: 0 25%;
+  width: 25%;
   max-width: 25%;
 }
 
+.cards {
+  margin: 0 0 20px;
+}
+
+.border {
+  @include break-inside-avoid;
+}
+
 //------------- content block backgrounds
+.accordion-group,
 .author-block,
-.event-info,
+.card-group,
+.border-box,
+.cta,
+.table-block,
+.single-column,
+.double-column,
+.triple-column {
+  display: block !important;
+  width: 100%;
+  float: left;
+}
+
 .gold-bg,
 .grey-bg,
-.maroon-bg, 
+.maroon-bg,
+.normal-grey-bg,
 .cta {
   background: transparent;
   padding: 0;
   border: 0;
+  text-align: left;
 
   h3,
   h4,
@@ -132,8 +128,9 @@
   ul {
     color: $black;
   }
+
   h1,
-  h2,  
+  h2,
   a {
     color: $maroon;
   }
@@ -142,16 +139,54 @@
 .border-box {
   //Firefox doesn't like display:inline-block on print
   display: block;
-  @include break-inside-avoid;
   padding: 10px;
 }
-.accordion-group, .border-box, .cards, .cta, .single-column, .field--name-field-intended-audience, .field--name-field-reg-cost {
-  margin: 0 0 20px;
+
+.full-width-bg .single-column {
+  max-width: none;
 }
 
-.cta {
-  padding: 0; 
-  text-align: left;
+.reviewed-year {
+  margin: 10px 0;
+  display: block;
+  width: 100%;
+  float: left;
+}
+
+//------------- Table styles
+.table-block {
+  table.table {
+    margin: 0;
+
+    tr,
+    tr td,
+    tr td br {
+      -webkit-column-break-inside: avoid !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      -webkit-region-break-inside: avoid !important;
+    }
+
+    thead {
+      display: table-header-group;
+      background: transparent;
+
+      th {
+        padding: 0.65rem;
+        border-right: 1pt solid grey;
+      }
+    }
+
+    td {
+      padding: 0.25rem;
+      border-top: 1px solid grey;
+      border-right: 1px solid grey;
+    }
+
+    tr {
+      border: 1px solid grey;
+    }
+  }
 }
 
 /* Display-nones */

@@ -1,3 +1,8 @@
+{# Sources - Paragraph type. 
+Sources is very similar to paragraph--drawer-group.html.twig, but it only has the functionality for one single drawer. 
+It does not have the open all / close all links. 
+It should be used to put in the sources for the page. #}
+
 {% set drawerGroupTitleText = content.field_title[0]["#context"].value %}
 {% set drawerHeaderMarkup = content.field_header[0]["#markup"] %}
 {% set drawerGroupHeader = "<" ~ drawerHeaderMarkup ~ ">" ~ drawerGroupTitleText ~ "</" ~ drawerHeaderMarkup ~ ">" %}
@@ -11,7 +16,7 @@
   ]
 %}
 
-{{ attach_library('coffey/extension-accordions') }}
+{{ attach_library('coffey/drawers') }}
 
 {# Sets Unique ID for Accordion from Paragraph ID. #}
 {% set drawerTitleFormattedAsId = drawerGroupTitleText|replace({" ": "-"})|lower|escape("url") %}
@@ -28,7 +33,6 @@
 {% endif %}
 
 <section class="accordion-group sources" id="{{ paragraph_id }}">
-
   {% for key, item in content.field_source_drawer if key | first != '#' %}
     {% set drawer_title = item["#paragraph"].field_title.value|striptags %}
     {# ADDED "|striptags" TO FIX FIELD TYPE ERROR #}
@@ -41,7 +45,6 @@
     {% set drawer_index = key %}
     {% set drawer_id = drawer_title_index_name ~ "-" ~ paragraph.id.value ~ drawer_index %}
     <div class="accordion">
-
       <button href="#{{ drawer_id }}" class="accordion-title" aria-controls="{{ drawer_id }}" aria-expanded="false">
         {% include '@coffey/includes/drawer-icon.html.twig' %}
         {{ drawer_title }}
@@ -59,6 +62,5 @@
         {% endfor %}
       </div>
     </div>
-
   {% endfor %}
 </section>

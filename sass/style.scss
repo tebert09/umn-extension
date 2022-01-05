@@ -2,22 +2,37 @@
 @import "default-variables";
 @import "mixins/mixin";
 
+// reboot
+@import "ext_custom/reboot";
+
 // Font Import
 @import url('//fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,800');
 @import url('//fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700');
 
 // Required Bootstrap files
-@import "ext_custom/bootstrap/scss/bootstrap";
+//@import "ext_custom/bootstrap/scss/bootstrap";
+
+//@import "ext_custom/bootstrap/scss/functions";
+@import "ext_custom/bootstrap/scss/variables";
+
+@import "ext_custom/bootstrap/scss/mixins/breakpoints";
+@import "ext_custom/bootstrap/scss/mixins/grid-framework";
+
+@import "ext_custom/bootstrap/scss/grid";
+//@import "ext_custom/bootstrap/scss/utilities/display";
+//@import "ext_custom/bootstrap/scss/utilities/flex";
+
 
 // CSE Search styles from central
 @import "cse-search/search-form";
 @import "cse-search/search-results";
 
 // Extension SASS files
+@import "ext_custom/bootstrap-utilities";
 @import "ext_custom/images";
 @import "ext_custom/embeds";
 @import "ext_custom/edit-mode";
-@import "ext_custom/grid";
+@import "ext_custom/layout";
 @import "ext_custom/footer";
 @import "ext_custom/header";
 @import "ext_custom/link";

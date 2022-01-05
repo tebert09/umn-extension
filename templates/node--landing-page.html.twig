@@ -1,3 +1,7 @@
+{# Landing page content type.
+Mostly used for the Home Page. #}
 
+{# display the banner image. #}
 {{ content.field_banner }}
+{# display everything else, which is all mostly in paragraph types. #}
 {{ content|without("field_banner") }}

@@ -1,7 +1,7 @@
+{# 2020 update: p-type no longer used. #}
 {% set titleText = content.field_custom_title[0]["#context"].value %}
 {% set drawerHeaderMarkup = content.field_header[0]["#markup"] %}
 {% set fullHeader =  "<" ~ drawerHeaderMarkup ~ ">" ~ titleText ~ "</" ~ drawerHeaderMarkup ~ ">" %}
-
 
 <div class="">
   {% if titleText and drawerHeaderMarkup %}

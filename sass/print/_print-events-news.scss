@@ -18,24 +18,17 @@
   background: none;
   padding: 10px;
 }
+.event-info.maroon-bg time, .event-info.maroon-bg .atc-style-blue .atcb-link {
+  color: $black;
+}
 
 .event-teaser-list {
-  &.two {
-    .view-events-list .view-content .views-row {
-      width: 50%;
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-  }
-  &.three {
-    .view-events-list .view-content .views-row {
-      -webkit-flex: 0 33.33333%;
-      -ms-flex: 0 33.33333%;
-      flex: 0 33.33333%;
-      max-width: 33.33333%;
-    }
-  }
 
+  .view-events-list .view-content .views-row {
+    width: 100%;
+    max-width: 100%;
+    border-bottom: 2pt solid $grey;
+  }
 
   .event-teaser {
     margin: 0;
@@ -83,10 +76,15 @@
 a.button,
 a.button.plain {
   background: transparent;
-  color: #424d5b; //stormy
+  color: $black;
   padding: 0;
   margin: 0;
   text-decoration: underline !important;
+}
+
+.field--name-field-intended-audience,
+.field--name-field-reg-cost {
+  margin: 0 0 20px;
 }
 
 .event-info time {
@@ -97,17 +95,19 @@ a.button.plain {
   display: block;
 }
 
-time, .blogger-feed .views-field-timestamp {
+time,
+.blogger-feed .views-field-timestamp {
   color: $black;
+}
+
+.title,
+.blogger-feed .views-field-title {
+  font-size: $font-size-h4;
 }
 
 //------------- Local office calendar styles
 .event-calendar {
   display: block;
-}
-
-.fc table {
-  border: 1pt solid #ccc !important;
 }
 
 .fc tbody .fc-row,
@@ -123,18 +123,57 @@ time, .blogger-feed .views-field-timestamp {
 .fc-day-grid-event,
 .fc-event,
 .fc-event-dot {
-  background: transparent !important;
   font-size: 1.1rem;
   text-decoration: none !important;
+}
+
+.fc-ltr .fc-h-event.fc-not-end,
+.fc-rtl .fc-h-event.fc-not-start,
+a.fc-day-grid-event {
+  color: $white !important;
+  background: $maroon !important;
+}
+
+/* Upcoming course event displays */
+.row.uce {
+  border: 0;
+  margin: 0;
+  border-bottom: 2pt solid $grey;
+
+  .col-12 {
+    width: 100% !important;
+    padding: 0;
+  }
+
+  .reg {
+    .register-button {
+      display: block;
+      align-items: self-start;
+      justify-content: left;
+      text-align: left;
+    }
+  }
+}
+
+/* Articles */
+.article .date {
+  padding-top: 0;
+  margin-bottom: 0px;
+
+  &:before {
+    display: none;
+  }
 }
 
 /* Display-nones */
 .article section .content-body .grey-bg,
 .labels,
-.side-nav-grey, .local-office-filter > .view-filters, .list-display .col-sm-3, 
-.page-node-type-event .event-teaser-list, 
+.side-nav-grey,
+.local-office-filter>.view-filters,
+.list-display .col-sm-3,
+.page-node-type-event .event-teaser-list,
 .field--type-add-to-calendar-field,
-.event-info .event-time:after, 
+.event-info .event-time:after,
 .view-events-calendar .view-filters {
-  display: none!important;
+  display: none !important;
 }

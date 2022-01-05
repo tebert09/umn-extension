@@ -1,5 +1,7 @@
+{# Local office event calendars with event rich media listing display below. #}
+
 {#
-/**
+/*
  * Default theme implementation for Views to output a Fullcalendar View.
  *
  * Available variables:
@@ -55,12 +57,12 @@
     <article class="event-list"> 
       {% if local_program is empty %}
         {{ drupal_view('county_events_for_calendar', 'block_1', county_id) }}
-      {% else %}
+      {% else %}  {# Show events based on selected program filter. #}
         {{ drupal_view('county_events_for_calendar', 'block_2', county_id, local_program) }}
       {% endif %}
     </article>
   </div>
   <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
-    {% include '@coffey/includes/side-nav-block.html.twig' %}
+    {% include '@coffey/includes/local-office/office-side-nav.html.twig' %}
   </aside>
 </section>

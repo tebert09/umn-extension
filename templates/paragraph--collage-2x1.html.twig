@@ -1,4 +1,6 @@
-{# If any change is made to this template it should also be made on the 3 other collage templates. #}
+{# Collage 2x1 - Paragraph type.
+One row with two columns displaying 2 images.
+All collage templates are similar, so if any change is made to this template it should also be made on the other templates. #}
 
 {{ attach_library('coffey/carousel') }}
 
@@ -13,7 +15,6 @@
           {{ content.field_top_right }}
         </div>
         {% include '@coffey/includes/carousel-buttons.html.twig' %}
-
       </div>
       <ol class="carousel-indicators">
         <li data-target="#collageCarouselIdentifier" data-slide-to="0" class="active"></li>
@@ -24,7 +25,6 @@
 </div>
 
 <style>
-
   @media (min-width: 768px) {
     .carousel > .col-md-6 {
       display: inline-block !important;

@@ -1,45 +1,55 @@
+//=======================================================================
+/* Print styles for images */
+//=======================================================================
+
 figure {
   @include break-inside-avoid;
 }
+
 figure.embedded-entity {
   max-width: 300px;
+
   &.image-caption_small {
     width: 275px;
   }
+
   img {
-    max-width: 100%; 
+    max-width: 100%;
     @include break-inside-avoid;
   }
 
   a:after {
+    // stops external link from displaying in the caption.
     display: none;
   }
+}
+
+.border-box figure.embedded-entity,
+.gold-bg figure.embedded-entity,
+.maroon-bg figure.embedded-entity,
+.accordion-body figure.embedded-entity,
+.grey-bg figure.embedded-entity {
+  border-color: $grey;
 }
 
 .embedded-entity,
 img {
   max-width: 300px;
-  width:100%;
-  &.align-center,
-  &.align-left,
-  &.align-right {
-    margin: 20px auto;
-    text-align: center;
-    float: none;
-  }
+  width: 100%;
 
   &.align-left {
-    margin: 10px 30px 10px 0;
+    margin: 10px 10px 10px 0;
     float: left;
   }
 
-  &.align-right {
-    margin: 10px 0 10px 20px;
+  &.align-right,
+  &.align-center {
+    margin: 10px 0 10px 10px;
     float: right;
   }
 }
 
-// image gallery
+//------------- image gallery
 .popup-gallery {
   display: inline-block;
   width: 100%;
@@ -49,13 +59,14 @@ img {
   }
 }
 
-//collage
+//------------- collages
 .collage {
   padding: 0 14px;
+
   img {
-    max-width: 100%!important;
+    max-width: 100% !important;
   }
-  
+
   .row {
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +84,8 @@ img {
     max-width: 50%;
   }
 
-  .col-md-4, .col-md-6 {
+  .col-md-4,
+  .col-md-6 {
     display: inherit !important;
     float: left;
     padding: 2px !important;
@@ -86,6 +98,7 @@ img {
 .collage .carousel-indicators,
 .collage button,
 .QSISlider,
-.banner-content {
+.banner-content,
+.popup-gallery {
   display: none !important;
 }

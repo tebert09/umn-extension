@@ -1,8 +1,10 @@
 //=======================================================================
-/* Styles for Drawer paragraph type, aka accordions. */
+/* Styles for Drawer paragraph type, aka accordions, AND Sources. */
 //=======================================================================
 
 .accordion-group {
+  @include margin-between;
+  @include display-hund;
   .col-sm-8 p {
     &:last-child {
       margin: 0;
@@ -116,6 +118,10 @@
       }
     }
   }
+}
+
+.accordion-body .single-column {
+  margin: 0;
 }
 
 /* Sources paragraph type. */

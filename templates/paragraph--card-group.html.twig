@@ -1,3 +1,6 @@
+{# Card group - Paragraph type. 
+Container of the cards. Uses another paragraph type (paragraph--card) to add the actual cards. #}
+
 {% set cardTitleText = content.field_title[0]["#context"].value %}
 {% set cardHeaderMarkup = content.field_header[0]["#markup"] %}
 {# Provide a fallback/generic aria label when no title is available #}

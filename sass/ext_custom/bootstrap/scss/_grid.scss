@@ -1,46 +1,26 @@
-// Container widths
-//
-// Set the container width, and override it for fixed navbars in media queries.
+// Grid styles from bootstrap
+// Heavily edited down to use only styles that are needed. 
 
-@if $enable-grid-classes {
-  .container {
-    @include make-container();
-    @include make-container-max-widths();
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: none;
+  @media (min-width: 1400px) {
+    width: 1370px;
+  }
+  @media (min-width: 1600px) {
+    width: 1570px;
   }
 }
 
-// Fluid container
-//
-// Utilizes the mixin meant for fixed width containers, but with 100% width for
-// fluid, full width layouts.
-
-@if $enable-grid-classes {
-  .container-fluid {
-    @include make-container();
-  }
-}
-
-// Row
-//
-// Rows contain and clear the floats of your columns.
-
-@if $enable-grid-classes {
-  .row {
-    @include make-row();
-  }
-
-  // Remove the negative margin from default .row, then the horizontal padding
-  // from all immediate children columns (to prevent runaway style inheritance).
-  .no-gutters {
-    margin-right: 0;
-    margin-left: 0;
-
-    > .col,
-    > [class*="col-"] {
-      padding-right: 0;
-      padding-left: 0;
-    }
-  }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 
 // Columns

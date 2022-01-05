@@ -1,4 +1,6 @@
-{# 2 column variable paragraph type. Can choose location of small column (left, right, top, bottom). #}
+{# 2 column variable - paragraph type. 
+Ability to add paragraphs inside each column. 
+Can choose location of small column (left, right, top, bottom). #}
 
 {% set columnLocation = content.field_location[0]["#markup"] %}
 {% set borderOn = (content.field_bottom_border["0"]["#markup"] == "True") %}

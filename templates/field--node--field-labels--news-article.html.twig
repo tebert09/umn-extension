@@ -1,3 +1,5 @@
+{# 1/2022 update: This was used for Highlights - a special news section created for the Communications team before 6/2018. It was retired in ~2019. 
+Don't think this template is used anymore. #}
 {# 
   Since we want labels that correspond to highlights to  
   link to the customized highlight view and activate the contextual filter,
@@ -5,7 +7,6 @@
 #}
 
 {% set highlightsLabels = ["agriculture", "community", "environment", "family", "food", "garden", "youth"] %}
-
 
 {% for label in element if key|first != '#' %}
     {% set labelName = label["#title"] %}
@@ -17,6 +18,5 @@
       {% else %}
         <div class="field--item"><a href="{{ label['#url'] }}" hreflang="en">{{ labelName }}</a></div>
       {% endif %}
-
     {% endif %}
 {% endfor %}

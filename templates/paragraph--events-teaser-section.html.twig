@@ -1,7 +1,8 @@
-{# ==== This template was originally created for only Events Teasers, hence the name. ====
-It was expanded to be a generic template for other Views Displays, such as News Article cards. The style in which the views display is determined by the viewDisplayClass.  #}
-
-{# This templates is very similar to the blogger-feed template, but uses different field names #}
+{# Events Teaser Section (aka Views Section) - Paragrph type. 
+- *** This template was originally created for only Events Teasers, hence the name. ***
+- Is now more of a generic template for other View Displays, such as Cards. The style in which the views display is determined by the viewDisplayClass. 
+- Add event teasers or cards of any content type to a page using the Views Section paragraph type. 
+- This templates is very similar to the blogger-feed template, but uses different field names. #}
 
 {% set titleText = content.field_title[0]["#context"].value %}
 {% set headerLevel = content.field_header[0]["#markup"] %}
@@ -14,20 +15,24 @@ It was expanded to be a generic template for other Views Displays, such as News 
 {# viewColumns allows the editor to choose how many links to display in a row. #}
 
 <section class="view-section-display {{ viewDisplayClass }} {{ viewColumns }}" {{ attributes }}>
-  <div class="row">
-    <div class="col-12 col-lg">
-      {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
-      {% autoescape %}
-        {{ fullHeader|raw }}
-      {% endautoescape %}
+  {% if titleText or buttonLink %} 
+    <div class="row">
+      {% if titleText %} 
+        <div class="col-12 col-lg">
+          {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+          {% autoescape %}
+            {{ fullHeader|raw }}
+          {% endautoescape %}
+        </div>
+      {% endif %}
+      {% if buttonLink %}    
+        <div class="col-12 col-lg-auto action-button">
+          <a role="button" class="button" href="{{ buttonLink }}">{{ buttonTitle }}
+            <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+          </a>
+        </div>
+      {% endif %}
     </div>
-    {% if buttonLink %}    
-      <div class="col-12 col-lg-auto action-button">
-        <a role="button" class="button" href="{{ buttonLink }}">{{ buttonTitle }}
-          <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
-        </a>
-      </div>
-    {% endif %}
-  </div>
+  {% endif %}
   {{ content.field_view }}
 </section>

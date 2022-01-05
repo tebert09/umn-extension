@@ -1,7 +1,9 @@
-{% set background_class = content.field_background_color[0]["#markup"] %}
+{# Full width content section - paragraph type. 
+Created for Landing pages. 
+Ability to insert other paragraph types inside this. #}
 
-<section class="full-width-bg {{ background_class }}" {{ attributes }}>
+{% set backgroundColor = content.field_background_color[0]["#markup"] %}
 
+<section class="full-width-bg {{ backgroundColor }}" {{ attributes }}>
       {{ content|without("field_background_color") }}
-
 </section>

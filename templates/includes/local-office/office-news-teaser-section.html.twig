@@ -1,0 +1,33 @@
+{# Created to display news in the right side column on local office landing pages. #}
+
+{% set tid = node.field_local_office.target_id %}
+{# tid targets the ID of each local office. It allows the view to look at the ID and only display the events of that office. #}
+{% set officeName = node.field_local_office.entity.name.value %}
+{% set officeType = node.field_local_office.entity.field_type.value %}
+{% set titleText = 'News from '~ officeName ~ ' ' ~ officeType %}
+{% set headerLevel = 'h2' %}
+{% set fullHeader = "<" ~ headerLevel ~ ">" ~ titleText ~ "</" ~ headerLevel ~ ">" %}
+{% set actionaButtonLinkUrl = '/local/' ~ county_name_url ~ '/news' %}
+{% set displayType = 'news' %}
+{% set actionButtonTitle = 'All ' ~ officeName ~ ' ' ~ officeType ~ ' ' ~ displayType %}
+
+<div class="view-section-display news-teaser-list" {{ attributes }}>
+  <div class="row">
+    <div class="col-12">
+      {% if titleText and headerLevel %}
+        {# Twig renders data, not markup. So we have to tell it to render the string as markup with raw. #}
+        {% autoescape %}
+          {{ fullHeader|raw }}
+        {% endautoescape %}
+      {% endif %}
+    </div>
+    <div class="col-12">
+      {{ drupal_view('local_office_articles', 'block_1', tid) }} {# tid is very important for this view. See info in variable section. #}
+    </div>
+    <div class="col-12">
+      <a role="button" class="button" href="{{ actionaButtonLinkUrl }}">{{ actionButtonTitle }}
+        <span>{% include '@coffey/includes/angle-svg/angle-right.html.twig' %}</span>
+      </a>
+    </div>
+  </div>
+</div>

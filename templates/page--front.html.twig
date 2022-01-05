@@ -1,8 +1,8 @@
+{# Home page template. Overrides page.html.twig. #}
 {% extends "page.html.twig" %}
 
 {# Replace content_fields #}
 {% block main_content %}
-
   {# Highlighted #}
   {% if page.highlighted %}
     {% block highlighted %}
@@ -22,10 +22,10 @@
     <a id="main-content"></a>
     <div class="home">
       {{ page.content }}
-      </div>
-    {% endblock %}
-
+    </div>
   {% endblock %}
 
-  {# Remove the sidebar #}
-  {% block sidebar_second %}{% endblock %}
+{% endblock %}
+
+{# Remove the sidebar #}
+{% block sidebar_second %}{% endblock %}

@@ -1,3 +1,6 @@
+{# Search block - paragraph type. 
+Used only on Landing pages. #}
+
 {% set titleText = content.field_title[0]["#context"].value %}
 {% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
 {% set searchHeader = "<" ~ titleHeaderMarkup ~ ">" ~ titleText ~ "</" ~ titleHeaderMarkup ~ ">" %}

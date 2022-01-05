@@ -1,3 +1,7 @@
+//=======================================================================
+/* Print styles for the layout */
+//=======================================================================
+
 //------------- Generic styles
 @page {
   margin: 1cm;
@@ -13,103 +17,127 @@
 }
 
 main {
-  padding: 10px 0;
+  padding: 0;
 }
 
-footer {
-  @include break-inside-avoid;
+//------------- Header
+#mandatory-header-wrapper {
+  /*replacing header logo text from white to maroon*/
+  padding: 0;
+  background: transparent;
 }
+
+.printer {
+  display: inline-block !important;
+  width: 100%;
+  background-color: #fff;
+
+  .left {
+    width: 50%;
+    float: left;
+    padding: 10px 0;
+    img {
+      max-width: 500px;
+    }
+  }
+
+  .right {
+    float: right;
+    width: auto;
+    text-align: right;
+    margin: 20px 0 0;
+  }
+}
+
 //------------- grid layout
+.row {
+  display: block;
+  flex-wrap: nowrap;
+  float: left;
+  width: 100%;
+}
+
+.col-12 {
+  @include no-flex;
+  float: left;
+}
+
 .col-md-2 {
-  flex: 0 0 16.6666666667%;
-  max-width: 16.6666666667%;
+  width: 16.6666666667%;
 }
 
 .col-md-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
+  width: 25%;
 }
 
-.col-md-4, .event-teaser-list.five .views-row, .event-teaser-list.four .views-row, .event-teaser-list.three .views-row, .card-group.three .card, .view-section-display.three .views-row {
-  flex: 0 0 33.3333333333%;
-  max-width: 33.3333333333%;
+.col-md-4,
+.event-teaser-list.five .views-row,
+.event-teaser-list.four .views-row,
+.event-teaser-list.three .views-row,
+.card-group.three .card,
+.view-section-display.three .views-row {
+  width: 33.3333333333%;
 }
 
 .col-md-5 {
-  flex: 0 0 41.6666666667%;
-  max-width: 41.6666666667%;
+  width: 41.6666666667%;
 }
 
-.col-md-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
+.col-md-6,
+.col-sm-6 {
+  width: 50%;
 }
 
 .col-md-7 {
-  flex: 0 0 58.3333333333%;
-  max-width: 58.3333333333%;
+  width: 58.3333333333%;
 }
 
 .col-md-8 {
-  flex: 0 0 66.6666666667%;
-  max-width: 66.6666666667%;
+  width: 66.6666666667%;
 }
 
 .col-md-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
+  width: 75%;
 }
+
 .col-lg-2 {
-  flex: 0 0 16.6666666667%;
-  max-width: 16.6666666667%;
+  width: 16.6666666667%;
 }
 
 .col-lg-3 {
-  flex: 0 0 25%;
-  max-width: 25%;
+  width: 25%;
 }
 
-.col-lg-4 {
-  flex: 0 0 33.3333333333%;
-  max-width: 33.3333333333%;
+.col-lg-4,
+.col-xl-4 {
+  // Have to make this 30% or the 3 column paragraph type with images doesn't display in a row. 
+  width: 30%;
+  float: left;
 }
 
 .col-lg-5 {
-  flex: 0 0 41.6666666667%;
-  max-width: 41.6666666667%;
+  width: 41.6666666667%;
 }
 
 .col-lg-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
+  width: 50%;
 }
 
 .col-lg-7 {
-  flex: 0 0 58.3333333333%;
-  max-width: 58.3333333333%;
+  width: 58.3333333333%;
 }
 
-.col-lg-8 {
-  flex: 0 0 66.6666666667%;
-  max-width: 66.6666666667%;
+.col-lg-8,
+.col-xl-8 {
+  width: 66.6666666667%;
 }
 
 .col-lg-9 {
-  flex: 0 0 75%;
-  max-width: 75%;
+  width: 75%;
 }
 
-.col-12.big-column, #umnhf-h-mast .col-md-6 {
-  padding: 0 15px !important;
-  flex: none !important;
-  max-width: 100% !important;
-  width: 100% !important;
-}
-
-.col-12.big-column, .col-12.small-column {
-  margin-top: 20px;
-}
-
+.col-12.big-column,
+#umnhf-h-mast .col-md-6,
 .col-12.small-column {
   padding: 0 15px !important;
   flex: none !important;
@@ -117,41 +145,91 @@ footer {
   width: 100% !important;
 }
 
+.col-12.big-column,
+.col-12.small-column {
+  margin-top: 20px;
+}
+
+// change columns for event pages
 .page-node-type-event .col-12.small-column {
-  flex: 0 0 33.3333333333% !important;
+  width: 33.3333333333% !important;
   max-width: 33.3333333333% !important;
 }
 
 .page-node-type-event .col-12.big-column {
-  flex: 0 0 66.6666666667% !important;
+  width: 66.6666666667% !important;
   max-width: 66.6666666667% !important;
 }
 
-.card-group, .view-section-display .view-content, .blogger-feed .view-content {
-  display: flex;
-  flex-flow: row wrap;
+//------------- Specific DIVs
+.intro {
+  max-width: 100% !important;
 }
 
-/* Display-nones */
-.action-button,
-.addThis,
-.page-nav,
-.print-option,
-.side-nav,
-.social-icons,
+.quick-facts {
+  border-width: 3px;
+  padding: 10px;
+}
+
+//------------- Category landing pages
+.category-container {
+  background: transparent !important;
+  border-top: 2pt solid #f0efee;
+  max-width: inherit;
+  padding: 30px 0;
+  
+  .col-12.col-sm-6 {
+    width: 50%;
+    flex: none; 
+    max-width: 50%;
+    @include break-inside-avoid;
+  }
+}
+article.category-container:nth-of-type(odd):before, 
+article.category-container:nth-of-type(odd):after {
+  display: none; 
+}
+
+//------------- Footer
+// hide all of the footer, except the copyright
+footer {
+  @include break-inside-avoid;
+  float: left;
+  width: 100%;
+  &#page-footer {
+    padding: 10px 0;
+  }
+  .col-12.col-md {
+    width: 50%;
+    float: left;
+  }
+}
+#umnhf-f {
+  padding: 5px 0 0;
+}
+//------------- Display-nones
+.navbar,
+.breadcrumb,
+ul.tabs--primary,
+.region-content nav.tabs,
 .umnhf-h-search,
+.action-button,
+.page-nav,
 .view-section-display a.button,
 a.button span,
 a.printable,
+.print-option,
 aside.col-12.col-md-4,
 aside.col-lg-4,
-footer#page-footer,
+.side-nav,
 form#search-block-form,
 iframe,
 #backtotop,
-ul.tabs--primary,
-.breadcrumb,
-.navbar,
-  {
+.qualtrics-stars, 
+.addThis,
+section.col-12[aria-label="Social sharing icons."],
+.social-icons,
+#umnhf-h a.umnhf, 
+.umnhf .row .col-md:last-child {
   display: none !important;
 }

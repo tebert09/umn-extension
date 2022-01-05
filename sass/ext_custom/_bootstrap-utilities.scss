@@ -1,0 +1,79 @@
+//=======================================================================
+/* Styles extracted from the Bootstrap Utilities and Transition files. 
+Instead of using all the Bootstrap utilities styles, we extracted the ones we were using into this file. */
+//=======================================================================
+
+.clearfix {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
+
+.clear {
+  //adds a break between elements if needed.
+  clear: both;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+.sr-only-focusable {
+
+  &:active,
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    clip-path: none;
+  }
+}
+
+// =============== Bootstrap transition styles
+.fade {
+  opacity: 0;
+  @include transition($transition-fade);
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.collapse {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
+tr {
+  &.collapse.show {
+    display: table-row;
+  }
+}
+
+tbody {
+  &.collapse.show {
+    display: table-row-group;
+  }
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  @include transition($transition-collapse);
+}

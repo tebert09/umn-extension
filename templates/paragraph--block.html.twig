@@ -1,4 +1,8 @@
+{# Block - Paragraph type. 
+2022 update: not sure where this is used. #}
+
 {% set background_color_class = content.field_background_color[0]["#markup"] %}
+
 <div class="{{ background_color_class }}">
   <h3>{{ content.field_title }}</h3>
   {{ content.field_block }}

@@ -1,32 +1,38 @@
-{% set has_sidebar_content = content.field_right_sidebar[0] %}
-{% set pageTitle = label[0]["#context"].value %}
+{# Local office page content type. 
+Ex: /local/aitkin. #}
 
-{% if content.field_photo %}
-  <section class="row" aria-labelledby="page-title">  
-    <article class="col-12 col-md-5 col-lg-4">
-      {{ content.field_photo }}
-    </article>
-    <article class="col-12 col-md-7 col-lg-8 intro">
-      {{ content.body }}
-    </article>  
-  </section>
-{% else %}
-  <section class="row justify-content-center" aria-labelledby="page-title">
-    <article class="col-12 col-md-7 col-lg-8 intro">
-      {{ content.body }}
-    </article>  
-  </section>
-{% endif %}
+{% set pageTitle = label[0]["#context"].value %}
+{% set tid = node.field_local_office.target_id %} 
+{# tid targets the ID of each local office. It helps to display specifc deadlines, articles, and events for the specific office in views. #}
+{% set topPhoto = content.field_photo[0] %}
+{% set rightSidebar = content.field_right_sidebar[0] %}
+{% set contentBlocks = content.field_content_blocks %}
+
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+{{ attach_library('coffey/news') }}
+
+{# Top intro section #}
+<section class="row">  
+  <article class="col-12 col-md-5 col-lg-4">
+    {{ topPhoto }}
+  </article>
+  <article class="col-12 col-md-7 col-lg-8 intro">
+    {{ content.body }}
+  </article>  
+</section>
 
 <section class="row">
-    <article class="col-12 col-md-7 col-lg-8 big-column">
-      {{ content|without("field_photo", "body", "field_right_sidebar") }}
-    </article>
-    
-    <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
-      {#{ content.field_right_sidebar }#}
-      {% include '@coffey/includes/side-nav-events-teaser-section.html.twig' %}
-      {% include '@coffey/includes/side-nav-block.html.twig' %}
-    </aside>
-    {% include '@coffey/includes/add-this.html.twig' %}
+  {# Drawer sections. #}
+  <article class="col-12 col-md-7 col-lg-8 big-column">
+    {{ contentBlocks }}
+  </article>
+  
+  {# Right sidebar, which consists of hard coded views and/or custom blocks. Local editors cannot edit. #}
+  <aside class="col-12 col-md-5 col-lg-4 small-column" aria-label="Secondary navigation.">
+    {% include '@coffey/includes/local-office/office-events-teaser-section.html.twig' %}
+    {% include '@coffey/includes/local-office/office-news-teaser-section.html.twig' %}
+  </aside>
+  {# Bottom addthis section. #}
+  {% include '@coffey/includes/add-this.html.twig' %}
 </section>

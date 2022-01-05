@@ -1,12 +1,13 @@
-{# Paragraph type for custom blocks #}
+{# Custom content (aka custom block) - Paragraph type.
+Allows for ability to add a custom block as a paragraph type on a page. #}
 
-{% set background_color_class = content.field_background_color[0]["#markup"] %}
-{% set border_color_class = content.field_border_color[0]["#markup"] %}
+{% set backgroundClass = content.field_background_color[0]["#markup"] %}
+{% set borderClass = content.field_border_color[0]["#markup"] %}
 
-<div class="{{ background_color_class }} {{ border_color_class }}">
+<div class="{{ backgroundClass }} {{ borderClass }}">
   <div class="row">
     <div class="col-12">
-      {{ content|without("field_border_color", "field_border_color_class", "field_background_color") }}
+      {{ content|without("field_border_color", "field_background_color") }}
     </div>
   </div>
 </div>

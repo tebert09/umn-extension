@@ -14,3 +14,10 @@
   page-break-after: avoid !important;
   break-after: avoid-page;
 }
+
+@mixin no-flex {
+  display: block!important; 
+  flex: none!important; 
+  max-width: none!important; 
+  flex-flow: inherit!important;
+}

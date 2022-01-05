@@ -1,41 +1,78 @@
-
-//-------------Tables-------------
-
+//=======================================================================
+// Styles for Tables
+//=======================================================================
 
 .table-block {
   @include margin-between;
   @include display-hund;
+}
 
-  .table {
-    border: 1px solid $lightgrey;
-    thead {
-      background: $darkgold;
-      color: $darkgrey;
-
-      th {
-        border-bottom: 2px solid $maroon;
-        padding: 1rem 0.75rem;
-        border-top: 0;
-      }
-    }
-
-    td {
-      border-top: 1px solid $lightgrey;
-    }
-
-    caption {
-      caption-side: top;
-      color: $stormy;
-      font-size: $font-size-base;
-      line-height: $line-height-base;
-    }
+.table-responsive {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  max-width: 100%;
+  max-height: 400px;
+  border: 1px solid $grey;
+  
+  @media (min-width:$medium-screen) {
+    max-height: 600px;
   }
 }
 
-.table .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba($lightgrey,0.4);
-}
+.table {
+  display: table;
+  width: 100%;
+  background: $white;
+  max-width: 100%;
+  margin-bottom: 0;
+  position: relative;
 
-.table-hover tbody tr:hover {
-  background-color: rgba($gold,0.4);
+  thead {
+    background: $darkgold;
+    color: $darkgrey;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    th {
+      border-bottom: 2px solid $maroon;
+      padding: 1rem 0.75rem;
+      border-top: 0;
+      vertical-align: middle;
+    }
+  }
+
+  th,
+  td {
+    vertical-align: top;
+    padding: 1rem;
+    border-right: 1pt solid $white;
+    position: relative;
+
+    &:last-child {
+      //border-right: 1px solid $grey;
+    }
+  }
+
+  tbody {
+    tr:nth-of-type(odd) {
+      background: rgba($grey, 0.4);
+    }
+  
+    td {
+      border-top: 1px solid $grey;
+    }
+  
+    tr:hover, tr:focus {
+      background-color: rgba($gold, 0.4);
+    }
+  }
+  
+  caption {
+    caption-side: top;
+    color: $stormy;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+  }
 }

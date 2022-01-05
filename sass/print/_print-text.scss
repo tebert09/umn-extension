@@ -1,16 +1,18 @@
 //=======================================================================
 /* Print styles for text */
 //=======================================================================
+//------------- Generic styles
+
+html {
+  font-size: 63%;
+}
+
 body,
 ol,
 p,
 table,
 ul {
   color: $black;
-}
-
-html {
-  font-size: 63%;
 }
 
 body,
@@ -28,23 +30,12 @@ h6 {
   overflow: visible;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5, 
-h6 {
-  orphans: 3;
-  widows: 3;
-  @include break-inside-avoid;
-  @include break-after-avoid;
-}
-
+//------------- Headers
 h1 {
   font-size: $font-size-h1;
 }
 
-h2 {
+h2, footer h2 {
   font-size: $font-size-h2;
 }
 
@@ -64,34 +55,46 @@ h6 {
   font-size: $font-size-h6;
 }
 
-ol,
-p,
-ul, blockquote p {
-  @include font-size-base;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  orphans: 3;
+  widows: 3;
+  margin-top: 10px;
+  position: relative;
+  @include break-inside-avoid;
+  @include break-after-avoid;
+
+  a:after {
+    font-size: font-size-base;
+  }
 }
 
-.intro ol, .intro p, .intro ul {
-  font-size: 12pt;
-}
-blockquote {
-  margin: 15px;
-}
-p {
+//------------- Lists, Paragraphs, Blockquotes
+ol,
+p,
+ul,
+blockquote p, 
+footer p, 
+.field--name-field-contact-info {
+  @include font-size-base;
+  display: block;
   orphans: 3;
   widows: 3;
 }
 
-a,
-a:after {
-  // removed ul and ol from here because it was creating large gaps on the page
-  @include break-inside-avoid;
+blockquote {
+  margin: 15px;
 }
 
-li {
-  // removed ul and ol from here because it was creating large gaps on the page
-  @include break-inside-avoid;
-  @include break-after-avoid;
-}
+ul li,
+ol li,
+p,
+a,
+a:after,
 h2+p,
 h3+p,
 h4+p,
@@ -100,6 +103,35 @@ h6+p {
   @include break-inside-avoid;
 }
 
+.intro ol,
+.intro p,
+.intro ul {
+  font-size: 12pt;
+}
+
+ol.three-columns,
+ol.two-columns,
+ul.three-columns,
+ul.two-columns {
+  -moz-column-gap: 20px;
+  -webkit-column-gap: 20px;
+  column-gap: 20px;
+  list-style-position: inside;
+}
+
+ol.three-columns,
+ul.three-columns {
+  -webkit-column-count: 3;
+  column-count: 3;
+}
+
+ol.two-columns,
+ul.two-columns {
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+
+//------------- Links
 a {
   &:not(.btn) {
     text-decoration: underline;
@@ -143,9 +175,10 @@ ul a.pdf:after,
 ul a.powerpoint:after,
 ul a:after {
   content: none;
-  display: none!important;
+  display: none !important;
 }
 
+//------------- Text classes
 pre {
   white-space: pre-wrap !important;
 }
@@ -160,19 +193,4 @@ pre {
 
 .align-self-end {
   align-self: flex-start !important;
-}
-
-ol.three-columns, ol.two-columns, ul.three-columns, ul.two-columns {
-  -moz-column-gap: 20px;
-  -webkit-column-gap: 20px;
-  column-gap: 20px;
-  list-style-position: inside;
-}
-ol.three-columns, ul.three-columns {
-  -webkit-column-count: 3;
-  column-count: 3;
-}
-ol.two-columns, ul.two-columns {
-  -webkit-column-count: 2;
-  column-count: 2;
 }

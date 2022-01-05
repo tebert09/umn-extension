@@ -1,10 +1,11 @@
-{# How the course appears on the courses and events page #}
+{# Course Rich Media Listing - How the course appears on the courses and events page #}
 
-<article class="row list-teaser">
+{{ attach_library('coffey/flex') }}
+{{ attach_library('coffey/events') }}
+
+<article class="row list-display">
   <div class="col-12">
-    <div class="event-title">
-      {% include '@coffey/includes/displays/title.html.twig' %} 
-    </div>
+    {% include '@coffey/includes/displays/title.html.twig' %} 
     {% include '@coffey/includes/displays/summary.html.twig' %}  
   </div>
 </article>

@@ -1,9 +1,12 @@
-{# Deadelines are created for local office deadlines. There was a need for a way to display deadline-type information and the event template was too complex. These will not display on the main /courses-and-events page, but will display on local office event pages. #}
+{# Deadlines were created for local offices. 
+There was a need for a way to display deadline-type information and the fields for events were too complex. 
+These will NOT display on the main /courses-and-events page, but will display on local office event pages.
+They will display very similar to events. #}
 
 {% set pageTitle = label[0]["#context"].value %}
 {% set dateString = content.field_start_date[0]["#markup"] %}
 {% set addCal = content.field_add_to_calendar %}
-{% set relatedEvents = content.field_related_events %}
+{% set relatedEvents = content.field_related_events[0] %}
 {% set hideStartTime = (content.field_hide_start_time[0]["#markup"] == "True") %}
 
 {{ attach_library('coffey/flex') }}
@@ -30,17 +33,5 @@
         {{ relatedEvents }}
       </div>
     {% endif %}
-  </article>
-</section>
-
-<section class="row">
-  <article class="col-12">
-    <div class="addThis">
-      {{ attach_library('coffey/addthis') }}
-      {# AddThis code has to appear here instead of in the include b/c the include has unneeded code. #}
-        <span>Share this page:</span>
-        <script async="async" type="text/javascript"> var addthis_config = { ui_tabindex: 0 } </script>
-        <div class="addthis_inline_share_toolbox_kn95" tabindex="0"></div>
-    </div>
   </article>
 </section>

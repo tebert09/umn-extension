@@ -1,3 +1,6 @@
+{# Table - paragraph type. 
+P-type to create tables. Uses the TableField module along with the table.html.twig template. #}
+
 {% set tableTitleText = content.field_table_title[0]["#context"].value %}
 {% set headerMarkup = content.field_header[0]["#markup"] %}
 {% set tableTitleMarkup = "<" ~ headerMarkup ~ ">" ~ tableTitleText ~ "</" ~ headerMarkup ~ ">" %}
@@ -9,6 +12,5 @@
       {{ tableTitleMarkup|raw }}
     {% endautoescape %}
   {% endif %}
-
   {{ content|without("field_table_title", "field_header", "field_caption") }}
 </section>

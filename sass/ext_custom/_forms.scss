@@ -1,6 +1,30 @@
 // Forms ============================================
 // General form styles + Salesforce iframe
 // ==================================================
+// Generic form styles - mostly from bootstrap ===============
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.4rem;
+  line-height: 1.75;
+  color: $stormy;
+  background-color: $white;
+  background-clip: padding-box;
+  border: 1px solid $grey;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus-visible {
+    border-radius: 0;
+    border-color: $gold;
+    outline: 2pt solid $gold;
+  }
+}
+
 // Salesforce Marketing Cloud iframes ===============
 .smc-embed body * {
   font-family: $font-family-sans-serif!important;
@@ -20,12 +44,12 @@
 .view-filters select.form-control, .side-nav select {
   border-radius: 0px;
   padding: 8px;
-  border: 1px solid #ced4da;
+  border: 1px solid $grey;
   width: 100%;
 
   &:focus,
   &:hover {
-    outline: #fc3 2pt solid;
+    outline: $gold 2pt solid;
     box-shadow: none;
     transition: none;
     border-color: transparent;

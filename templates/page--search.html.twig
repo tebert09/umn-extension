@@ -1,3 +1,5 @@
+{# Search page template. Overrides page.html.twig. #}
+
 {% extends "page.html.twig" %}
 
 {# Main #}
@@ -13,13 +15,13 @@
 
     {# Content #}
     {%
-        set content_classes = [
-          page.sidebar_first and page.sidebar_second ? 'col-sm-6',
-          page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
-          page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
-          page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
-        ]
-      %}
+      set content_classes = [
+        page.sidebar_first and page.sidebar_second ? 'col-sm-6',
+        page.sidebar_first and page.sidebar_second is empty ? 'col-sm-9',
+        page.sidebar_second and page.sidebar_first is empty ? 'col-sm-9',
+        page.sidebar_first is empty and page.sidebar_second is empty ? 'col-sm-12'
+      ]
+    %}
 
     {# Main Content #}
     {% block main_content %}

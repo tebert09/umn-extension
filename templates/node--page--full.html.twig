@@ -1,5 +1,5 @@
-{# Template for Basic Page content type. 
-Removed If / Else statement 6/2021 that would have centered the layout without a sidebar. #}
+{# Basic Page content type.
+Section class names need to be the same on Basic Pages, Topic pages, and Course Page content types. #}
 
 {% set has_sidebar_content = content.field_right_sidebar[0] %}
 {% set pageTitle = label[0]["#context"].value %}

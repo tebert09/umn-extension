@@ -1,3 +1,6 @@
+{# View with header - paragraph type.
+Paragraph type that pulls in a view and has the ability to add content above it. #}
+
 {% set titleText = content.field_title[0]["#context"]["value"] %}
 {% set titleHeaderMarkup = content.field_header[0]["#markup"] %}
 {% set titleLink = content.field_title_link[0]["#url"].toString() %}
